@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('livrables', function (Blueprint $table) {
             $table->id();
             $table->string("livrable");
-            $table->text("commentaire");
 
             $table->bigInteger('cat_livrable_id')->unsigned()->nullable();
             $table->foreign('cat_livrable_id')->references('id')->on('cat_livrables');

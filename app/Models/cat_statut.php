@@ -10,8 +10,9 @@ class cat_statut extends Model
     use HasFactory;
     public $guarded = [];
     public $table = "cat_statuts";
+    protected $primaryKey = "id";
 
     public function statut_catStatu(){
-        return $this->hasMany(statut::class);
+        return $this->hasMany(statut::class, "statut_id", "id");
     }
 }

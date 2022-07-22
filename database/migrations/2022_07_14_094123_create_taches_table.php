@@ -22,9 +22,12 @@ return new class extends Migration
             $table->bigInteger('cat_tache_id')->unsigned()->nullable();
             $table->foreign('cat_tache_id')->references('id')->on('cat_taches');
 
-
             $table->bigInteger('statut_id')->unsigned()->nullable();
             $table->foreign('statut_id')->references('id')->on('statuts');
+
+            $table->bigInteger('projet_id')->unsigned()->nullable();
+            $table->foreign('projet_id')->references('id')->on('statuts');
+
 
             $table->timestamps();
         });

@@ -13,16 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('role_user', function (Blueprint $table) {
+        Schema::create('commentaires', function (Blueprint $table) {
             $table->id();
-
-            $table->DateTime("date_afictation");
+            $table->text("commentaires");
 
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
 
-            $table->bigInteger('role_id')->unsigned()->nullable();
-            $table->foreign('role_id')->references('id')->on('roles');
+            $table->bigInteger('livrables_id')->unsigned()->nullable();
+            $table->foreign('livrables_id')->references('id')->on('livrables');
 
 
             $table->timestamps();
@@ -36,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('role_user');
+        Schema::dropIfExists('table_commentaire');
     }
 };

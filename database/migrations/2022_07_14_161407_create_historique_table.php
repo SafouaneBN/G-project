@@ -13,14 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('clients', function (Blueprint $table) {
+        Schema::create('historiques', function (Blueprint $table) {
             $table->id();
-            $table->string("full_name");
-            $table->string("email");
-            $table->string("pays");
-            $table->string("ville");
-            $table->string("telephone");
-            $table->enum("type_client",["pm","pp"]);
+
+            $table->DateTime("date_afictation");
+
+            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
+
+            $table->bigInteger('role_id')->unsigned()->nullable();
+            $table->foreign('role_id')->references('id')->on('roles');
+
+
             $table->timestamps();
         });
     }
@@ -32,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clients');
+        Schema::dropIfExists('role_user');
     }
 };

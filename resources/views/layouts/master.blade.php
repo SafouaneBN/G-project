@@ -80,12 +80,12 @@
 
 
                 <li class="collapsed">
-                    <a class="m-link" data-bs-toggle="collapse" data-bs-target="#app-Components" href="#">
+                    <a class="m-link @yield('parametre') @yield('statut')" data-bs-toggle="collapse" data-bs-target="#app-Components" href="#">
                         <i class="icofont-ui-settings"></i> <span>Parametre</span> <span class="arrow icofont-dotted-down ms-auto text-end fs-5"></span></a>
                     <!-- Menu: Sub menu ul -->
                     <ul class="sub-menu collapse" id="app-Components">
-                        <li><a class="ms-link" href="calendar.html"> <span>Role</span></a></li>
-                        <li><a class="ms-link" href="chat.html"><span>Statut</span></a></li>
+                        <li><a class="ms-link @yield('parametre')" href="{{ route('parametre.role') }}"> <span>Role</span></a></li>
+                        <li><a class="ms-link @yield('statut')" href="{{ route('parametre.statut') }}"><span>Categorie statut</span></a></li>
                     </ul>
                 </li>
 
@@ -425,5 +425,6 @@
 <!-- Jquery Page Js -->
 <script src="{{asset('assets/js/template.js')}}"></script>
 <script src="{{asset('assets/js/page/hr.js')}}"></script>
+@yield("scripts")
 </body>
 </html>

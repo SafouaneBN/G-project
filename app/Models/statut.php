@@ -8,8 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class statut extends Model
 {
     use HasFactory;
+
     public $guarded = [];
     public $table = "statuts";
+    protected $primaryKey = "id";
 
 
     public function activite_statut(){
@@ -21,6 +23,6 @@ class statut extends Model
     }
 
     public function catStatu_statut(){
-        return $this->belongsTo(cat_statut::class);
+        return $this->belongsTo(cat_statut::class , "statut_id", "id");
     }
 }
