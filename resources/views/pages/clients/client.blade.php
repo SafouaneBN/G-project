@@ -12,7 +12,7 @@
                                 <h3 class=" fw-bold flex-fill mb-0">Clients</h3>
                                 <div class="col-auto d-flex">
 
-                                    <button type="button" class="btn btn-dark ms-1 " data-bs-toggle="modal" data-bs-target="#createproject"><i class="icofont-plus-circle me-2 fs-6"></i>Add Client</button>
+                                    <button type="button" class="btn btn-dark ms-1 " data-bs-toggle="modal" data-bs-target="#createproject"><i class="icofont-plus-circle me-2 fs-6"></i>Ajouter Client</button>
                                 </div>
                             </div>
                         </div>

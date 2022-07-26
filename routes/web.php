@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\parametreController;
 use App\Http\Controllers\StatutController;
 use App\Http\Controllers\OpportuniteController;
+use App\Http\Controllers\cat_projetController;
 
 
 /*
@@ -33,6 +34,12 @@ Route::group(['prefix' => 'project', "middleware" => "auth"  ],function () {
     Route::get('/task',[ProjectController::class, "task"])->name('project.task');
     Route::get('/timesheet',[ProjectController::class, "timesheet"])->name('project.timesheet');
     Route::get('/team_leader',[ProjectController::class, "team_leader"])->name('project.team_leader');
+    Route::get('/index/cat_project',[cat_projetController::class, "index"])->name('cat_projet.index');
+    Route::post('/cat_projetadd',[cat_projetController::class, "addcat_projet"])->name('parametre.addcat_projet');
+    Route::get('/cat_projet/{id}/edit', [cat_projetController::class,"editcat_projet"]);
+    Route::post('/cat_projet/update', [cat_projetController::class,"updatecat_projet"])->name('parametre.updatecat_projet');
+    Route::post('/cat_projet/delete', [cat_projetController::class,"deletecat_projet"])->name('parametre.deletecat_projet');
+
 });
 
 Route::group(['prefix' => 'client', "middleware" => "auth"  ],function () {
@@ -73,7 +80,7 @@ Route::group(['prefix' => 'opportunite' ],function () {
     Route::get('/index',[OpportuniteController::class, "index"])->name('opportunite.index');
     Route::post('/addOpportunite',[OpportuniteController::class, "addOpportunite"])->name('parametre.addOpportunite');
     Route::get('/Opportunit/{id}/edit', [OpportuniteController::class,"editOpportunite"]);
-    Route::post('/Opportunit/update', [OpportuniteController::class,"updatOpportunite"])->name('parametre.updatOpportunite');
+    Route::post('/Opportunit/update', [OpportuniteController::class,"updateOpportunite"])->name('parametre.updateOpportunite');
     Route::post('/Opportunit/delete', [OpportuniteController::class,"deleteOpportunite"])->name('parametre.deleteOpportunite');
 
 });

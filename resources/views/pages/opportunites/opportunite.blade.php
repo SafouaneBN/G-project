@@ -11,10 +11,10 @@
             <div class="col-md-12">
                 <div class="card border-0 mb-4 no-bg">
                     <div class="card-header py-3 px-0 d-flex align-items-center  justify-content-between border-bottom">
-                        <h3 class=" fw-bold flex-fill mb-0">Clients</h3>
+                        <h3 class=" fw-bold flex-fill mb-0">Opportunite</h3>
                         <div class="col-auto d-flex">
 
-                            <button type="button" class="btn btn-dark ms-1 " data-bs-toggle="modal" data-bs-target="#createproject"><i class="icofont-plus-circle me-2 fs-6"></i>Add Client</button>
+                            <button type="button" class="btn btn-dark ms-1 " data-bs-toggle="modal" data-bs-target="#createproject"><i class="icofont-plus-circle me-2 fs-6"></i>Ajouter Opportunite</button>
                         </div>
                     </div>
                 </div>
@@ -37,8 +37,12 @@
             <tr role="row  Rowdelete2{{ $opportunite->id }}" class="odd">
                 <td class="oppo">{{ $opportunite->opportunite }}</td>
 
-                <td class="dat">{{ date('M d,Y', strtotime($opportunite->Date_opportunite)) }}</td>
-                <td class="clien">{{ $opportunite->client_opportunite->full_name }}</td>
+                <td >{{ date('M d,Y', strtotime($opportunite->Date_opportunite)) }}</td>
+                <input type="hidden" class="dat" value="{{$opportunite->Date_opportunite }}">
+                <input type="hidden" class="clien" value="{{ $opportunite->client_id }}">
+
+                <td class="">
+                    {{ $opportunite->client_opportunite->full_name }}</td>
 
                 <td class=" dt-body-right">
                     <div class="btn-group" Statut="group" aria-label="Basic outlined example">
@@ -75,7 +79,7 @@
             <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title  fw-bold" id="createprojectlLabel"> Ajouter Client</h5>
+                        <h5 class="modal-title  fw-bold" id="createprojectlLabel"> Ajouter Opportunite</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form method="post" action="{{ route('parametre.addOpportunite') }}">
@@ -131,10 +135,10 @@
             <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title  fw-bold" id="createprojectlLabel"> Modifier Client</h5>
+                        <h5 class="modal-title  fw-bold" id="createprojectlLabel"> Modifier Opportunite</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="{{ route('parametre.cat_update') }}" class="forms-sample" method="post">
+                    <form action="{{ route('parametre.updateOpportunite') }}" class="forms-sample" method="post">
                         @csrf
                         <div class="modal-body">
 
@@ -142,7 +146,7 @@
                             <div class="mb-3">
 
                                 <div class="col-sm">
-                                    <input type="text" id="id_oppo" name="id" value="" >
+                                    <input type="text" id="id_oppo" name="id" value="" hidden >
 
                                     <label for="exampleFormControlInput977" class="form-label">Opportunite</label>
                                     <input type="text" class="form-control" id="Opportunite_edit" name="Opportunite_edit"
@@ -202,12 +206,15 @@
         $("#patient-table").on("click", ".editbtn", function() {
             $id = $(this).val();
             $oppor = $(this).parent().parent().parent().find(".oppo").text();
-            $date = $(this).parent().parent().parent().find(".dat").text();
-            $client = $(this).parent().parent().parent().find(".clien").text();
+            $date = $(this).parent().parent().parent().find(".dat").val();
+            $client = $(this).parent().parent().parent().find(".clien").val();
+
+
+            $date = $date.split(' ')[0];
             $("#id_oppo").val($id);
             $("#Opportunite_edit").val($oppor);
             $("#date_edit").val($date);
-            $("#client_edit").val($client).change();
+            $(".client_edit").val($client);
 
         })
 

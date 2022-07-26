@@ -61,6 +61,7 @@
                         <li><a class="ms-link @yield('task')" href="{{ route('project.task') }}"><span>Tasks</span></a></li>
                         <li><a class="ms-link @yield('timesheet')" href="{{ route('project.timesheet') }}"><span>Timesheet</span></a></li>
                         <li><a class="ms-link @yield('team_leader')" href="{{ route('project.team_leader') }}"><span>Leaders</span></a></li>
+                        <li><a class="ms-link @yield('cat_projet')" href="{{ route('cat_projet.index') }}"><span>Categorie projet</span></a></li>
                     </ul>
                 </li>
 

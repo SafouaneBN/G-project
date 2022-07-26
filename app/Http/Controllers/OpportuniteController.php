@@ -26,12 +26,16 @@ class OpportuniteController extends Controller
         return redirect()->back()->with("Ajouter avec succes");
     }
 
-    public function updateopportunite(Request $request)
+    public function updateOpportunite(Request $request)
     {
-        $opportunite = opportunite::find($request->id_opportunite);
+        $opportunite = opportunite::find($request->id);
 
 
          $opportunite->update([
+            "opportunite"=>$request->Opportunite_edit,
+            "Date_opportunite"=>$request->date_edit,
+            "client_id"=>$request->client_edit,
+
 
 
          ]);

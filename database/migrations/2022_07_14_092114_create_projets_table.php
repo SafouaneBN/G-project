@@ -28,6 +28,9 @@ return new class extends Migration
             $table->bigInteger('type_projet_id')->unsigned()->nullable();
             $table->foreign('type_projet_id')->references('id')->on('type_projets');
 
+            $table->bigInteger('catpro_id')->unsigned()->nullable();
+            $table->foreign('catpro_id')->references('id')->on('cat_projets');
+
 
             $table->timestamps();
         });
