@@ -9,6 +9,9 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Favicon-->
     <!-- project css file  -->
     <link rel="stylesheet" href="{{asset('assets/css/my-task.style.min.css')}}">
+
+    <link rel="stylesheet" href="{{asset('assets/plugin/datatables/responsive.dataTables.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/plugin/datatables/dataTables.bootstrap5.min.css')}}">
 </head>
 <body>
 
@@ -41,12 +44,11 @@
                 </li>
 
                 <li class="collapsed">
-                    <a class="m-link " data-bs-toggle="collapse" data-bs-target="#dashboard-Components" href="#">
+                    <a class="m-link @yield('opportunite')"  data-bs-toggle="collapse" data-bs-target="#dashboard-Components" href="#">
                         <i class="icofont-files-stack"></i> <span>Opportunite</span> <span class="arrow icofont-dotted-down ms-auto text-end fs-5"></span></a>
                     <!-- Menu: Sub menu ul -->
                     <ul class="sub-menu collapse " id="dashboard-Components">
-                        <li><a class="ms-link " href="index.html"> <span>Ajouter opportunite</span></a></li>
-                        <li><a class="ms-link" href="project-dashboard.html"> <span>list opportunite</span></a></li>
+                        <li><a class="ms-link @yield('opportunite')" href="{{ route('opportunite.index') }}"> <span> opportunite</span></a></li>
                     </ul>
                 </li>
 
@@ -416,15 +418,27 @@
 
 </div>
 
-<!-- Jquery Core Js -->
-<script src="{{asset('assets/bundles/libscripts.bundle.js')}}"></script>
+    <!-- Jquery Core Js -->
+    <script src="{{asset('assets/bundles/libscripts.bundle.js')}}"></script>
 
-<!-- Plugin Js-->
-<script src="{{asset('assets/bundles/apexcharts.bundle.js')}}"></script>
+    <!-- Plugin Js-->
+    <script src="{{asset('assets/bundles/apexcharts.bundle.js')}}"></script>
 
-<!-- Jquery Page Js -->
-<script src="{{asset('assets/js/template.js')}}"></script>
-<script src="{{asset('assets/js/page/hr.js')}}"></script>
-@yield("scripts")
+    <!-- Jquery Page Js -->
+    <script src="{{asset('assets/js/template.js')}}"></script>
+    <script src="{{asset('assets/js/page/hr.js')}}"></script>
+
+    <script src="{{asset('assets/bundles/libscripts.bundle.js')}}"></script>
+
+    <!-- Plugin Js-->
+    <script src="{{asset('assets/bundles/dataTables.bundle.js')}}"></script>
+
+    <!-- Jquery Page Js -->
+    <script src="{{asset('assets/js/template.js')}}"></script>
+
+
+    @yield("scripts")
+
+
 </body>
 </html>

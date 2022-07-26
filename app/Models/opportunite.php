@@ -10,9 +10,10 @@ class opportunite extends Model
     use HasFactory;
     public $guarded = [];
     public $table = "opportunites";
+    protected $primaryKey = "id";
 
     public function client_opportunite(){
-        return $this->hasMany(client::class,);
+        return $this->belongsTo(client::class,"client_id","id");
     }
 
     public function user_opportunite(){

@@ -6,6 +6,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\parametreController;
 use App\Http\Controllers\StatutController;
+use App\Http\Controllers\OpportuniteController;
 
 
 /*
@@ -19,22 +20,22 @@ use App\Http\Controllers\StatutController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+//Route::get('/', function () {
+  //  return view('welcome');
+//});
 
-Route::get('/', function () {
-    return view('pages.Home');
-});
+ Route::get('/', function () {
+     return view('pages.Home');
+ })->middleware('auth');
 
-Route::group(['prefix' => 'project' ],function () {
+Route::group(['prefix' => 'project', "middleware" => "auth"  ],function () {
     Route::get('/index',[ProjectController::class, "index"])->name('project.index');
     Route::get('/task',[ProjectController::class, "task"])->name('project.task');
     Route::get('/timesheet',[ProjectController::class, "timesheet"])->name('project.timesheet');
     Route::get('/team_leader',[ProjectController::class, "team_leader"])->name('project.team_leader');
 });
 
-Route::group(['prefix' => 'client' ],function () {
+Route::group(['prefix' => 'client', "middleware" => "auth"  ],function () {
     Route::get('/index',[ClientController::class, "index"])->name('client.index');
     Route::post('/addClient',[ClientController::class, "addClient"])->name('parametre.addClient');
     Route::get('/Client/{id}/edit', [ClientController::class,"editClient"]);
@@ -47,7 +48,7 @@ Route::group(['prefix' => 'user' ],function () {
     Route::get('/index',[UserController::class, "index"])->name('user.index');
 });
 
-Route::group(['prefix' => 'parametre' ],function () {
+Route::group(['prefix' => 'parametre', "middleware" => "auth" ],function () {
     Route::get('/role',[parametreController::class, "role"])->name('parametre.role');
     Route::get('/statut',[StatutController::class, "statut"])->name('parametre.statut');
 
@@ -65,6 +66,15 @@ Route::group(['prefix' => 'parametre' ],function () {
     Route::get('/role/{id}/edit', [parametreController::class,"editrole"]);
     Route::post('/role/update', [parametreController::class,"updaterole"])->name('parametre.updaterole');
     Route::post('/role/delete', [parametreController::class,"deleterole"])->name('parametre.deleterole');
+
+});
+
+Route::group(['prefix' => 'opportunite' ],function () {
+    Route::get('/index',[OpportuniteController::class, "index"])->name('opportunite.index');
+    Route::post('/addOpportunite',[OpportuniteController::class, "addOpportunite"])->name('parametre.addOpportunite');
+    Route::get('/Opportunit/{id}/edit', [OpportuniteController::class,"editOpportunite"]);
+    Route::post('/Opportunit/update', [OpportuniteController::class,"updatOpportunite"])->name('parametre.updatOpportunite');
+    Route::post('/Opportunit/delete', [OpportuniteController::class,"deleteOpportunite"])->name('parametre.deleteOpportunite');
 
 });
 

@@ -17,21 +17,28 @@ class ClientController extends Controller
     public function addClient(Request $request){
 
         $client = client::create([
+            "type_client"=>$request->type_client,
             "full_name"=>$request->full_name,
-            "email"=>$request->email
-                ]);
+            "email"=>$request->email,
+            "ville"=>$request->ville,
+            "pays"=>$request->pays,
+            "telephone"=>$request->telephone
+        ]);
         return redirect()->back()->with("Ajouter avec succes");
     }
 
     public function updateClient(Request $request)
     {
-        $client = client::find($request->id_client);
-
+        $client = client::find($request->id);
 
          $client->update([
 
-           "full_name" => $request->full_name_edit,
-             "email" => $request->email_edit
+            "type_client"=>$request->type_edit,
+            "full_name"=>$request->full_name_edit,
+            "email"=>$request->email_edit,
+            "ville"=>$request->ville_edit,
+            "pays"=>$request->pays_edit,
+            "telephone"=>$request->tele_edit
          ]);
 
 

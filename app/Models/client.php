@@ -12,7 +12,7 @@ class client extends Model
     public $table = "clients";
 
     public function opportunite_client(){
-        return $this->belongsTo(opportunite::class,);
+        return $this->hasMany(opportunite::class,"client_id","id");
     }
 
     public function projet_client(){
