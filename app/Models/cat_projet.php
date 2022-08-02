@@ -12,6 +12,6 @@ class cat_projet extends Model
     public $table = "cat_projets";
 
     public function projet_catProjet(){
-        return $this->hasMany(projets::class,"catpro_id","id");
+        return $this->hasMany(projet::class,"catpro_id","id");
     }
 }

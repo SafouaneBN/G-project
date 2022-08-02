@@ -21,7 +21,7 @@ class opportunite extends Model
     }
 
     public function projet_opportunite(){
-        return $this->hasMany(projet::class,);
+        return $this->hasMany(projet::class,"opportunite_id","id");
     }
 
 

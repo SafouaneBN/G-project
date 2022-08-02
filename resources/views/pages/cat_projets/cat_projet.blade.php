@@ -12,10 +12,10 @@
             <div class="col-md-12">
                 <div class="card border-0 mb-4 no-bg">
                     <div class="card-header py-3 px-0 d-flex align-items-center  justify-content-between border-bottom">
-                        <h3 class=" fw-bold flex-fill mb-0">Opportunite</h3>
+                        <h3 class=" fw-bold flex-fill mb-0">Categorie</h3>
                         <div class="col-auto d-flex">
 
-                            <button type="button" class="btn btn-dark ms-1 " data-bs-toggle="modal" data-bs-target="#createproject"><i class="icofont-plus-circle me-2 fs-6"></i>Ajouter Opportunite</button>
+                            <button type="button" class="btn btn-dark ms-1 " data-bs-toggle="modal" data-bs-target="#createproject"><i class="icofont-plus-circle me-2 fs-6"></i>Ajouter Categorie</button>
                         </div>
                     </div>
                 </div>

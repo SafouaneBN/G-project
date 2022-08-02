@@ -57,7 +57,7 @@
                         <i class="icofont-briefcase"></i><span>Projects</span> <span class="arrow icofont-dotted-down ms-auto text-end fs-5"></span></a>
                     <!-- Menu: Sub menu ul -->
                     <ul class="sub-menu collapse" id="project-Components">
-                        <li><a class="ms-link @yield('projet')" href="{{ route('project.index') }}"><span>Projects</span></a></li>
+                        <li><a class="ms-link @yield('projet')" href="{{ url('project/index') }}"><span>Projects</span></a></li>
                         <li><a class="ms-link @yield('task')" href="{{ route('project.task') }}"><span>Tasks</span></a></li>
                         <li><a class="ms-link @yield('timesheet')" href="{{ route('project.timesheet') }}"><span>Timesheet</span></a></li>
                         <li><a class="ms-link @yield('team_leader')" href="{{ route('project.team_leader') }}"><span>Leaders</span></a></li>
@@ -89,6 +89,7 @@
                     <ul class="sub-menu collapse" id="app-Components">
                         <li><a class="ms-link @yield('parametre')" href="{{ route('parametre.role') }}"> <span>Role</span></a></li>
                         <li><a class="ms-link @yield('statut')" href="{{ route('parametre.statut') }}"><span>Categorie statut</span></a></li>
+                        <li><a class="ms-link @yield('cat_tache')" href="{{ route('parametre.cat_tache') }}"><span>Categorie tache</span></a></li>
                     </ul>
                 </li>
 
@@ -258,6 +259,8 @@
                                 </div>
                             </div>
                         </div>
+
+
                     </div>
 
                     <!-- menu toggler -->
@@ -429,7 +432,6 @@
     <script src="{{asset('assets/js/template.js')}}"></script>
     <script src="{{asset('assets/js/page/hr.js')}}"></script>
 
-    <script src="{{asset('assets/bundles/libscripts.bundle.js')}}"></script>
 
     <!-- Plugin Js-->
     <script src="{{asset('assets/bundles/dataTables.bundle.js')}}"></script>

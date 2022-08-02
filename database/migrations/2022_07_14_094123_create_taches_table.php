@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string("tache");
             $table->DateTime("date_debut");
             $table->DateTime("date_fin");
+            $table->String("estemation")->nullable();
 
             $table->bigInteger('cat_tache_id')->unsigned()->nullable();
             $table->foreign('cat_tache_id')->references('id')->on('cat_taches');
@@ -26,7 +27,7 @@ return new class extends Migration
             $table->foreign('statut_id')->references('id')->on('statuts');
 
             $table->bigInteger('projet_id')->unsigned()->nullable();
-            $table->foreign('projet_id')->references('id')->on('statuts');
+            $table->foreign('projet_id')->references('id')->on('projets');
 
 
             $table->timestamps();

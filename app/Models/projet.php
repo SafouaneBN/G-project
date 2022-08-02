@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\activite;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,21 +14,18 @@ class projet extends Model
 
 
     public function opportunite_projet(){
-        return $this->belongsTo(opportunite::class,);
-    }
-
-    public function typeprojet_projet(){
-        return $this->belongsTo(type_project::class,);
+        return $this->belongsTo(opportunite::class,"opportunite_id","id");
     }
 
     public function activite_projet(){
-        return $this->hasMany(activite::class,);
+        return $this->hasMany(activite::class);
     }
 
     public function catProjet_projet(){
-        return $this->belongsTo(cat_projets::class,"catpro_id","id");
+        return $this->belongsTo(cat_projet::class,"catpro_id","id");
     }
 
-
-
+    public function tachs(){
+        return $this->hasMany(tache::class,"projet_id","id");
+    }
 }

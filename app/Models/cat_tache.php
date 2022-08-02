@@ -12,6 +12,6 @@ class cat_tache extends Model
     public $table = "cat_taches";
 
     public function tach_catTach(){
-        return $this->hasMany(tache::class);
+        return $this->hasMany(tache::class,"cat_tache_id","id");
     }
 }

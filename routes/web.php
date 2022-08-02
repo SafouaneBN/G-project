@@ -8,6 +8,8 @@ use App\Http\Controllers\parametreController;
 use App\Http\Controllers\StatutController;
 use App\Http\Controllers\OpportuniteController;
 use App\Http\Controllers\cat_projetController;
+use App\Http\Controllers\CatTacheController;
+use App\Http\Controllers\TacheController;
 
 
 /*
@@ -31,14 +33,38 @@ use App\Http\Controllers\cat_projetController;
 
 Route::group(['prefix' => 'project', "middleware" => "auth"  ],function () {
     Route::get('/index',[ProjectController::class, "index"])->name('project.index');
-    Route::get('/task',[ProjectController::class, "task"])->name('project.task');
+    Route::post('/addprojet',[ProjectController::class, "addprojet"])->name('parametre.addprojet');
+    Route::get('/projet/{id}/edit', [ProjectController::class,"editprojet"]);
+    Route::post('/projet/update', [ProjectController::class,"updateprojet"])->name('parametre.updateprojet');
+    Route::post('/projet/delete', [ProjectController::class,"deleteprojet"])->name('parametre.deleteprojet');
+    ///
+    ////
     Route::get('/timesheet',[ProjectController::class, "timesheet"])->name('project.timesheet');
+    ////
     Route::get('/team_leader',[ProjectController::class, "team_leader"])->name('project.team_leader');
+    //////
     Route::get('/index/cat_project',[cat_projetController::class, "index"])->name('cat_projet.index');
     Route::post('/cat_projetadd',[cat_projetController::class, "addcat_projet"])->name('parametre.addcat_projet');
     Route::get('/cat_projet/{id}/edit', [cat_projetController::class,"editcat_projet"]);
     Route::post('/cat_projet/update', [cat_projetController::class,"updatecat_projet"])->name('parametre.updatecat_projet');
     Route::post('/cat_projet/delete', [cat_projetController::class,"deletecat_projet"])->name('parametre.deletecat_projet');
+
+    /////////////////
+
+    Route::get('/task',[TacheController::class, "index"])->name('project.task');
+    Route::post('/addtache',[TacheController::class, "addtache"])->name('parametre.addtache');
+    Route::get('/tache/{id}/edit', [TacheController::class,"edittache"]);
+    Route::post('/tache/update', [TacheController::class,"updatetache"])->name('parametre.updatetache');
+    Route::post('/tache/delete', [TacheController::class,"deletetache"])->name('parametre.deletetache');
+
+    ////////////////
+
+
+    Route::get('/cat_tache',[CatTacheController::class, "cat_tache"])->name('parametre.cat_tache');
+    Route::post('/addcat_tache',[CatTacheController::class, "addcat_tache"])->name('parametre.addcat_tache');
+    Route::get('/editcat_tache/{id}/edit', [CatTacheController::class,"editcat_tache"]);
+    Route::post('/updatecat_tache/update', [CatTacheController::class,"updatecat_tache"])->name('parametre.updatecat_tache');
+    Route::post('/deletecat_tache/delete', [CatTacheController::class,"deletecat_tache"])->name('parametre.deletecat_tache');
 
 });
 

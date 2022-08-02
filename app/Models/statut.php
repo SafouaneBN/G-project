@@ -19,7 +19,7 @@ class statut extends Model
     }
 
     public function tache_statut(){
-        return $this->hasMany(tache::class,);
+        return $this->hasMany(tache::class,"statut_id","id");
     }
 
     public function catStatu_statut(){
