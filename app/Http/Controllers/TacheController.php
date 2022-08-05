@@ -1,12 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use App\Models\tache;
 use App\Models\statut;
 use App\Models\projet;
 use App\Models\cat_tache;
+use App\Models\activite;
+use App\Models\User;
+use App\Models\livrable;
+use App\Models\commentaire;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 
 
 class TacheController extends Controller
@@ -29,6 +36,11 @@ class TacheController extends Controller
 
     public function addtache(Request $request){
 
+        $to  = Carbon::createFromFormat('Y-m-d', $request->date_debut);
+        $from = Carbon::createFromFormat('Y-m-d', $request->date_fin);
+
+        $diff_in_days = $to->diffInDays($from);
+
         $tache = tache::create([
             "tache"=>$request->tache,
             "date_debut"=>$request->date_debut,
@@ -36,6 +48,7 @@ class TacheController extends Controller
             "cat_tache_id"=>$request->cat_tache_id,
             "projet_id"=>$request->projet_id,
             "statut_id"=>$request->statut_id,
+            "estemation"=>$diff_in_days,
 
         ]);
         return redirect()->back()->with("Ajouter avec succes");
@@ -66,6 +79,8 @@ class TacheController extends Controller
 
         return view('pages.projects.task',compact('tache'));
     }
+
+
     public function deletetache(Request $request)
     {
         $tache = tache::find($request->id);
@@ -79,6 +94,46 @@ class TacheController extends Controller
             'msg' => 'well Done !!',
             'id' => $request -> id,
         ]);
+    }
+
+    public function commentOftach($id){
+        $activites = activite::with(['statut_activites','user_activites','livrable_activites'])->find($id);
+
+        if(!$activites)
+            return redirect()->back();
+
+        $commentair = [];
+        foreach($activites->livrable_activites as $liv){
+            $comt = DB::select("select commentaires.*,livrables.livrable, users.name from commentaires,users,livrables where commentaires.user_id = users.id and livrables.id = commentaires.livrables_id and commentaires.livrables_id = $liv->id;");
+
+            array_push($commentair, $comt);
+        }
+
+        // return $commentair;
+
+       return view('pages.projects.comment_tach',compact('activites','commentair'));
+    }
+
+    public function commenview(){
+        $activites = activite::find($id);
+
+
+
+        //return $projets;
+
+        return view('pages.projects.comment_tach',compact('activites'));
+    }
+
+    public function addcomment(Request $request){
+
+        $commentaire = commentaire::create([
+
+
+            "commentaires"=>$request->desc,
+            "livrables_id"=>$request->livrab,
+            "user_id" => Auth::user()->id,
+        ]);
+        return redirect()->back()->with("Ajouter avec succes");
     }
 
 

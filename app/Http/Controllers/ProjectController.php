@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\opportunite;
 use App\Models\projet;
+use App\Models\activite;
+use App\Models\tache;
 use App\Models\cat_projet;
 
 
@@ -81,6 +83,22 @@ class ProjectController extends Controller
         ]);
     }
 
+    public function taskOfProjet($id){
+        $projet = projet::find($id);
+        if(!$projet)
+            return redirect()->back();
+
+        ///get TASK
+        $tasks = tache::where('projet_id', $id)->get();
+        $activitiesList = [];
+
+        foreach($tasks as $task){
+            $activities = activite::with('livrable_activites','user_activites')->where('tache_id', $task->id)->get();
+            array_push($activitiesList, $activities);
+        }
+
+        return view('pages.projects.project_tach',compact('activitiesList','tasks'));
+    }
 
 ///////////////////
 

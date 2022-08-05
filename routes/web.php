@@ -37,6 +37,10 @@ Route::group(['prefix' => 'project', "middleware" => "auth"  ],function () {
     Route::get('/projet/{id}/edit', [ProjectController::class,"editprojet"]);
     Route::post('/projet/update', [ProjectController::class,"updateprojet"])->name('parametre.updateprojet');
     Route::post('/projet/delete', [ProjectController::class,"deleteprojet"])->name('parametre.deleteprojet');
+    Route::get('/taskPro/{id}', [ProjectController::class,"taskOfProjet"])->name('projet.task');
+    Route::get('/commentTask/{id}', [TacheController::class,"commentOftach"])->name('tach.comment');
+    Route::post('/addcomment', [TacheController::class,"addcomment"])->name('tach.addcomment');
+    // Route::get('/commentTask/{id}/acvtite/{act}', [TacheController::class,"commenview"])->name('comment.activite');
     ///
     ////
     Route::get('/timesheet',[ProjectController::class, "timesheet"])->name('project.timesheet');

@@ -56,11 +56,11 @@
                                             value="{{ $projet->id }}" data-bs-toggle="modal"
                                             data-bs-target="#editproject"><i class="icofont-edit text-success"></i></button>
 
-                                        <button type="button" attr_id2="{{ $projet->id }}" class="Bdelete_btn2"
+                                        <a type="button"
+                                            href="{{ route('projet.task',$projet->id) }}"
                                             style="border: none" class="sup_statut"
-                                            class="btn btn-outline-secondary deleterow"><i class="icofont-eye-alt "></i></button>
-
-
+                                            class="btn btn-outline-secondary deleterow"><i class="icofont-eye-alt "></i>
+                                        </a>
                                     </div>
                                 </td>
                             </tr>

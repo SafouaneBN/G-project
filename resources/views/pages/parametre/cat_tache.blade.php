@@ -28,9 +28,10 @@
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
-                                    @forelse ($cat_taches as $cat_tache)
+
 
                                     <tbody>
+                                        @forelse ($cat_taches as $cat_tache)
                                         <tr class="Rowdelete{{ $cat_tache->id }}">
 
 

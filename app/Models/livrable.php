@@ -16,11 +16,15 @@ class livrable extends Model
     }
 
     public function activite_livrable(){
-        return $this->hasMany(activite::class,);
+        return $this->belongsTo(activite::class,"activites_id","id");
     }
 
 
     public function list_livrables(){
         return $this->belongsToMany(activite::class,list_livrable::class,"livrables_id","activites_id");
+    }
+
+    public function livreble_commen(){
+        return $this->hasMany(commentaire::class,"livrables_id","id");
     }
 }

@@ -15,12 +15,15 @@ return new class extends Migration
     {
         Schema::create('activites', function (Blueprint $table) {
             $table->id();
+            $table->string("libelle");
             $table->DateTime("planification_date_debut");
             $table->DateTime("planification_date_fin");
             $table->string("duree_prevue");
             $table->DateTime("execution_date_debut");
             $table->DateTime("execution_date_fin");
             $table->string("priorite");
+            $table->Text("description");
+
 
             $table->bigInteger('projet_id')->unsigned()->nullable();
             $table->foreign('projet_id')->references('id')->on('projets');
@@ -30,9 +33,6 @@ return new class extends Migration
 
             $table->bigInteger('statu_id')->unsigned()->nullable();
             $table->foreign('statu_id')->references('id')->on('statuts');
-
-            $table->bigInteger('livrable_id')->unsigned()->nullable();
-            $table->foreign('livrable_id')->references('id')->on('livrables');
 
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');

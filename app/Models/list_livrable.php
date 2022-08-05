@@ -11,3 +11,4 @@ class list_livrable extends Model
     public $guarded = [];
     public $table = "list_livrables";
 }
+

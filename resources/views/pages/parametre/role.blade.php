@@ -28,9 +28,10 @@
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
-                                    @forelse ($roles as $role)
 
                                     <tbody>
+                                        @forelse ($roles as $role)
+
                                         <tr class="Rowdelete{{ $role->id }}">
 
 

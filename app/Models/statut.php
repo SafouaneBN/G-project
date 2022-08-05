@@ -15,7 +15,7 @@ class statut extends Model
 
 
     public function activite_statut(){
-        return $this->hasMany(activite::class,);
+        return $this->hasMany(activite::class,"statu_id","id");
     }
 
     public function tache_statut(){

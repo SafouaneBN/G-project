@@ -21,15 +21,15 @@ class activite extends Model
     }
 
     public function statut_activites(){
-        return $this->belongsTo(statut::class);
+        return $this->belongsTo(statut::class,"statu_id","id");
     }
 
     public function livrable_activites(){
-        return $this->belongsTo(livrable::class);
+        return $this->hasMany(livrable::class,"activites_id","id");
     }
 
     public function user_activites(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,"user_id","id");
     }
 
     public function list_livrables(){
