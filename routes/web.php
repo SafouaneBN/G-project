@@ -32,7 +32,7 @@ use App\Http\Controllers\TacheController;
  })->middleware('auth');
 
 Route::group(['prefix' => 'project', "middleware" => "auth"  ],function () {
-    Route::get('/index',[ProjectController::class, "index"])->name('project.index');
+    Route::get('/index',[ProjectController::class, "index"])->name('project.index')->middleware("roles:bothAC");
     Route::post('/addprojet',[ProjectController::class, "addprojet"])->name('parametre.addprojet');
     Route::get('/projet/{id}/edit', [ProjectController::class,"editprojet"]);
     Route::post('/projet/update', [ProjectController::class,"updateprojet"])->name('parametre.updateprojet');
