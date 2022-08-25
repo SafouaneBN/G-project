@@ -1,649 +1,119 @@
-@extends("layouts.master")
-@section('user','active')
-@section("content")
-<!-- Body: Body -->
-              <div class="body d-flex py-lg-3 py-md-2">
-                <div class="container-xxl">
-                    <div class="row clearfix">
-                        <div class="col-md-12">
-                            <div class="card border-0 mb-4 no-bg">
-                                <div class="card-header py-3 px-0 d-sm-flex align-items-center  justify-content-between border-bottom">
-                                    <h3 class=" fw-bold flex-fill mb-0 mt-sm-0">Employee</h3>
-                                    <button type="button" class="btn btn-dark me-1 mt-1 w-sm-100" data-bs-toggle="modal" data-bs-target="#createemp"><i class="icofont-plus-circle me-2 fs-6"></i>Add Employee</button>
-                                    <div class="dropdown">
-                                        <button class="btn btn-primary dropdown-toggle mt-1  w-sm-100" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Status
-                                        </button>
-                                        <ul class="dropdown-menu  dropdown-menu-end" aria-labelledby="dropdownMenuButton2">
-                                        <li><a class="dropdown-item" href="#">All</a></li>
-                                        <li><a class="dropdown-item" href="#">Task Assign Members</a></li>
-                                        <li><a class="dropdown-item" href="#">Not Assign Members</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- Row End -->
-                    <div class="row g-3 row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 row-cols-xxl-2 row-deck py-1 pb-4">
-                        <div class="col">
-                            <div class="card teacher-card">
-                                <div class="card-body d-flex">
-                                    <div class="profile-av pe-xl-4 pe-md-2 pe-sm-4 pe-4 text-center w220">
-                                        <img src="{{ asset('assets/images/lg/avatar3.jpg') }}" alt="" class="avatar xl rounded-circle img-thumbnail shadow-sm">
-                                        <div class="about-info d-flex align-items-center mt-3 justify-content-center">
-                                            <div class="followers me-2">
-                                                <i class="icofont-tasks color-careys-pink fs-4"></i>
-                                                <span class="">04</span>
-                                            </div>
-                                            <div class="star me-2">
-                                                <i class="icofont-star text-warning fs-4"></i>
-                                                <span class="">4.5</span>
-                                            </div>
-                                            <div class="own-video">
-                                                <i class="icofont-data color-light-orange fs-4"></i>
-                                                <span class="">04</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="teacher-info border-start ps-xl-4 ps-md-3 ps-sm-4 ps-4 w-100">
-                                        <h6  class="mb-0 mt-2  fw-bold d-block fs-6">Luke Short</h6>
-                                        <span class="light-info-bg py-1 px-2 rounded-1 d-inline-block fw-bold small-11 mb-0 mt-1">UI/UX Designer</span>
-                                        <div class="video-setting-icon mt-3 pt-3 border-top">
-                                            <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices</p>
-                                        </div>
-                                        <a href="task.html" class="btn btn-dark btn-sm mt-1"><i class="icofont-plus-circle me-2 fs-6"></i>Add Task</a>
-                                        <a href="employee-profile.html" class="btn btn-dark btn-sm mt-1"><i class="icofont-invisible me-2 fs-6"></i>Profile</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card teacher-card">
-                                <div class="card-body d-flex">
-                                    <div class="profile-av pe-xl-4 pe-md-2 pe-sm-4 pe-4 text-center w220">
-                                        <img src="{{ asset('assets/images/lg/avatar4.jpg') }}" alt="" class="avatar xl rounded-circle img-thumbnail shadow-sm">
-                                        <div class="about-info d-flex align-items-center mt-3 justify-content-center">
-                                            <div class="followers me-2">
-                                                <i class="icofont-tasks color-careys-pink fs-4"></i>
-                                                <span class="">00</span>
-                                            </div>
-                                            <div class="star me-2">
-                                                <i class="icofont-star text-warning fs-4"></i>
-                                                <span class="">00</span>
-                                            </div>
-                                            <div class="own-video">
-                                                <i class="icofont-data color-light-orange fs-4"></i>
-                                                <span class="">00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="teacher-info border-start ps-xl-4 ps-md-3 ps-sm-4 ps-4 w-100">
-                                        <h6  class="mb-0 mt-2  fw-bold d-block fs-6">Lillian	Powell</h6>
-                                        <span class="light-success-bg py-1 px-2 rounded-1 d-inline-block fw-bold small-11 mb-0 mt-1">Quality Assurance</span>
-                                        <div class="video-setting-icon mt-3 pt-3 border-top">
-                                            <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices</p>
-                                        </div>
-                                        <a href="task.html" class="btn btn-dark btn-sm mt-1"><i class="icofont-plus-circle me-2 fs-6"></i>First Task</a>
-                                        <a href="employee-profile.html" class="btn btn-dark btn-sm mt-1"><i class="icofont-invisible me-2 fs-6"></i>Profile</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card teacher-card">
-                                <div class="card-body d-flex">
-                                    <div class="profile-av pe-xl-4 pe-md-2 pe-sm-4 pe-4 text-center w220">
-                                        <img src="{{ asset('assets/images/lg/avatar9.jpg') }}" alt="" class="avatar xl rounded-circle img-thumbnail shadow-sm">
-                                        <div class="about-info d-flex align-items-center mt-3 justify-content-center">
-                                            <div class="followers me-2">
-                                                <i class="icofont-tasks color-careys-pink fs-4"></i>
-                                                <span class="">10</span>
-                                            </div>
-                                            <div class="star me-2">
-                                                <i class="icofont-star text-warning fs-4"></i>
-                                                <span class="">04</span>
-                                            </div>
-                                            <div class="own-video">
-                                                <i class="icofont-data color-light-orange fs-4"></i>
-                                                <span class="">15</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="teacher-info border-start ps-xl-4 ps-md-3 ps-sm-4 ps-4 w-100">
-                                        <h6  class="mb-0 mt-2  fw-bold d-block fs-6">Rachel Parsons</h6>
-                                        <span class="bg-lightgreen py-1 px-2 rounded-1 d-inline-block fw-bold small-11 mb-0 mt-1">Website Designer</span>
-                                        <div class="video-setting-icon mt-3 pt-3 border-top">
-                                            <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices</p>
-                                        </div>
-                                        <a href="task.html" class="btn btn-dark btn-sm mt-1"><i class="icofont-plus-circle me-2 fs-6"></i>Add Task</a>
-                                        <a href="employee-profile.html" class="btn btn-dark btn-sm mt-1"><i class="icofont-invisible me-2 fs-6"></i>Profile</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card teacher-card">
-                                <div class="card-body d-flex">
-                                    <div class="profile-av pe-xl-4 pe-md-2 pe-sm-4 pe-4 text-center w220">
-                                        <img src="{{ asset('assets/images/lg/avatar11.jpg') }}" alt="" class="avatar xl rounded-circle img-thumbnail shadow-sm">
-                                        <div class="about-info d-flex align-items-center mt-3 justify-content-center">
-                                            <div class="followers me-2">
-                                                <i class="icofont-tasks color-careys-pink fs-4"></i>
-                                                <span class="">12</span>
-                                            </div>
-                                            <div class="star me-2">
-                                                <i class="icofont-star text-warning fs-4"></i>
-                                                <span class="">03</span>
-                                            </div>
-                                            <div class="own-video">
-                                                <i class="icofont-data color-light-orange fs-4"></i>
-                                                <span class="">25</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="teacher-info border-start ps-xl-4 ps-md-3 ps-sm-4 ps-4 w-100">
-                                        <h6  class="mb-0 mt-2  fw-bold d-block fs-6">John Hardacre</h6>
-                                        <span class="light-orange-bg py-1 px-2 rounded-1 d-inline-block fw-bold small-11 mb-0 mt-1">Developer</span>
-                                        <div class="video-setting-icon mt-3 pt-3 border-top">
-                                            <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices</p>
-                                        </div>
-                                        <a href="task.html" class="btn btn-dark btn-sm mt-1"><i class="icofont-plus-circle me-2 fs-6"></i>Add Task</a>
-                                        <a href="employee-profile.html" class="btn btn-dark btn-sm mt-1"><i class="icofont-invisible me-2 fs-6"></i>Profile</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card teacher-card">
-                                <div class="card-body d-flex">
-                                    <div class="profile-av pe-xl-4 pe-md-2 pe-sm-4 pe-4 text-center w220">
-                                        <img src="{{ asset('assets/images/lg/avatar12.jpg') }}" alt="" class="avatar xl rounded-circle img-thumbnail shadow-sm">
-                                        <div class="about-info d-flex align-items-center mt-3 justify-content-center">
-                                            <div class="followers me-2">
-                                                <i class="icofont-tasks color-careys-pink fs-4"></i>
-                                                <span class="">12</span>
-                                            </div>
-                                            <div class="star me-2">
-                                                <i class="icofont-star text-warning fs-4"></i>
-                                                <span class="">4.5</span>
-                                            </div>
-                                            <div class="own-video">
-                                                <i class="icofont-data color-light-orange fs-4"></i>
-                                                <span class="">25</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="teacher-info border-start ps-xl-4 ps-md-3 ps-sm-4 ps-4 w-100">
-                                        <h6  class="mb-0 mt-2  fw-bold d-block fs-6">Jan Ince</h6>
-                                        <span class="bg-lightblue py-1 px-2 rounded-1 d-inline-block fw-bold small-11 mb-0 mt-1">QA/QC Engineer</span>
-                                        <div class="video-setting-icon mt-3 pt-3 border-top">
-                                            <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices</p>
-                                        </div>
-                                        <a href="task.html" class="btn btn-dark btn-sm mt-1"><i class="icofont-plus-circle me-2 fs-6"></i>Add Task</a>
-                                        <a href="employee-profile.html" class="btn btn-dark btn-sm mt-1"><i class="icofont-invisible me-2 fs-6"></i>Profile</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card teacher-card">
-                                <div class="card-body d-flex">
-                                    <div class="profile-av pe-xl-4 pe-md-2 pe-sm-4 pe-4 text-center w220">
-                                        <img src="{{ asset('assets/images/lg/avatar8.jpg') }}" alt="" class="avatar xl rounded-circle img-thumbnail shadow-sm">
-                                        <div class="about-info d-flex align-items-center mt-3 justify-content-center">
-                                            <div class="followers me-2">
-                                                <i class="icofont-tasks color-careys-pink fs-4"></i>
-                                                <span class="">08</span>
-                                            </div>
-                                            <div class="star me-2">
-                                                <i class="icofont-star text-warning fs-4"></i>
-                                                <span class="">03</span>
-                                            </div>
-                                            <div class="own-video">
-                                                <i class="icofont-data color-light-orange fs-4"></i>
-                                                <span class="">12</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="teacher-info border-start ps-xl-4 ps-md-3 ps-sm-4 ps-4 w-100">
-                                        <h6  class="mb-0 mt-2  fw-bold d-block fs-6">Steven	Butler</h6>
-                                        <span class="bg-lightyellow py-1 px-2 rounded-1 d-inline-block fw-bold small-11 mb-0 mt-1">Mobile developer</span>
-                                        <div class="video-setting-icon mt-3 pt-3 border-top">
-                                            <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices</p>
-                                        </div>
-                                        <a href="task.html" class="btn btn-dark btn-sm mt-1"><i class="icofont-plus-circle me-2 fs-6"></i>Add Task</a>
-                                        <a href="employee-profile.html" class="btn btn-dark btn-sm mt-1"><i class="icofont-invisible me-2 fs-6"></i>Profile</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card teacher-card">
-                                <div class="card-body d-flex">
-                                    <div class="profile-av pe-xl-4 pe-md-2 pe-sm-4 pe-4 text-center w220">
-                                        <img src="{{ asset('assets/images/lg/avatar7.jpg') }}" alt="" class="avatar xl rounded-circle img-thumbnail shadow-sm">
-                                        <div class="about-info d-flex align-items-center mt-3 justify-content-center">
-                                            <div class="followers me-2">
-                                                <i class="icofont-tasks color-careys-pink fs-4"></i>
-                                                <span class="">04</span>
-                                            </div>
-                                            <div class="star me-2">
-                                                <i class="icofont-star text-warning fs-4"></i>
-                                                <span class="">4.5</span>
-                                            </div>
-                                            <div class="own-video">
-                                                <i class="icofont-data color-light-orange fs-4"></i>
-                                                <span class="">04</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="teacher-info border-start ps-xl-4 ps-md-3 ps-sm-4 ps-4 w-100">
-                                        <h6  class="mb-0 mt-2  fw-bold d-block fs-6">Robert Hammer</h6>
-                                        <span class="light-info-bg py-1 px-2 rounded-1 d-inline-block fw-bold small-11 mb-0 mt-1">UI/UX Designer</span>
-                                        <div class="video-setting-icon mt-3 pt-3 border-top">
-                                            <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices</p>
-                                        </div>
-                                        <a href="task.html" class="btn btn-dark btn-sm mt-1"><i class="icofont-plus-circle me-2 fs-6"></i>Add Task</a>
-                                        <a href="employee-profile.html" class="btn btn-dark btn-sm mt-1"><i class="icofont-invisible me-2 fs-6"></i>Profile</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card teacher-card">
-                                <div class="card-body d-flex">
-                                    <div class="profile-av pe-xl-4 pe-md-2 pe-sm-4 pe-4 text-center w220">
-                                        <img src="{{ asset('assets/images/lg/avatar1.jpg') }}" alt="" class="avatar xl rounded-circle img-thumbnail shadow-sm">
-                                        <div class="about-info d-flex align-items-center mt-3 justify-content-center">
-                                            <div class="followers me-2">
-                                                <i class="icofont-tasks color-careys-pink fs-4"></i>
-                                                <span class="">00</span>
-                                            </div>
-                                            <div class="star me-2">
-                                                <i class="icofont-star text-warning fs-4"></i>
-                                                <span class="">00</span>
-                                            </div>
-                                            <div class="own-video">
-                                                <i class="icofont-data color-light-orange fs-4"></i>
-                                                <span class="">00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="teacher-info border-start ps-xl-4 ps-md-3 ps-sm-4 ps-4 w-100">
-                                        <h6  class="mb-0 mt-2  fw-bold d-block fs-6">Paul Slater</h6>
-                                        <span class="light-success-bg py-1 px-2 rounded-1 d-inline-block fw-bold small-11 mb-0 mt-1">Quality Assurance</span>
-                                        <div class="video-setting-icon mt-3 pt-3 border-top">
-                                            <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices</p>
-                                        </div>
-                                        <a href="task.html" class="btn btn-dark btn-sm mt-1"><i class="icofont-plus-circle me-2 fs-6"></i>First Task</a>
-                                        <a href="employee-profile.html" class="btn btn-dark btn-sm mt-1"><i class="icofont-invisible me-2 fs-6"></i>Profile</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card teacher-card">
-                                <div class="card-body d-flex">
-                                    <div class="profile-av pe-xl-4 pe-md-2 pe-sm-4 pe-4 text-center w220">
-                                        <img src="{{ asset('assets/images/lg/avatar5.jpg') }}" alt="" class="avatar xl rounded-circle img-thumbnail shadow-sm">
-                                        <div class="about-info d-flex align-items-center mt-3 justify-content-center">
-                                            <div class="followers me-2">
-                                                <i class="icofont-tasks color-careys-pink fs-4"></i>
-                                                <span class="">10</span>
-                                            </div>
-                                            <div class="star me-2">
-                                                <i class="icofont-star text-warning fs-4"></i>
-                                                <span class="">4.5</span>
-                                            </div>
-                                            <div class="own-video">
-                                                <i class="icofont-data color-light-orange fs-4"></i>
-                                                <span class="">15</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="teacher-info border-start ps-xl-4 ps-md-3 ps-sm-4 ps-4 w-100">
-                                        <h6  class="mb-0 mt-2  fw-bold d-block fs-6">Rachel Parsons</h6>
-                                        <span class="bg-lightgreen py-1 px-2 rounded-1 d-inline-block fw-bold small-11 mb-0 mt-1">Website Designer</span>
-                                        <div class="video-setting-icon mt-3 pt-3 border-top">
-                                            <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices</p>
-                                        </div>
-                                        <a href="task.html" class="btn btn-dark btn-sm mt-1"><i class="icofont-plus-circle me-2 fs-6"></i>Add Task</a>
-                                        <a href="employee-profile.html" class="btn btn-dark btn-sm mt-1"><i class="icofont-invisible me-2 fs-6"></i>Profile</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card teacher-card">
-                                <div class="card-body d-flex">
-                                    <div class="profile-av pe-xl-4 pe-md-2 pe-sm-4 pe-4 text-center w220">
-                                        <img src="{{ asset('assets/images/lg/avatar6.jpg') }}" alt="" class="avatar xl rounded-circle img-thumbnail shadow-sm">
-                                        <div class="about-info d-flex align-items-center mt-3 justify-content-center">
-                                            <div class="followers me-2">
-                                                <i class="icofont-tasks color-careys-pink fs-4"></i>
-                                                <span class="">10</span>
-                                            </div>
-                                            <div class="star me-2">
-                                                <i class="icofont-star text-warning fs-4"></i>
-                                                <span class="">04</span>
-                                            </div>
-                                            <div class="own-video">
-                                                <i class="icofont-data color-light-orange fs-4"></i>
-                                                <span class="">15</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="teacher-info border-start ps-xl-4 ps-md-3 ps-sm-4 ps-4 w-100">
-                                        <h6  class="mb-0 mt-2  fw-bold d-block fs-6">Rachel Parsons</h6>
-                                        <span class="bg-lightgreen py-1 px-2 rounded-1 d-inline-block fw-bold small-11 mb-0 mt-1">Website Designer</span>
-                                        <div class="video-setting-icon mt-3 pt-3 border-top">
-                                            <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices</p>
-                                        </div>
-                                        <a href="task.html" class="btn btn-dark btn-sm mt-1"><i class="icofont-plus-circle me-2 fs-6"></i>Add Task</a>
-                                        <a href="employee-profile.html" class="btn btn-dark btn-sm mt-1"><i class="icofont-invisible me-2 fs-6"></i>Profile</a>
-                                    </div>
-                                </div>
-                            </div>
+@extends('layouts.master')
+@section('user', 'active')
+@section('content')
+    <!-- Body: Body -->
+    <div class="body d-flex py-lg-3 py-md-2">
+        <div class="container-xxl">
+            <div class="row clearfix">
+                <div class="col-md-12">
+                    <div class="card border-0 mb-4 no-bg">
+                        <div
+                            class="card-header py-3 px-0 d-sm-flex align-items-center  justify-content-between border-bottom">
+                            <h3 class=" fw-bold flex-fill mb-0 mt-sm-0">Employee</h3>
+                            <button type="button" class="btn btn-dark me-1 mt-1 w-sm-100" data-bs-toggle="modal"
+                                data-bs-target="#createemp"><i class="icofont-plus-circle me-2 fs-6"></i>Add
+                                Employee</button>
+
                         </div>
                     </div>
                 </div>
-            </div>
+            </div><!-- Row End -->
+            <div
+                class="row g-3 row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 row-cols-xxl-2 row-deck py-1 pb-4">
+                @forelse ($users as $user)
+                    <div class="col">
 
+                        <div class="card teacher-card">
 
-       <!-- Create Employee-->
-        <div class="modal fade" id="createemp" tabindex="-1"  aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title  fw-bold" id="createprojectlLabel"> Add Employee</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput877" class="form-label">Employee Name</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput877" placeholder="Explain what the Project Name">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput977" class="form-label">Employee Company</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput977" placeholder="Explain what the Project Name">
-                        </div>
-                        <div class="mb-3">
-                            <label for="formFileMultipleoneone" class="form-label">Employee Profile</label>
-                            <input class="form-control" type="file" id="formFileMultipleoneone" >
-                        </div>
-                        <div class="deadline-form">
-                            <form>
-                                <div class="row g-3 mb-3">
-                                    <div class="col-sm-6">
-                                        <label for="exampleFormControlInput1778" class="form-label">Employee ID</label>
-                                        <input type="text" class="form-control" id="exampleFormControlInput1778" placeholder="User Name">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label for="exampleFormControlInput2778" class="form-label">Joining Date</label>
-                                        <input type="date" class="form-control" id="exampleFormControlInput2778">
-                                    </div>
+                            <div class="card-body d-flex">
+
+                                <div class="profile-av pe-xl-4 pe-md-2 pe-sm-4 pe-4 text-center w220">
+                                    <img src="{{ asset('assets/images/lg/avatar4.jpg') }}" alt=""
+                                        class="avatar xl rounded-circle img-thumbnail shadow-sm">
+
                                 </div>
-                                <div class="row g-3 mb-3">
-                                <div class="col">
-                                    <label for="exampleFormControlInput177" class="form-label">User Name</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput177" placeholder="User Name">
+                                <div class="teacher-info border-start ps-xl-4 ps-md-3 ps-sm-4 ps-4 w-100">
+                                    <h6 class="mb-0 mt-2  fw-bold d-block fs-6">{{ $user->name }}</h6>
+                                    <h5 class="mb-0 mt-2  fw-bold d-block fs-6">{{ $user->email }}</h5>
+                                    <span class="light-info-bg py-1 px-2 rounded-1 d-inline-block fw-bold small-11 mb-0 mt-1">{{ $user->user_role->libelle }}</span>
+
+
                                 </div>
-                                <div class="col">
-                                    <label for="exampleFormControlInput277" class="form-label">Password</label>
-                                    <input type="Password" class="form-control" id="exampleFormControlInput277" placeholder="Password">
-                                </div>
-                                </div>
-                                <div class="row g-3 mb-3">
-                                    <div class="col">
-                                        <label for="exampleFormControlInput477" class="form-label">Email ID</label>
-                                        <input type="email" class="form-control" id="exampleFormControlInput477" placeholder="User Name">
-                                    </div>
-                                    <div class="col">
-                                        <label for="exampleFormControlInput777" class="form-label">Phone</label>
-                                        <input type="text" class="form-control" id="exampleFormControlInput777" placeholder="User Name">
-                                    </div>
-                                </div>
-                                <div class="row g-3 mb-3">
-                                    <div class="col">
-                                        <label  class="form-label">Department</label>
-                                        <select class="form-select" aria-label="Default select Project Category">
-                                            <option selected>Web Development</option>
-                                            <option value="1">It Management</option>
-                                            <option value="2">Marketing</option>
-                                        </select>
-                                    </div>
-                                    <div class="col">
-                                        <label  class="form-label">Designation</label>
-                                        <select class="form-select" aria-label="Default select Project Category">
-                                            <option selected>UI/UX Design</option>
-                                            <option value="1">Website Design</option>
-                                            <option value="2">App Development</option>
-                                            <option value="3">Quality Assurance</option>
-                                            <option value="4">Development</option>
-                                            <option value="5">Backend Development</option>
-                                            <option value="6">Software Testing</option>
-                                            <option value="7">Website Design</option>
-                                            <option value="8">Marketing</option>
-                                            <option value="9">SEO</option>
-                                            <option value="10">Other</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlTextarea78" class="form-label">Description (optional)</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea78" rows="3" placeholder="Add any extra details about the request"></textarea>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table table-striped custom-table">
-                                <thead>
-                                    <tr>
-                                        <th>Project Permission</th>
-                                        <th class="text-center">Read</th>
-                                        <th class="text-center">Write</th>
-                                        <th class="text-center">Create</th>
-                                        <th class="text-center">Delete</th>
-                                        <th class="text-center">Import</th>
-                                        <th class="text-center">Export</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="fw-bold">Projects</td>
-                                        <td class="text-center">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1" checked>
-                                        </td>
-                                        <td class="text-center">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2" checked>
-                                        </td>
-                                        <td class="text-center">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3" checked>
-                                        </td>
-                                        <td class="text-center">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault4" checked>
-                                        </td>
-                                        <td class="text-center">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault5" checked>
-                                        </td>
-                                        <td class="text-center">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault6" checked>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td  class="fw-bold">Tasks</td>
-                                        <td class="text-center">
+                            </div>
 
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault7" checked>
-
-                                        </td>
-                                        <td class="text-center">
-
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault8" checked>
-
-                                        </td>
-                                        <td class="text-center">
-
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault9" checked>
-
-                                        </td>
-                                        <td class="text-center">
-
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault10" checked>
-
-                                        </td>
-                                        <td class="text-center">
-
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault11" checked>
-
-                                        </td>
-                                        <td class="text-center">
-
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault12" checked>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td  class="fw-bold">Chat</td>
-                                        <td class="text-center">
-
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault13" checked>
-
-                                        </td>
-                                        <td class="text-center">
-
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault14" checked>
-
-                                        </td>
-                                        <td class="text-center">
-
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault15" checked>
-
-                                        </td>
-                                        <td class="text-center">
-
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault16" checked>
-
-                                        </td>
-                                        <td class="text-center">
-
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault17" checked>
-
-                                        </td>
-                                        <td class="text-center">
-
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault18" checked>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td  class="fw-bold">Estimates</td>
-                                        <td class="text-center">
-
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault19" checked>
-
-                                        </td>
-                                        <td class="text-center">
-
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault20" checked>
-
-                                        </td>
-                                        <td class="text-center">
-
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault21" checked>
-
-                                        </td>
-                                        <td class="text-center">
-
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault22" checked>
-
-                                        </td>
-                                        <td class="text-center">
-
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault23" checked>
-
-                                        </td>
-                                        <td class="text-center">
-
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault24" checked>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td  class="fw-bold">Invoices</td>
-                                        <td class="text-center">
-
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault25" checked>
-
-                                        </td>
-                                        <td class="text-center">
-
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault26">
-
-                                        </td>
-                                        <td class="text-center">
-
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault27" checked>
-
-                                        </td>
-                                        <td class="text-center">
-
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault28">
-
-                                        </td>
-                                        <td class="text-center">
-
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault29" checked>
-
-                                        </td>
-                                        <td class="text-center">
-
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault30" checked>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td  class="fw-bold">Timing Sheets</td>
-                                        <td class="text-center">
-
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault31" checked>
-
-                                        </td>
-                                        <td class="text-center">
-
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault32" checked>
-
-                                        </td>
-                                        <td class="text-center">
-
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault33" checked>
-
-                                        </td>
-                                        <td class="text-center">
-
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault34" checked>
-
-                                        </td>
-                                        <td class="text-center">
-
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault35" checked>
-
-                                        </td>
-                                        <td class="text-center">
-
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault36" checked>
-
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
-                        <button type="button" class="btn btn-primary">Create</button>
-                    </div>
-                </div>
+                    @empty
+
+                    <h6>No Record</h6>
+
+                @endforelse
+
+
+
             </div>
         </div>
-        @endsection
+    </div>
+
+
+    <!-- Create Employee-->
+    <div class="modal fade" id="createemp" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title  fw-bold" id="createprojectlLabel"> Add Employee</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" action="{{ route('para.addUser') }}">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput877" class="form-label">Nom Employee</label>
+                            <input type="text" class="form-control" id="name" name="name"
+                                placeholder="Explain what the Project Name">
+                        </div>
+
+
+                        <div class="deadline-form">
+
+
+                            <div class="row g-3 mb-3">
+                                <div class="col">
+                                    <label for="exampleFormControlInput177" class="form-label">Email</label>
+                                    <input type="text" class="form-control" id="email" name="email"
+                                        placeholder="User Name">
+                                </div>
+                                <div class="col">
+                                    <label for="exampleFormControlInput277" class="form-label">Mot de passe</label>
+                                    <input type="Password" class="form-control" id="password" name="password"
+                                        placeholder="Password">
+                                </div>
+                            </div>
+
+                            <div class="row g-3 mb-3">
+                                <div class="col">
+                                    <label class="form-label">Role</label>
+                                    <select class="form-select" id="role" name="role"
+                                        aria-label="Default select Project Category">
+                                        @forelse ($roles as $role)
+                                            <option value="{{ $role->id }}">{{ $role->libelle }}</option>
+                                        @empty
+                                            <option selected=""> Role</option>
+                                        @endforelse
+                                    </select>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@endsection

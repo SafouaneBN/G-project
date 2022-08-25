@@ -11,7 +11,7 @@ class role extends Model
     public $guarded = [];
     public $table = "roles";
 
-    public function role_user(){
-        return $this->belongsToMany(User::class,role_user::class,"role_id","user_id");
+    public function rol_user(){
+        return $this->HasMany(User::class,"role_id","id");
     }
 }

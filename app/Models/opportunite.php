@@ -17,7 +17,7 @@ class opportunite extends Model
     }
 
     public function user_opportunite(){
-        return $this->hasMany(User::class,);
+        return $this->hasMany(User::class,"user_id ","id");
     }
 
     public function projet_opportunite(){

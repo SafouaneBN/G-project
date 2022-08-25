@@ -43,11 +43,11 @@ class User extends Authenticatable
     ];
 
     public function opportunite_user(){
-        return $this->belongsTo(opportunite::class,);
+        return $this->belongsTo(opportunite::class,"user_id ","id");
     }
 
     public function projet_user(){
-        return $this->hasMany(projet::class,);
+        return $this->hasMany(projet::class,"user_id ","id");
     }
 
     public function activite_user(){
@@ -55,7 +55,7 @@ class User extends Authenticatable
     }
 
     public function user_role(){
-        return $this->belongsToMany(role::class,role_user::class,"user_id","role_id");
+        return $this->belongsTo(role::class,"role_id","id");
     }
 
     public function user_commen(){

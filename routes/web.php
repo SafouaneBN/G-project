@@ -32,7 +32,7 @@ use App\Http\Controllers\TacheController;
  })->middleware('auth');
 
 Route::group(['prefix' => 'project', "middleware" => "auth"  ],function () {
-    Route::get('/index',[ProjectController::class, "index"])->name('project.index')->middleware("roles:bothAC");
+    Route::get('/index',[ProjectController::class, "index"])->name('project.index')->middleware("roles:admin");
     Route::post('/addprojet',[ProjectController::class, "addprojet"])->name('parametre.addprojet');
     Route::get('/projet/{id}/edit', [ProjectController::class,"editprojet"]);
     Route::post('/projet/update', [ProjectController::class,"updateprojet"])->name('parametre.updateprojet');
@@ -80,11 +80,15 @@ Route::group(['prefix' => 'client', "middleware" => "auth"  ],function () {
     Route::post('/Client/delete', [ClientController::class,"deleteClient"])->name('parametre.deleteClient');
 
 });
-
+//////////
 Route::group(['prefix' => 'user' ],function () {
     Route::get('/index',[UserController::class, "index"])->name('user.index');
+    Route::post('/addUser',[UserController::class, "addUser"])->name('para.addUser');
+    Route::get('/User/{id}/edit', [UserController::class,"editUser"]);
+    Route::post('/User/update', [UserController::class,"updateUser"])->name('parametre.updateUser');
+    Route::post('/User/delete', [UserController::class,"deleteUser"])->name('parametre.deleteUser');
 });
-
+//////////
 Route::group(['prefix' => 'parametre', "middleware" => "auth" ],function () {
     Route::get('/role',[parametreController::class, "role"])->name('parametre.role');
     Route::get('/statut',[StatutController::class, "statut"])->name('parametre.statut');
