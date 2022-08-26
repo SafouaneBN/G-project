@@ -9,7 +9,7 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Favicon-->
     <!-- project css file  -->
     <link rel="stylesheet" href="{{asset('assets/css/my-task.style.min.css')}}">
-
+    <link rel="stylesheet" href="{{asset('assets/plugin/fullcalendar/main.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/plugin/datatables/responsive.dataTables.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/plugin/datatables/dataTables.bootstrap5.min.css')}}">
 </head>
@@ -431,7 +431,7 @@
     <!-- Jquery Page Js -->
     <script src="{{asset('assets/js/template.js')}}"></script>
     <script src="{{asset('assets/js/page/hr.js')}}"></script>
-
+    <script src="{{asset('assets/plugin/fullcalendar/main.min.js')}}"></script>
 
     <!-- Plugin Js-->
     <script src="{{asset('assets/bundles/dataTables.bundle.js')}}"></script>

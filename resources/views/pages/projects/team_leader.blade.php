@@ -1,294 +1,87 @@
 @extends("layouts.master")
 @section('team_leader','active')
 @section("content")
-        <!-- Body: Body -->
-        <div class="body d-flex py-lg-3 py-md-2">
-            <div class="container-xxl">
-                <div class="row align-items-center">
-                    <div class="border-0 mb-4">
-                        <div class="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
-                            <h3 class="fw-bold mb-0">Team Leaders</h3>
-                        </div>
-                    </div>
-                </div> <!-- Row end  -->
-                <div class="row clearfix g-3">
-                  <div class="col-sm-12">
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <table id="myProjectTable" class="table table-hover align-middle mb-0" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th>Leader Name</th>
-                                            <th>Project</th>
-                                            <th>Total Task</th>
-                                            <th>Email</th>
-                                            <th>Project Assigned</th>
-                                            <th>Assigned Staff</th>
-                                            <th>Status</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                           <td>
-                                               <img class="avatar rounded-circle" src="{{ asset('assets/images/xs/avatar1.jpg') }}" alt="">
-                                               <span class="fw-bold ms-1">Joan Dyer</span>
-                                           </td>
-                                           <td>
-                                               <a href="projects.html">Box of Crayons</a>
-                                           </td>
-                                           <td>
-                                                <a href="task.html">5 Task</a>
-                                           </td>
-                                           <td>
-                                                <a href="mailto:">JoanDyer@gmail.com</a>
-                                           </td>
-                                           <td>
-                                                23/02/21
-                                           </td>
-                                           <td>
-                                                <div class="avatar-list avatar-list-stacked px-3">
-                                                    <img class="avatar rounded-circle sm" src="{{ asset('assets/images/xs/avatar2.jpg') }}" alt="">
-                                                    <img class="avatar rounded-circle sm" src="{{ asset('assets/images/xs/avatar1.jpg') }}" alt="">
-                                                    <img class="avatar rounded-circle sm" src="{{ asset('assets/images/xs/avatar3.jpg') }}" alt="">
-                                                    <img class="avatar rounded-circle sm" src="{{ asset('assets/images/xs/avatar4.jpg') }}" alt="">
-                                                    <img class="avatar rounded-circle sm" src="{{ asset('assets/images/xs/avatar7.jpg') }}" alt="">
-                                                    <img class="avatar rounded-circle sm" src="{{ asset('assets/images/xs/avatar8.jpg') }}" alt="">
-                                                    <span class="avatar rounded-circle text-center pointer sm" data-bs-toggle="modal" data-bs-target="#addUser"><i class="icofont-ui-add"></i></span>
-                                                </div>
-                                           </td>
-                                           <td>
-                                                <span class="badge bg-success">Working</span>
-                                           </td>
-                                            <td>
-                                                <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                    <button type="button" class="btn btn-outline-secondary"><i class="icofont-edit text-success"></i></button>
-                                                    <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <img class="avatar rounded-circle" src="{{ asset('assets/images/xs/avatar2.jpg') }}" alt="">
-                                                <span class="fw-bold ms-1">Ryan	Randall</span>
-                                            </td>
-                                            <td>
-                                                <a href="projects.html">Fast Cad</a>
-                                            </td>
-                                            <td>
-                                                 <a href="task.html">8 Task</a>
-                                            </td>
-                                            <td>
-                                                 <a href="mailto:">RyanRandall@gmail.com</a>
-                                            </td>
-                                            <td>
-                                                 14/04/21
-                                            </td>
-                                            <td>
-                                                 <div class="avatar-list avatar-list-stacked px-3">
-                                                     <img class="avatar rounded-circle sm" src="{{ asset('assets/images/xs/avatar2.jpg') }}" alt="">
-                                                     <img class="avatar rounded-circle sm" src="{{ asset('assets/images/xs/avatar1.jpg') }}" alt="">
-                                                     <img class="avatar rounded-circle sm" src="{{ asset('assets/images/xs/avatar7.jpg') }}" alt="">
-                                                     <img class="avatar rounded-circle sm" src="{{ asset('assets/images/xs/avatar8.jpg') }}" alt="">
-                                                     <span class="avatar rounded-circle text-center pointer sm" data-bs-toggle="modal" data-bs-target="#addUser"><i class="icofont-ui-add"></i></span>
-                                                 </div>
-                                            </td>
-                                            <td>
-                                                 <span class="badge bg-success">Working</span>
-                                            </td>
-                                             <td>
-                                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                     <button type="button" class="btn btn-outline-secondary"><i class="icofont-edit text-success"></i></button>
-                                                     <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
-                                                 </div>
-                                             </td>
-                                         </tr>
-                                         <tr>
-                                            <td>
-                                                <img class="avatar rounded-circle" src="{{ asset('assets/images/xs/avatar3.jpg') }}" alt="">
-                                                <span class="fw-bold ms-1">Phil	Glover</span>
-                                            </td>
-                                            <td>
-                                                <a href="projects.html">Gob Geeklords</a>
-                                            </td>
-                                            <td>
-                                                 <a href="task.html">2 Task</a>
-                                            </td>
-                                            <td>
-                                                 <a href="mailto:">PhilGlover@gmail.com</a>
-                                            </td>
-                                            <td>
-                                                 18/03/21
-                                            </td>
-                                            <td>
-                                                 <div class="avatar-list avatar-list-stacked px-3">
-                                                     <img class="avatar rounded-circle sm" src="{{ asset('assets/images/xs/avatar7.jpg') }}" alt="">
-                                                     <img class="avatar rounded-circle sm" src="{{ asset('assets/images/xs/avatar8.jpg') }}" alt="">
-                                                     <span class="avatar rounded-circle text-center pointer sm" data-bs-toggle="modal" data-bs-target="#addUser"><i class="icofont-ui-add"></i></span>
-                                                 </div>
-                                            </td>
-                                            <td>
-                                                 <span class="badge bg-success">Working</span>
-                                            </td>
-                                             <td>
-                                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                     <button type="button" class="btn btn-outline-secondary"><i class="icofont-edit text-success"></i></button>
-                                                     <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
-                                                 </div>
-                                             </td>
-                                         </tr>
-                                         <tr>
-                                            <td>
-                                                <img class="avatar rounded-circle" src="{{ asset('assets/images/xs/avatar4.jpg') }}" alt="">
-                                                <span class="fw-bold ms-1">Victor Rampling</span>
-                                            </td>
-                                            <td>
-                                                <a href="projects.html">Java Dalia</a>
-                                            </td>
-                                            <td>
-                                                 <a href="task.html">7 Task</a>
-                                            </td>
-                                            <td>
-                                                 <a href="mailto:">VictorRampling@gmail.com</a>
-                                            </td>
-                                            <td>
-                                                 18/06/21
-                                            </td>
-                                            <td>
-                                                 <div class="avatar-list avatar-list-stacked px-3">
-                                                     <img class="avatar rounded-circle sm" src="{{ asset('assets/images/xs/avatar2.jpg') }}" alt="">
-                                                     <img class="avatar rounded-circle sm" src="{{ asset('assets/images/xs/avatar4.jpg') }}" alt="">
-                                                     <img class="avatar rounded-circle sm" src="{{ asset('assets/images/xs/avatar7.jpg') }}" alt="">
-                                                     <img class="avatar rounded-circle sm" src="{{ asset('assets/images/xs/avatar8.jpg') }}" alt="">
-                                                     <span class="avatar rounded-circle text-center pointer sm" data-bs-toggle="modal" data-bs-target="#addUser"><i class="icofont-ui-add"></i></span>
-                                                 </div>
-                                            </td>
-                                            <td>
-                                                 <span class="badge bg-success">Working</span>
-                                            </td>
-                                             <td>
-                                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                     <button type="button" class="btn btn-outline-secondary"><i class="icofont-edit text-success"></i></button>
-                                                     <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
-                                                 </div>
-                                             </td>
-                                         </tr>
-                                         <tr>
-                                            <td>
-                                                <img class="avatar rounded-circle" src="{{ asset('assets/images/xs/avatar5.jpg') }}" alt="">
-                                                <span class="fw-bold ms-1">Sally Graham</span>
-                                            </td>
-                                            <td>
-                                                <a href="projects.html">Practice to Perfect</a>
-                                            </td>
-                                            <td>
-                                                 <a href="task.html">9 Task</a>
-                                            </td>
-                                            <td>
-                                                 <a href="mailto:">SallyGraham@gmail.com</a>
-                                            </td>
-                                            <td>
-                                                 13/01/21
-                                            </td>
-                                            <td>
-                                                 <div class="avatar-list avatar-list-stacked px-3">
-                                                     <img class="avatar rounded-circle sm" src="{{ asset('assets/images/xs/avatar1.jpg') }}" alt="">
-                                                     <img class="avatar rounded-circle sm" src="{{ asset('assets/images/xs/avatar3.jpg') }}" alt="">
-                                                     <img class="avatar rounded-circle sm" src="{{ asset('assets/images/xs/avatar4.jpg') }}" alt="">
-                                                     <span class="avatar rounded-circle text-center pointer sm" data-bs-toggle="modal" data-bs-target="#addUser"><i class="icofont-ui-add"></i></span>
-                                                 </div>
-                                            </td>
-                                            <td>
-                                                 <span class="badge bg-success">Working</span>
-                                            </td>
-                                             <td>
-                                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                     <button type="button" class="btn btn-outline-secondary"><i class="icofont-edit text-success"></i></button>
-                                                     <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
-                                                 </div>
-                                             </td>
-                                         </tr>
-                                         <tr>
-                                            <td>
-                                                <img class="avatar rounded-circle" src="{{ asset('assets/images/xs/avatar6.jpg') }}" alt="">
-                                                <span class="fw-bold ms-1">Robert Anderson</span>
-                                            </td>
-                                            <td>
-                                                <a href="projects.html">Rhinestone</a>
-                                            </td>
-                                            <td>
-                                                 <a href="task.html">5 Task</a>
-                                            </td>
-                                            <td>
-                                                 <a href="mailto:">RobertAnderson@gmail.com</a>
-                                            </td>
-                                            <td>
-                                                 14/01/21
-                                            </td>
-                                            <td>
-                                                 <div class="avatar-list avatar-list-stacked px-3">
-                                                     <img class="avatar rounded-circle sm" src="{{ asset('assets/images/xs/avatar2.jpg') }}" alt="">
-                                                     <img class="avatar rounded-circle sm" src="{{ asset('assets/images/xs/avatar1.jpg') }}" alt="">
-                                                     <img class="avatar rounded-circle sm" src="{{ asset('assets/images/xs/avatar4.jpg') }}" alt="">
-                                                     <img class="avatar rounded-circle sm" src="{{ asset('assets/images/xs/avatar7.jpg') }}" alt="">
-                                                     <img class="avatar rounded-circle sm" src="{{ asset('assets/images/xs/avatar8.jpg') }}" alt="">
-                                                     <span class="avatar rounded-circle text-center pointer sm" data-bs-toggle="modal" data-bs-target="#addUser"><i class="icofont-ui-add"></i></span>
-                                                 </div>
-                                            </td>
-                                            <td>
-                                                 <span class="badge bg-success">Working</span>
-                                            </td>
-                                             <td>
-                                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                     <button type="button" class="btn btn-outline-secondary"><i class="icofont-edit text-success"></i></button>
-                                                     <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
-                                                 </div>
-                                             </td>
-                                         </tr>
-                                         <tr>
-                                            <td>
-                                                <img class="avatar rounded-circle" src="{{ asset('assets/images/xs/avatar7.jpg') }}" alt="">
-                                                <span class="fw-bold ms-1">Ryan	Stewart</span>
-                                            </td>
-                                            <td>
-                                                <a href="projects.html">Social Geek Made</a>
-                                            </td>
-                                            <td>
-                                                 <a href="task.html">15 Task</a>
-                                            </td>
-                                            <td>
-                                                 <a href="mailto:">RyanStewart@gmail.com</a>
-                                            </td>
-                                            <td>
-                                                 13/01/21
-                                            </td>
-                                            <td>
-                                                 <div class="avatar-list avatar-list-stacked px-3">
-                                                     <img class="avatar rounded-circle sm" src="{{ asset('assets/images/xs/avatar2.jpg') }}" alt="">
-                                                     <img class="avatar rounded-circle sm" src="{{ asset('assets/images/xs/avatar1.jpg') }}" alt="">
-                                                     <img class="avatar rounded-circle sm" src="{{ asset('assets/images/xs/avatar3.jpg') }}" alt="">
-                                                     <img class="avatar rounded-circle sm" src="{{ asset('assets/images/xs/avatar4.jpg') }}" alt="">
-                                                     <img class="avatar rounded-circle sm" src="{{ asset('assets/images/xs/avatar7.jpg') }}" alt="">
-                                                     <img class="avatar rounded-circle sm" src="{{ asset('assets/images/xs/avatar8.jpg') }}" alt="">
-                                                     <span class="avatar rounded-circle text-center pointer sm" data-bs-toggle="modal" data-bs-target="#addUser"><i class="icofont-ui-add"></i></span>
-                                                 </div>
-                                            </td>
-                                            <td>
-                                                 <span class="badge bg-success">Working</span>
-                                            </td>
-                                             <td>
-                                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                     <button type="button" class="btn btn-outline-secondary"><i class="icofont-edit text-success"></i></button>
-                                                     <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
-                                                 </div>
-                                             </td>
-                                         </tr>
-                                    </tbody>
-                                </table>
+             <!-- Body: Body -->
+             <div class="body d-flex py-lg-3 py-md-2">
+                <div class="container-xxl">
+                    <div class="row align-items-center">
+                        <div class="border-0 mb-4">
+                            <div class="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom">
+                                <h3 class="fw-bold mb-0">Calendar</h3>
+                                <div class="col-auto d-flex">
+                                    <button type="button" class="btn btn-dark " data-bs-toggle="modal" data-bs-target="#addevent"><i class="icofont-plus-circle me-2 fs-6"></i>Add Event</button>
+                                </div>
                             </div>
                         </div>
-                  </div>
-                </div><!-- Row End -->
+                    </div> <!-- Row end  -->
+                    <div class="row clearfix g-3">
+                        <div class="col-lg-12 col-md-12 ">
+                           <!-- card: Calendar -->
+                            <div class="card">
+                                <div class="card-body" id='my_calendar'></div>
+                                <script>
+                                    document.addEventListener('DOMContentLoaded', function() {
+                                    var calendarEl = document.getElementById('my_calendar');
+
+                                    var calendar = new FullCalendar.Calendar(calendarEl, {
+                                        timeZone: 'UTC',
+                                        initialView: 'dayGridMonth',
+                                        events: 'https://fullcalendar.io/demo-events.json',
+                                        editable: true,
+                                        selectable: true
+                                    });
+
+                                    calendar.render();
+                                    });
+                                </script>
+                            </div>
+                        </div>
+                    </div><!-- Row End -->
+                </div>
             </div>
-        </div>
+
+
+              <!-- Add Event-->
+            <div class="modal fade" id="addevent" tabindex="-1"  aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title  fw-bold" id="eventaddLabel">Add Event</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput99" class="form-label">Event Name</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput99">
+                        </div>
+                        <div class="mb-3">
+                            <label for="formFileMultipleone" class="form-label">Event Images</label>
+                            <input class="form-control" type="file" id="formFileMultipleone">
+                        </div>
+                        <div class="deadline-form">
+                            <form>
+                                <div class="row g-3 mb-3">
+                                <div class="col">
+                                    <label for="datepickerded" class="form-label">Event Start Date</label>
+                                    <input type="date" class="form-control" id="datepickerded">
+                                </div>
+                                <div class="col">
+                                    <label for="datepickerdedone" class="form-label">Event End Date</label>
+                                    <input type="date" class="form-control" id="datepickerdedone">
+                                </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea78" class="form-label">Event Description (optional)</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea78" rows="3" placeholder="Add any extra details about the request"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
+                        <button type="button" class="btn btn-primary">Create</button>
+                    </div>
+                </div>
+                </div>
+            </div>
         @endsection

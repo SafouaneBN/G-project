@@ -11,21 +11,20 @@ class UserController extends Controller
     public function index(){
         $users = User::with('user_role')->get();
         $roles = role::with('rol_user')->get();
-    //    return $users;
-        return view('pages.Users.user',compact('users','roles'));
+       //return $users;
+    return view('pages.Users.user',compact('users','roles'));
 
 
     }
 
     public function addUser(Request $request){
 
+        //return $request;
         $User = User::create([
-
-            "name"=>$request->name,
-            "email"=>$request->email,
-            "password"=>bcrypt($request->password),
-            "role_id"=>$request->role,
-
+            "name" =>$request->name,
+            "email" =>$request->email,
+            "password" =>bcrypt($request->password),
+            "role_id" =>$request->role
         ]);
         return redirect()->back()->with("Ajouter avec succes");
     }
@@ -62,12 +61,16 @@ class UserController extends Controller
         if (!$User){
             redirect() -> back() -> with(['error' => 'User pas trouve']);
         }
-        $User->delete();
-
-        return response() -> json([
-            'status' => true,
-            'msg' => 'well Done !!',
-            'id' => $request -> id,
+        $User->update([
+            "active" => "0",
         ]);
+
+
+
+        // return response() -> json([
+        //     'status' => true,
+        //     'msg' => 'well Done !!',
+        //     'id' => $request -> id,
+        // ]);
     }
 }

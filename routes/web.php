@@ -85,8 +85,8 @@ Route::group(['prefix' => 'user' ],function () {
     Route::get('/index',[UserController::class, "index"])->name('user.index');
     Route::post('/addUser',[UserController::class, "addUser"])->name('para.addUser');
     Route::get('/User/{id}/edit', [UserController::class,"editUser"]);
-    Route::post('/User/update', [UserController::class,"updateUser"])->name('parametre.updateUser');
-    Route::post('/User/delete', [UserController::class,"deleteUser"])->name('parametre.deleteUser');
+    Route::post('/User/update', [UserController::class, "updateUser"])->name('para.updateUser');
+    Route::post('/User/delete', [UserController::class,"deleteUser"])->name('para.deleteUser');
 });
 //////////
 Route::group(['prefix' => 'parametre', "middleware" => "auth" ],function () {
