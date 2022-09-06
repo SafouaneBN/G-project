@@ -10,6 +10,9 @@ use App\Http\Controllers\OpportuniteController;
 use App\Http\Controllers\cat_projetController;
 use App\Http\Controllers\CatTacheController;
 use App\Http\Controllers\TacheController;
+use App\Http\Controllers\ActiviteController;
+use App\Http\Controllers\CatLivrableController;
+
 
 
 /*
@@ -40,13 +43,21 @@ Route::group(['prefix' => 'project', "middleware" => "auth"  ],function () {
     Route::get('/taskPro/{id}', [ProjectController::class,"taskOfProjet"])->name('projet.task');
     Route::get('/commentTask/{id}', [TacheController::class,"commentOftach"])->name('tach.comment');
     Route::post('/addcomment', [TacheController::class,"addcomment"])->name('tach.addcomment');
+    Route::post('/addlivrable', [TacheController::class,"addlivrabe"])->name('tach.addlivrabe');
     // Route::get('/commentTask/{id}/acvtite/{act}', [TacheController::class,"commenview"])->name('comment.activite');
     ///
     ////
     Route::get('/timesheet',[ProjectController::class, "timesheet"])->name('project.timesheet');
     ////
-    Route::get('/team_leader',[ProjectController::class, "team_leader"])->name('project.team_leader');
+    Route::get('/activite',[ActiviteController::class, "index"])->name('project.team_leader');
+    Route::post('/activite',[ActiviteController::class, "addActivite"])->name('parametre.addActivite');
+    Route::get('/activite/{id}/edit', [ActiviteController::class,"editActivite"]);
+    Route::post('/activite/update', [ActiviteController::class,"updateActivite"])->name('parametre.updateActivite');
+    Route::post('/activite/delete', [ActiviteController::class,"deleteActivite"])->name('parametre.deleteActivite');
+
+
     //////
+
     Route::get('/index/cat_project',[cat_projetController::class, "index"])->name('cat_projet.index');
     Route::post('/cat_projetadd',[cat_projetController::class, "addcat_projet"])->name('parametre.addcat_projet');
     Route::get('/cat_projet/{id}/edit', [cat_projetController::class,"editcat_projet"]);
@@ -92,6 +103,7 @@ Route::group(['prefix' => 'user' ],function () {
 Route::group(['prefix' => 'parametre', "middleware" => "auth" ],function () {
     Route::get('/role',[parametreController::class, "role"])->name('parametre.role');
     Route::get('/statut',[StatutController::class, "statut"])->name('parametre.statut');
+    Route::get('/index',[CatLivrableController::class, "cat_livrable"])->name('parametre.cat_livrable');
 
     Route::post('/addcat_Statut',[StatutController::class, "cat_addStatut"])->name('parametre.cat_addStatut');
     Route::get('/cat_statut/{id}/edit', [StatutController::class,"cat_edit"]);
@@ -107,6 +119,11 @@ Route::group(['prefix' => 'parametre', "middleware" => "auth" ],function () {
     Route::get('/role/{id}/edit', [parametreController::class,"editrole"]);
     Route::post('/role/update', [parametreController::class,"updaterole"])->name('parametre.updaterole');
     Route::post('/role/delete', [parametreController::class,"deleterole"])->name('parametre.deleterole');
+
+    Route::post('/addcat_livrable',[CatLivrableController::class, "addcat_livrable"])->name('parametre.addcat_livrable');
+    Route::get('/cat_livrable/{id}/edit', [CatLivrableController::class,"editrole"]);
+    Route::post('/cat_livrable/update', [CatLivrableController::class,"updatecat_livrable"])->name('parametre.updatecat_livrable');
+    Route::post('/cat_livrable/delete', [CatLivrableController::class,"deletecat_livrable"])->name('parametre.deletecat_livrable');
 
 });
 

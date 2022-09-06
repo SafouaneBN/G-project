@@ -12,6 +12,6 @@ class cat_livrable extends Model
     public $table = "cat_livrables";
 
     public function livrable_catLivrable(){
-        return $this->hasMany(livrable::class);
+        return $this->hasMany(livrable::class,"cat_livrable_id","id");
     }
 }

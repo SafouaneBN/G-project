@@ -8,16 +8,21 @@ use App\Models\tache;
 use App\Models\statut;
 use App\Models\projet;
 use App\Models\cat_tache;
+use App\Models\cat_livrable;
 use App\Models\activite;
 use App\Models\User;
-use App\Models\livrable;
 use App\Models\commentaire;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
+use App\Models\livrable;
+use App\Traits\imageTrait;
+
 
 
 class TacheController extends Controller
 {
+    use imageTrait;
+
     public function index(){
         $taches = tache::with(['catTach_tach','statut_tach','project'])
         ->get();
@@ -99,6 +104,9 @@ class TacheController extends Controller
     public function commentOftach($id){
         $activites = activite::with(['statut_activites','user_activites','livrable_activites'])->find($id);
 
+        $livrables = livrable::with('livrable_catlivrable','activite_livrable')->get();
+        $cat_livrables = cat_livrable::with('livrable_catLivrable')->get();
+
         if(!$activites)
             return redirect()->back();
 
@@ -111,7 +119,7 @@ class TacheController extends Controller
 
         // return $commentair;
 
-       return view('pages.projects.comment_tach',compact('activites','commentair'));
+       return view('pages.projects.comment_tach',compact('activites','commentair','cat_livrables','livrables'));
     }
 
     public function commenview(){
@@ -131,6 +139,20 @@ class TacheController extends Controller
 
             "commentaires"=>$request->desc,
             "livrables_id"=>$request->livrab,
+            "user_id" => Auth::user()->id,
+        ]);
+        return redirect()->back()->with("Ajouter avec succes");
+    }
+
+    public function addlivrabe(Request $request){
+
+        $image = $this->saveImage( $request->image , 'assets/livrable');
+
+        $livrable = livrable::create([
+            "livrable" => $request->libelle,
+            "activites_id"=>$request->id_liv,
+            "cat_livrable_id"=>$request->categorie,
+            "fichier" => $image,
             "user_id" => Auth::user()->id,
         ]);
         return redirect()->back()->with("Ajouter avec succes");

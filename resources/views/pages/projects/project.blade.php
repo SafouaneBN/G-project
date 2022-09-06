@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('projet', 'active')
+@section('prot', 'active')
 @section('content')
     <!-- main body area -->
     <!-- Body: Body -->

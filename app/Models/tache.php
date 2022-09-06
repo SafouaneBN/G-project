@@ -16,7 +16,7 @@ class tache extends Model
     }
 
     public function activite_tach(){
-        return $this->hasMany(activite::class,);
+        return $this->hasMany(activite::class,"tache_id","id");
     }
 
     public function statut_tach(){

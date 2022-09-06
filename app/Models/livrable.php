@@ -12,7 +12,7 @@ class livrable extends Model
     public $table = "livrables";
 
     public function livrable_catlivrable(){
-        return $this->belongsTo(cat_livrable::class);
+        return $this->belongsTo(cat_livrable::class,"cat_livrable_id","id");
     }
 
     public function activite_livrable(){

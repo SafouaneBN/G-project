@@ -18,7 +18,7 @@ class projet extends Model
     }
 
     public function activite_projet(){
-        return $this->hasMany(activite::class);
+        return $this->hasMany(activite::class,"projet_id","id");
     }
 
     public function catProjet_projet(){

@@ -13,11 +13,11 @@ class activite extends Model
 
 
     public function projet_activites(){
-        return $this->belongsTo(projet::class);
+        return $this->belongsTo(projet::class,"projet_id","id");
     }
 
     public function tach_activites(){
-        return $this->belongsTo(tache::class);
+        return $this->belongsTo(tache::class,"tache_id","id");
     }
 
     public function statut_activites(){

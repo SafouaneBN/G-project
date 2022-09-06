@@ -25,8 +25,7 @@
                                                 class="icofont-optic fs-4"></i></div>
                                         <div class="flex-fill ms-4 text-truncate">
                                             <div class="text-truncate">Staut</div>
-                                            <span
-                                                class="badge bg-warning">{{ $activites->statut_activites->statut }}</span>
+                                            <span class="badge bg-warning">{{ $activites->statut_activites->statut }}</span>
                                         </div>
 
                                     </div>
@@ -78,7 +77,15 @@
                                 <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h6 class="fw-bold mb-3 text-danger">Livrable</h6>
+
+
+                                            <div class="col-auto d-flex justify-content-between">
+                                                <h6 class="fw-bold mb-3 text-danger">Livrable</h6>
+                                                <button class=" btn btn-dark ms-1 edit_role styButton" style="border: none"
+                                                    type="button" data-bs-toggle="modal" data-bs-target="#depedit"><i
+                                                        class="icofont-plus-circle me-2 fs-6"></i></button>
+                                                {{-- <button type="button" class="btn btn-dark ms-1 " data-bs-toggle="modaladd"data-bs-target="#createproject"><i class="icofont-plus-circle me-2 fs-6"></i></button> --}}
+                                            </div>
                                             <div class="flex-grow-1">
                                                 @forelse ($activites->livrable_activites as $livrable)
                                                     <div class="py-2 d-flex align-items-center border-bottom">
@@ -178,6 +185,68 @@
         </div>
     </div>
 
+
+
+
+
+    <!-- Create Project-->
+    <div class="modal fade" id="depedit" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title  fw-bold" id="depeditLabel">ajouter livrable</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{ route('tach.addlivrabe') }}" class="forms-sample" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+
+                        <div class="mb-3">
+
+                            <div class="row g-3">
+
+                                <input type="text" id="id_role" name="id" value="" hidden>
+                                <label for="deptwo48" class="form-label">Libelle</label>
+
+                                <input type="text" name="libelle" class="form-control" id="libelle_edit"
+                                    value="">
+                            </div>
+                            <div class="row g-3">
+                                <label for="deptwo48" class="form-label">Fichier</label>
+                                <input class="form-control" type="file" name="image" id="formFileMultiple">
+                            </div>
+                            <div class="row g-3">
+
+                                <label class="form-label">categorie livrable</label>
+
+                                <select class="form-select" name="categorie"
+                                    aria-label="Default select Project Category">
+                                    @forelse ($cat_livrables as $cat_livrable)
+                                        <option value="{{ $cat_livrable->id }}">{{ $cat_livrable->cat_livrable }}
+                                        </option>
+                                    @empty
+                                        <option selected="">ajouter categorie</option>
+                                    @endforelse
+                                </select>
+
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <input type="hidden" value="{{ $activites->id }}" name="id_liv" class="id_liv">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-dark ms-1 cmt" value="{{ $activites->id }}"
+                            data-bs-toggle="modal" data-bs-target="#createproject"><i
+                                class="icofont-plus-circle me-2 fs-6"></i>ajouter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 @endsection
 @section('scripts')
 
@@ -185,10 +254,8 @@
         $(".cmt").click(function() {
 
             $id = $(this).val();
-            $("#livr").val($(this).parent().parent().find(".id_liv").val());
-
-            //    $livrable = $(this).parent().parent().find(".id_liv").val();
-            //    (".livrab").val($livrable);
+            // $("#livr").val($(this).parent().parent().find(".id_liv").val());
+            $(".livrab").val($id);
         })
     </script>
 @endsection
