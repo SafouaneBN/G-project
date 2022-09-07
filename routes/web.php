@@ -44,6 +44,10 @@ Route::group(['prefix' => 'project', "middleware" => "auth"  ],function () {
     Route::get('/commentTask/{id}', [TacheController::class,"commentOftach"])->name('tach.comment');
     Route::post('/addcomment', [TacheController::class,"addcomment"])->name('tach.addcomment');
     Route::post('/addlivrable', [TacheController::class,"addlivrabe"])->name('tach.addlivrabe');
+    Route::get('/activitePro/{id}', [TacheController::class,"ActiviteOfTache"])->name('tache.activte');
+    Route::get('/fullcalendar/{id}', [TacheController::class,"fullcalendar"]);
+
+
     // Route::get('/commentTask/{id}/acvtite/{act}', [TacheController::class,"commenview"])->name('comment.activite');
     ///
     ////

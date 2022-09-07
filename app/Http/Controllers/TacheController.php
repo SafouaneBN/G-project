@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
 use App\Models\livrable;
 use App\Traits\imageTrait;
+use Response;
 
 
 
@@ -157,6 +158,29 @@ class TacheController extends Controller
         ]);
         return redirect()->back()->with("Ajouter avec succes");
     }
+
+    public function ActiviteOfTache($id, Request $request){
+        $tache = tache::find($id);
+        if(!$tache)
+            return redirect()->back();
+
+            $activite = activite::where('tache_id', $id)->get();
+            $activites = activite::with('tach_activites','projet_activites')->get();
+            $projets = projet::with('activite_projet')->get();
+            $taches = tache::with('activite_tach')->get();
+
+
+
+
+        return view('pages.projects.team_leader',compact('activite','tache','projets','taches','activites'));
+    }
+
+    public function fullcalendar($id)
+    {
+        $data = activite::select('libelle as title','planification_date_debut as start','planification_date_fin as end')->where('tache_id',$id)->get();
+        return Response::json($data);
+    }
+
 
 
 }

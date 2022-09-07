@@ -39,6 +39,11 @@
                                                     style="width: {{ $diff_in_days }}%" aria-valuenow="60" aria-valuemin="0"
                                                     aria-valuemax="100"></div>
                                             </div>
+                                            <a type="button"
+                                            href="{{ route('tache.activte',$task->id) }}"
+                                            style="border: none" class="sup_statut"
+                                            class="btn btn-outline-secondary deleterow"><i class="icofont-eye-alt "></i>
+                                        </a>
                                         </div>
                                     @endforeach
                                 </div>
