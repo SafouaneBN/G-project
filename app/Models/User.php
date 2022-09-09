@@ -56,6 +56,10 @@ class User extends Authenticatable
         return $this->hasMany(activite::class,"user_id","id");
     }
 
+    public function activite_user_acces(){
+        return $this->hasMany(activite::class,"user_accesses","id");
+    }
+
     public function user_role(){
         return $this->belongsTo(role::class,"role_id","id");
     }

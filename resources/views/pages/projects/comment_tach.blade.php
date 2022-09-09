@@ -23,10 +23,42 @@
                                     <div class="d-flex align-items-center">
                                         <div class="avatar lg  rounded-1 no-thumbnail bg-lightyellow color-defult"><i
                                                 class="icofont-optic fs-4"></i></div>
+                                                @if ($activites->statut_activites->statut == "COMPLETE")
                                         <div class="flex-fill ms-4 text-truncate">
                                             <div class="text-truncate">Staut</div>
                                             <span class="badge bg-warning">{{ $activites->statut_activites->statut }}</span>
                                         </div>
+                                        @elseif ($activites->statut_activites->statut == "COMPLETE")
+                                        <div class="flex-fill ms-4 text-truncate">
+                                            <div class="text-truncate">Staut</div>
+                                            <span class="badge bg-success">{{ $activites->statut_activites->statut }}</span>
+                                        </div>
+                                        @elseif ($activites->statut_activites->statut == "Arrêtée")
+                                        <div class="flex-fill ms-4 text-truncate">
+                                            <div class="text-truncate">Staut</div>
+                                            <span class="badge bg-danger">{{ $activites->statut_activites->statut }}</span>
+                                        </div>
+                                        @elseif ($activites->statut_activites->statut == "En cours")
+                                        <div class="flex-fill ms-4 text-truncate">
+                                            <div class="text-truncate">Staut</div>
+                                            <span class="badge rounded-pill bg-secondary">{{ $activites->statut_activites->statut }}</span>
+                                        </div>
+                                        @elseif ($activites->statut_activites->statut == "Planifiée")
+                                        <div class="flex-fill ms-4 text-truncate">
+                                            <div class="text-truncate">Staut</div>
+                                            <span class="badge bg-info">{{ $activites->statut_activites->statut }}</span>
+                                        </div>
+                                        @elseif ($activites->statut_activites->statut == "Non planifiée")
+                                        <div class="flex-fill ms-4 text-truncate">
+                                            <div class="text-truncate">Staut</div>
+                                            <span class="badge bg-dark">{{ $activites->statut_activites->statut }}</span>
+                                        </div>
+                                        @else
+                                        <div class="flex-fill ms-4 text-truncate">
+                                            <div class="text-truncate">Staut</div>
+                                            <span class="badge bg-warning">{{ $activites->statut_activites->statut }}</span>
+                                        </div>
+                                        @endif
 
                                     </div>
                                 </div>
@@ -89,19 +121,51 @@
                                             <div class="flex-grow-1">
                                                 @forelse ($activites->livrable_activites as $livrable)
                                                     <div class="py-2 d-flex align-items-center border-bottom">
-                                                        <div class="d-flex ms-3 align-items-center flex-fill">
-                                                            <span
-                                                                class="avatar lg bg-lightgreen rounded-circle text-center d-flex align-items-center justify-content-center"><i
-                                                                    class="icofont-file-pdf fs-5"></i></span>
-                                                            <div class="d-flex flex-column ps-3">
-                                                                <h6 class="fw-bold mb-0 small-14">
-                                                                    {{ $livrable->livrable }}</h6>
+                                                        @if ($livrable->cat_livrable_id == '2')
+                                                            <div class="d-flex ms-3 align-items-center flex-fill">
+                                                                <span
+                                                                    class="avatar lg bg-lightgreen rounded-circle text-center d-flex align-items-center justify-content-center"><i
+                                                                        class="icofont-file-image fs-5"></i></span>
+                                                                <div class="d-flex flex-column ps-3">
+                                                                    <h6 class="fw-bold mb-0 small-14">
+                                                                        {{ $livrable->livrable }}</h6>
+                                                                </div>
+                                                                <input type="hidden" value="{{ $livrable->fichier }}" class="fichier">
                                                             </div>
-                                                        </div>
+                                                        @elseif ($livrable->cat_livrable_id == '1')
+                                                            <div class="d-flex ms-3 align-items-center flex-fill">
+                                                                <span
+                                                                    class="avatar lg bg-lightgreen rounded-circle text-center d-flex align-items-center justify-content-center"><i
+                                                                        class="icofont-file-pdf fs-5"></i></span>
+                                                                <div class="d-flex flex-column ps-3">
+                                                                    <h6 class="fw-bold mb-0 small-14">
+                                                                        {{ $livrable->livrable }}</h6>
+                                                                </div>
+                                                                <input type="hidden" value="{{ $livrable->fichier }}" class="fichier">
+
+                                                            </div>
+                                                        @else
+                                                            <div class="d-flex ms-3 align-items-center flex-fill">
+                                                                <span
+                                                                    class="avatar lg bg-lightgreen rounded-circle text-center d-flex align-items-center justify-content-center"><i
+                                                                        class="icofont-file-text fs-5"></i></span>
+                                                                <div class="d-flex flex-column ps-3">
+                                                                    <h6 class="fw-bold mb-0 small-14">
+                                                                        {{ $livrable->livrable }}</h6>
+                                                                </div>
+                                                            </div>
+                                                            <input type="hidden" value="{{ $livrable->fichier }}" class="fichier">
+
+                                                        @endif
                                                         <button type="button" class="btn btn-dark ms-1 cmt"
                                                             value="{{ $livrable->id }}" data-bs-toggle="modal"
                                                             data-bs-target="#createproject"><i
                                                                 class="icofont-plus-circle me-2 fs-6"></i>comment</button>
+                                                                <a type="button"
+                                            href=""
+                                            style="border: none"
+                                            class="btn btn-outline-secondary deleterow showFile"><i class="icofont-eye-alt lef "></i>
+                                        </a>
                                                     </div>
                                                     <input type="hidden" value="{{ $livrable->id }}" name=""
                                                         class="id_liv">
@@ -197,7 +261,8 @@
                     <h5 class="modal-title  fw-bold" id="depeditLabel">ajouter livrable</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('tach.addlivrabe') }}" class="forms-sample" method="post" enctype="multipart/form-data">
+                <form action="{{ route('tach.addlivrabe') }}" class="forms-sample" method="post"
+                    enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
 
@@ -257,5 +322,19 @@
             // $("#livr").val($(this).parent().parent().find(".id_liv").val());
             $(".livrab").val($id);
         })
+
+
+        $(".showFile").click(function()
+        {
+            var file = $(this).parent().parent().parent().parent().find(".fichier").val();
+            
+            var url = document.URL;
+            var host = $(location).attr('host');
+            window.open("http://"+host+"/assets/livrable/"+file);
+
+        })
     </script>
+
+
+
 @endsection

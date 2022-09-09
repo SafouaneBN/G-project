@@ -51,17 +51,15 @@
                                 <input type="hidden" class="descp" value="{{ $projet->description }}">
 
                                 <td class=" dt-body-right">
-                                    <div class="btn-group" Statut="group" aria-label="Basic outlined example">
+
                                         <button type="button" class="btn btn-outline-secondary editbtn"
                                             value="{{ $projet->id }}" data-bs-toggle="modal"
                                             data-bs-target="#editproject"><i class="icofont-edit text-success"></i></button>
-
                                         <a type="button"
                                             href="{{ route('projet.task',$projet->id) }}"
                                             style="border: none" class="sup_statut"
                                             class="btn btn-outline-secondary deleterow"><i class="icofont-eye-alt "></i>
                                         </a>
-                                    </div>
                                 </td>
                             </tr>
 

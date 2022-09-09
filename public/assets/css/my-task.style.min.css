@@ -19103,3 +19103,7 @@ body.rtl_mode
 .styButton i {
     margin:0 !important;
  }
+
+ .lef {
+    margin: 10px;
+ }

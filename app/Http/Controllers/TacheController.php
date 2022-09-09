@@ -13,9 +13,9 @@ use App\Models\activite;
 use App\Models\User;
 use App\Models\commentaire;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Carbon;
 use App\Models\livrable;
 use App\Traits\imageTrait;
+use Carbon\Carbon;
 use Response;
 
 
@@ -28,8 +28,7 @@ class TacheController extends Controller
         $taches = tache::with(['catTach_tach','statut_tach','project'])
         ->get();
 
-
-        $statuts = statut::with('tache_statut')->get();
+        $statuts = statut::where('statut_id', '2')->get();
         $projets = projet::with('tachs')->get();
         $cat_taches = cat_tache::with('tach_catTach')->get();
 
@@ -165,14 +164,15 @@ class TacheController extends Controller
             return redirect()->back();
 
             $activite = activite::where('tache_id', $id)->get();
-            $activites = activite::with('tach_activites','projet_activites')->get();
+            $activites = activite::with('tach_activites','projet_activites','user_activites')->get();
             $projets = projet::with('activite_projet')->get();
+            $users = user::where('role_id', '2')->get();
             $taches = tache::with('activite_tach')->get();
 
 
 
 
-        return view('pages.projects.team_leader',compact('activite','tache','projets','taches','activites'));
+        return view('pages.projects.team_leader',compact('activite','tache','projets','taches','activites','users'));
     }
 
     public function fullcalendar($id)
@@ -182,6 +182,22 @@ class TacheController extends Controller
     }
 
 
+    public function ShowLivrable($id, Request $request){
+        $livrable = livrable::find($id);
+        if(!$livrable)
+            return redirect()->back();
+
+            $activite = activite::where('tache_id', $id)->get();
+            $activites = activite::with('tach_activites','projet_activites','user_activites')->get();
+            $projets = projet::with('activite_projet')->get();
+            $users = user::where('role_id', '2')->get();
+            $taches = tache::with('activite_tach')->get();
+
+
+
+
+        return view('pages.projects.Show_livrable',compact('activite','projets','taches','activites','users','livrable'));
+    }
 
 }
 

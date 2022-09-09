@@ -93,7 +93,7 @@ class ProjectController extends Controller
         $activitiesList = [];
 
         foreach($tasks as $task){
-            $activities = activite::with('livrable_activites','user_activites')->where('tache_id', $task->id)->get();
+            $activities = activite::with('livrable_activites','user_activites_acces')->where('tache_id', $task->id)->get();
             array_push($activitiesList, $activities);
         }
 

@@ -31,6 +31,9 @@ class activite extends Model
     public function user_activites(){
         return $this->belongsTo(User::class,"user_id","id");
     }
+    public function user_activites_acces(){
+        return $this->belongsTo(User::class,"user_accesses","id");
+    }
 
     public function list_livrables(){
         return $this->belongsToMany(livrable::class,list_livrable::class,"activites_id","livrables_id");

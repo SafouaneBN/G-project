@@ -29,21 +29,23 @@
                                 <div class="card-body mem-list">
                                     @foreach ($tasks as $task)
                                         <div class="progress-count mb-4">
-                                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                            <div class="d-flex  align-items-center mb-1">
                                                 <h6 class="mb-0 fw-bold d-flex align-items-center">{{ $task->tache }}</h6>
-                                                <span class="small text-muted">{{ $task->estemation }} Days</span>
+                                                <a type="button"
+                                            href="{{ route('tache.activte',$task->id) }}"
+                                            style="border: none" class="sup_statut"
+                                            class="btn btn-outline-secondary deleterow "><i class="icofont-eye-alt lef "></i>
+                                        </a>
+
                                             </div>
                                             <span style="display: none">{{ $diff_in_days = Illuminate\Support\Carbon::createFromFormat('Y-m-d  H:s:i', $task->date_debut)->diffInDays(Illuminate\Support\Carbon::createFromFormat('Y-m-d  H:s:i', Illuminate\Support\Carbon::now() )); }}</span>
                                             <div class="progress" style="height: 10px;">
                                                 <div class="progress-bar bg-lightgreen" role="progressbar"
                                                     style="width: {{ $diff_in_days }}%" aria-valuenow="60" aria-valuemin="0"
                                                     aria-valuemax="100"></div>
+
                                             </div>
-                                            <a type="button"
-                                            href="{{ route('tache.activte',$task->id) }}"
-                                            style="border: none" class="sup_statut"
-                                            class="btn btn-outline-secondary deleterow"><i class="icofont-eye-alt "></i>
-                                        </a>
+                                            <span class="small text-muted">{{ $task->estemation }} Days</span>
                                         </div>
                                     @endforeach
                                 </div>
@@ -71,11 +73,11 @@
                                                 <div class="timeline-item ti-danger border-bottom ms-2">
                                                     <div class="d-flex">
                                                         <span
-                                                            class="avatar d-flex justify-content-center align-items-center rounded-circle light-success-bg">RH</span>
+                                                            class="avatar d-flex justify-content-center align-items-center rounded-circle light-success-bg">{{substr($key->libelle,0,2)}}</span>
                                                         <div class="flex-fill ms-3">
                                                             <div class="mb-1"><a href="{{ route('tach.comment',$key->id) }}"><strong> {{ $key->libelle }}</strong></a>
                                                             </div>
-                                                            <span class="d-flex text-muted">20Min ago</span>
+                                                            <span class="d-flex text-muted">{{ $key->duree_prevue }} Days</span>
                                                         </div>
                                                     </div>
                                                 </div> <!-- timeline item end  -->
@@ -104,7 +106,7 @@
                                                         <img src={{ asset('assets/images/lg/avatar3.jpg') }}
                                                             class="avatar lg rounded-circle img-thumbnail" alt="avatar">
                                                         <div class="d-flex flex-column ps-2">
-                                                            <h6 class="fw-bold mb-0">{{ $key['user_activites']['name'] }}
+                                                            <h6 class="fw-bold mb-0">{{ $key['user_activites_acces']['name'] }}
                                                             </h6>
                                                             <span class="small text-muted">Ui/UX Designer</span>
                                                         </div>

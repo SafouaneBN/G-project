@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\activite;
 use App\Models\tache;
 use App\Models\projet;
+use App\Models\User;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -13,14 +15,21 @@ class ActiviteController extends Controller
 {
   public function index(){
 
-    $activites = activite::with('tach_activites','projet_activites')->get();
+    $activites = activite::with('tach_activites','projet_activites','user_activites')->get();
     $taches = tache::with('activite_tach')->get();
     $projets = projet::with('activite_projet')->get();
-    return view('pages.projects.team_leader',compact('projets','activites','taches'));
+    $users = user::where('role_id', '2')->get();
+    return view('pages.projects.team_leader',compact('projets','activites','taches','users'));
 
   }
 
   public function addActivite(Request $request){
+
+
+    $to  = Carbon::createFromFormat('Y-m-d', $request->date_d);
+    $from = Carbon::createFromFormat('Y-m-d', $request->date_f);
+
+    $diff_in_days = $to->diffInDays($from);
 
     $activite = activite::create([
         "libelle"=>$request->libelle,
@@ -30,9 +39,10 @@ class ActiviteController extends Controller
         "planification_date_debut"=>$request->date_d,
         "planification_date_fin"=>$request->date_f,
         "execution_date_debut"=>$request->date_e_d,
-        "duree_prevue"=>$request->duree_prevue,
+        "duree_prevue"=>$diff_in_days,
         "execution_date_fin"=>$request->date_e_f,
         "priorite"=>$request->priorite,
+        "user_accesses"=>$request->user_accesses,
         "statu_id" => "1",
         "user_id" => Auth::user()->id,
     ]);

@@ -94,9 +94,17 @@
                             </div>
                             <div class="row g-3 mb-3">
                                 <div class="col">
-                                    <label for="exampleFormControlInput99" class="form-label">Duree prevue</label>
-                                    <input type="text" name="duree_prevue" class="form-control"
-                                        id="exampleFormControlInput99">
+
+                                      <div class="col">
+                                <label for="datepickerdedone" class="form-label">Realisateur</label>
+                                <select class="form-select" name="user_accesses" aria-label="Default select Priority">
+                                    @forelse ($users as $user)
+                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                    @empty
+                                        <option selected="">ajouter user</option>
+                                    @endforelse
+                                </select>
+                            </div>
                                 </div>
                                 <div class="col">
                                     <label for="exampleFormControlInput99" class="form-label">Priorite</label>

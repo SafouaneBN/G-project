@@ -47,10 +47,28 @@
 
                                 <td class="">{{ $tache->catTach_tach->cat_tache }}</td>
                                 <input type="hidden" class="cattach" value="{{ $tache->cat_tache_id }}">
-
+                                @if ($tache->statut_tach->statut == "COMPLETE")
+                                    <td class=""><span class="badge bg-success">{{ $tache->statut_tach->statut }}</span></td>
+                                    <input type="hidden" class="statu" value="{{ $tache->statut_id }}">
+                                @elseif ($tache->statut_tach->statut == "En attente")
+                                    <td class="" ><span class="badge bg-secondary">{{ $tache->statut_tach->statut }}</span></td>
+                                    <input type="hidden" class="statu" value="{{ $tache->statut_id }}">
+                                @elseif ($tache->statut_tach->statut == "Arrêtée")
+                                    <td class="" ><span class="badge bg-danger">{{ $tache->statut_tach->statut }}</span></td>
+                                    <input type="hidden" class="statu" value="{{ $tache->statut_id }}">
+                                @elseif ($tache->statut_tach->statut == "En cours")
+                                    <td class="" ><span class="badge rounded-pill bg-secondary">{{ $tache->statut_tach->statut }}</span></td>
+                                    <input type="hidden" class="statu" value="{{ $tache->statut_id }}">
+                                @elseif ($tache->statut_tach->statut == "Planifiée")
+                                    <td class="" ><span class="badge bg-info">{{ $tache->statut_tach->statut }}</span></td>
+                                    <input type="hidden" class="statu" value="{{ $tache->statut_id }}">
+                                @elseif ($tache->statut_tach->statut == "Non planifiée")
+                                    <td class="" ><span class="badge bg-dark">{{ $tache->statut_tach->statut }}</span></td>
+                                    <input type="hidden" class="statu" value="{{ $tache->statut_id }}">
+                                @else
                                 <td class="">{{ $tache->statut_tach->statut }}</td>
                                 <input type="hidden" class="statu" value="{{ $tache->statut_id }}">
-
+                                @endif
                                 <td class="">{{ $tache->project->projet }}</td>
                                 <input type="hidden" class="proj" value="{{ $tache->projet_id }}">
 
