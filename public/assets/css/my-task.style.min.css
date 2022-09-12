@@ -16479,8 +16479,8 @@ table.dataTable > tbody > tr.child ul.dtr-details {
     -webkit-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
     border-style: solid;
-    top: 0;
-    left: 3px;
+    top: -4px;
+    left: 4px;
     border-radius: 45px;
     height: 45px;
     width: 45px;

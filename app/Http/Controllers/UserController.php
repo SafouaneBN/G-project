@@ -4,15 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\notification;
+
 use App\Models\role;
+use Illuminate\Support\Facades\Auth;
+
 
 class UserController extends Controller
 {
     public function index(){
         $users = User::with('user_role')->get();
         $roles = role::with('rol_user')->get();
+        $notifications =notification::where('user_accesses',Auth::user()->id)->get();
+
        //return $users;
-    return view('pages.Users.user',compact('users','roles'));
+    return view('pages.Users.user',compact('users','roles','notifications'));
 
 
     }
@@ -66,11 +72,5 @@ class UserController extends Controller
         ]);
 
 
-
-        // return response() -> json([
-        //     'status' => true,
-        //     'msg' => 'well Done !!',
-        //     'id' => $request -> id,
-        // ]);
     }
 }

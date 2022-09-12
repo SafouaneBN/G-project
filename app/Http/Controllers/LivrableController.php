@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\livrable;
 use App\Traits\imageTraits;
+use App\Models\notification;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+
+
 
 class LivrableController extends Controller
 {
@@ -13,8 +18,10 @@ class LivrableController extends Controller
     public function index(){
         $livrables = livrable::with()->get();
         $livrables = livrable::with()->get();
+        $notifications =notification::where('user_accesses',Auth::user()->id)->get();
 
-        return view('pages.parametre.livrable',compact('cat_taches'));
+
+        return view('pages.parametre.livrable',compact('cat_taches','notifications'));
     }
 
 

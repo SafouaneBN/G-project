@@ -112,7 +112,7 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label class="form-label">Tache</label>
-                            <input class="form-control" name="tache" type="text" id="formFileMultipleone">
+                            <input class="form-control" name="tache" type="text" id="formFileMultipleone" required>
                         </div>
 
 
@@ -148,17 +148,17 @@
                             <div class="row">
                                 <div class="col">
                                     <label for="datepickerded" class="form-label">Tache Start Date</label>
-                                    <input type="date" name="date_debut" class="form-control" id="datepickerded">
+                                    <input type="date" name="date_debut" class="form-control" id="date_debut" required>
                                 </div>
                                 <div class="col">
                                     <label for="datepickerdedone" class="form-label">Tache End Date</label>
-                                    <input type="date" name="date_fin" class="form-control" id="datepickerdedone">
+                                    <input type="date" name="date_fin" class="form-control" id="date_fin" required>
                                 </div>
                             </div>
 
                         </div>
                         <div class="row g-3 mb-3">
-                            <div class="col-sm">
+                            {{-- <div class="col-sm">
                                 <label class="form-label">Statut</label>
                                 <select class="form-select" name="statut_id" multiple
                                     aria-label="Default select Priority">
@@ -168,7 +168,7 @@
                                         <option selected="">ajouter statut</option>
                                     @endforelse
                                 </select>
-                            </div>
+                            </div> --}}
                         </div>
 
 
@@ -336,5 +336,16 @@
                 });
             }
         });
+    </script>
+    <script>
+        document.getElementById("date_debut_edit").onchange = function() {
+            var input = document.getElementById("date_fin_edit");
+            input.setAttribute("min", this.value);
+        }
+
+        document.getElementById("date_debut").onchange = function() {
+            var input = document.getElementById("date_fin");
+            input.setAttribute("min", this.value);
+        }
     </script>
 @endsection

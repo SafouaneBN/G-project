@@ -67,4 +67,12 @@ class User extends Authenticatable
     public function user_commen(){
         return $this->Hasmany(commentaire::class,"user_id","id");
     }
+
+    public function user_notification(){
+        return $this->Hasmany(notifications::class,"user_id","id");
+    }
+
+    public function user_notifiable(){
+        return $this->Hasmany(notifications::class,"user_accesses","id");
+    }
 }

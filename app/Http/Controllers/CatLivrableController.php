@@ -4,14 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\cat_livrable;
+use App\Models\notification;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+
+
 
 
 class CatLivrableController extends Controller
 {
     public function cat_livrable(){
         $cat_livrables = cat_livrable::get();
+        $notifications =notification::where('user_accesses',Auth::user()->id)->get();
 
-        return view('pages.parametre.cat_livrable',compact('cat_livrables'));
+
+        return view('pages.parametre.cat_livrable',compact('cat_livrables','notifications'));
     }
 
 

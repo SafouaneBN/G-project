@@ -8,6 +8,9 @@ use App\Models\projet;
 use App\Models\activite;
 use App\Models\tache;
 use App\Models\cat_projet;
+use App\Models\notification;
+
+use App\Models\User;
 
 
 class ProjectController extends Controller
@@ -16,6 +19,7 @@ class ProjectController extends Controller
     public function index(){
         $projets = projet::with(['opportunite_projet','catProjet_projet','tachs'])
         ->get();
+        $notifications =notification::where('user_accesses',Auth::user()->id)->get();
 
 
         $opportunites = opportunite::with('projet_opportunite')->get();
@@ -25,7 +29,7 @@ class ProjectController extends Controller
 
         //return $projets;
 
-        return view('pages.projects.project',compact('opportunites','projets','cat_projets'));
+        return view('pages.projects.project',compact('opportunites','projets','cat_projets','notifications'));
     }
 
     public function addprojet(Request $request){
@@ -85,6 +89,8 @@ class ProjectController extends Controller
 
     public function taskOfProjet($id){
         $projet = projet::find($id);
+        $notifications =notification::where('user_accesses',Auth::user()->id)->get();
+
         if(!$projet)
             return redirect()->back();
 
@@ -97,7 +103,7 @@ class ProjectController extends Controller
             array_push($activitiesList, $activities);
         }
 
-        return view('pages.projects.project_tach',compact('activitiesList','tasks'));
+        return view('pages.projects.project_tach',compact('activitiesList','tasks','notifications'));
     }
 
 ///////////////////

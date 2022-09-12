@@ -11,10 +11,12 @@
                         <div class="card-header py-3 px-0 d-flex align-items-center  justify-content-between border-bottom">
                             <h3 class=" fw-bold flex-fill mb-0">Projet</h3>
                             <div class="col-auto d-flex">
-
+                                @if (Auth::user()->role_id == 3)
                                 <button type="button" class="btn btn-dark ms-1 " data-bs-toggle="modal"
                                     data-bs-target="#createproject"><i class="icofont-plus-circle me-2 fs-6"></i>Ajouter
                                     Projet</button>
+                                    @endif
+
                             </div>
                         </div>
                     </div>
@@ -51,10 +53,11 @@
                                 <input type="hidden" class="descp" value="{{ $projet->description }}">
 
                                 <td class=" dt-body-right">
-
+                                    @if (Auth::user()->role_id == 3)
                                         <button type="button" class="btn btn-outline-secondary editbtn"
                                             value="{{ $projet->id }}" data-bs-toggle="modal"
                                             data-bs-target="#editproject"><i class="icofont-edit text-success"></i></button>
+                                            @endif
                                         <a type="button"
                                             href="{{ route('projet.task',$projet->id) }}"
                                             style="border: none" class="sup_statut"
@@ -85,7 +88,7 @@
                         <div class="mb-3">
                             <label for="exampleFormControlInput77" class="form-label"> Nom Projet </label>
                             <input type="text" class="form-control" id="exampleFormControlInput77" name="projet"
-                                placeholder="Explain what the Project Name">
+                                placeholder="Explain what the Project Name" required>
                         </div>
 
 
@@ -120,7 +123,7 @@
                             <div class="row g-3 mb-3">
 
                                 <label for="datepickerded" class="form-label">Date Projet</label>
-                                <input type="date" class="form-control" name="dateP" id="datepickerded">
+                                <input type="date" class="form-control" name="dateP" id="datepickerded" required>
 
                             </div>
 
@@ -160,7 +163,7 @@
 
                             <label for="exampleFormControlInput77" class="form-label"> Nom Projet </label>
                             <input type="text" class="form-control"  name="projet_edit" id="projet_edit"
-                                placeholder="Explain what the Project Name">
+                                placeholder="Explain what the Project Name" required>
                         </div>
 
 
@@ -195,7 +198,7 @@
                             <div class="row g-3 mb-3">
 
                                 <label for="datepickerded" class="form-label">Date Projet</label>
-                                <input type="date" class="form-control" name="dateP_edit" id="dateP_edit">
+                                <input type="date" class="form-control" name="dateP_edit" id="dateP_edit" required>
 
                             </div>
 

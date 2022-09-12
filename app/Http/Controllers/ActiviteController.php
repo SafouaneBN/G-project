@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\activite;
+use App\Models\notification;
 use App\Models\tache;
 use App\Models\projet;
 use App\Models\User;
+use App\Notifications\Notify_activite;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,6 +27,7 @@ class ActiviteController extends Controller
 
   public function addActivite(Request $request){
 
+    $user = user::find($request->user_accesses);
 
     $to  = Carbon::createFromFormat('Y-m-d', $request->date_d);
     $from = Carbon::createFromFormat('Y-m-d', $request->date_f);
@@ -46,7 +49,31 @@ class ActiviteController extends Controller
         "statu_id" => "1",
         "user_id" => Auth::user()->id,
     ]);
+
+    $notification = notification::create([
+        "etat"=>'not readed',
+        "message"=>$request->libelle,
+        "user_accesses"=>$user->id,
+        "user_id" => Auth::user()->id,
+    ]);
+
     return redirect()->back()->with("Ajouter avec succes");
+}
+
+public function readnotify(Request $request)
+{
+    $notification = notification::find($request->id);
+
+    if (!$notification){
+        return redirect() -> back() -> with(['error' => 'no notification']);
+    }
+
+    $notification->update([
+        "etat"=>'read it',
+    ]);
+
+    return redirect() -> back();
+
 }
 
 public function updateActivite(Request $request)

@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\opportunite;
 use App\Models\client;
+use App\Models\notification;
+
+use App\Models\User;
+
 
 
 class OpportuniteController extends Controller
@@ -12,7 +16,9 @@ class OpportuniteController extends Controller
     public function index(){
         $opportunites = opportunite::with('client_opportunite')->get();
         $clients = client::with('opportunite_client')->get();
-        return view('pages.opportunites.opportunite',compact('opportunites','clients'));
+        $notifications =notification::where('user_accesses',Auth::user()->id)->get();
+
+        return view('pages.opportunites.opportunite',compact('opportunites','clients','notifications'));
     }
 
     public function addOpportunite(Request $request){

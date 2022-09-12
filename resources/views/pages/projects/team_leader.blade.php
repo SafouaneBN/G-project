@@ -44,7 +44,7 @@
 
                         <div class="mb-3">
                             <label for="exampleFormControlInput99" class="form-label">Activite</label>
-                            <input type="text" name="libelle" class="form-control" id="exampleFormControlInput99">
+                            <input type="text" name="libelle" class="form-control" id="exampleFormControlInput99" required>
                         </div>
 
                         <div class=" row g-3 mb-3">
@@ -74,49 +74,50 @@
                             <div class="row g-3 mb-3">
                                 <div class="col">
                                     <label for="datepickerded" class="form-label">Date debut</label>
-                                    <input type="date" name="date_d" class="form-control" id="datepickerded">
+                                    <input type="date" name="date_d" class="form-control date_debut" id="date_debut" required>
                                 </div>
                                 <div class="col">
                                     <label for="datepickerdedone" class="form-label">Date fin</label>
-                                    <input name="date_f" type="date" class="form-control" id="datepickerdedone">
+                                    <input name="date_f" type="date" id="date_fin" class="form-control date_fin" required>
                                 </div>
 
                             </div>
                             <div class="row g-3 mb-3">
                                 <div class="col">
                                     <label for="datepickerded" class="form-label">Date execution debut</label>
-                                    <input name="date_e_d" type="date" class="form-control" id="datepickerded">
+                                    <input name="date_e_d" type="date" class="form-control" id="date_debut_ex" required>
                                 </div>
                                 <div class="col">
-                                    <label for="datepickerdedone" class="form-label">Date execution debut</label>
-                                    <input name="date_e_f" type="date" class="form-control" id="datepickerdedone">
+                                    <label for="datepickerdedone" class="form-label">Date execution fin</label>
+                                    <input name="date_e_f" type="date" class="form-control" id="date_fin_ex" required>
                                 </div>
                             </div>
                             <div class="row g-3 mb-3">
                                 <div class="col">
 
-                                      <div class="col">
-                                <label for="datepickerdedone" class="form-label">Realisateur</label>
-                                <select class="form-select" name="user_accesses" aria-label="Default select Priority">
-                                    @forelse ($users as $user)
-                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                    @empty
-                                        <option selected="">ajouter user</option>
-                                    @endforelse
-                                </select>
-                            </div>
+                                    <div class="col">
+                                        <label for="datepickerdedone" class="form-label">Realisateur</label>
+                                        <select class="form-select" name="user_accesses"
+                                            aria-label="Default select Priority">
+                                            @forelse ($users as $user)
+                                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                            @empty
+                                                <option selected="">ajouter user</option>
+                                            @endforelse
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="col">
                                     <label for="exampleFormControlInput99" class="form-label">Priorite</label>
                                     <input type="text" name="priorite" class="form-control"
-                                        id="exampleFormControlInput99">
+                                        id="exampleFormControlInput99" required>
                                 </div>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="exampleFormControlTextarea78" class="form-label"> Description </label>
                             <textarea class="form-control" name="description" id="exampleFormControlTextarea78" rows="3"
-                                placeholder="Add any extra details about the request"></textarea>
+                                placeholder="Add any extra details about the request" ></textarea>
                         </div>
                     </div>
                     <input type="hidden" value="{{ $tache->id }}" name="tache" class="tache">
@@ -139,21 +140,60 @@
 @section('scripts')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-             var url = window.location.href;
+            var url = window.location.href;
 
-var id = url.substring(url.lastIndexOf("/") + 1);
+            var id = url.substring(url.lastIndexOf("/") + 1);
             var calendarEl = document.getElementById('my_calendar');
-            var SITEURL = "{{url('/')}}";
+            var SITEURL = "{{ url('/') }}";
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 timeZone: 'UTC',
                 initialView: 'dayGridMonth',
-                events: '/project/fullcalendar/'+id,
+                events: '/project/fullcalendar/' + id,
                 editable: false,
                 selectable: true,
             });
 
             calendar.render();
         });
+    </script>
+    <script>
+        document.getElementById("date_debut").onchange = function() {
+            var input = document.getElementById("date_fin");
+            var input2 = document.getElementById("date_debut_ex");
+            var input3 = document.getElementById("date_fin_ex");
+            input.setAttribute("min", this.value);
+            input2.setAttribute("min", this.value);
+            input3.setAttribute("min", this.value);
+        }
+        document.getElementById("date_fin").onchange = function() {
+            var input = document.getElementById("date_debut_ex");
+            var input2 = document.getElementById("date_fin_ex");
+            input.setAttribute("max", this.value);
+            input2.setAttribute("max", this.value);
+        }
+
+        document.getElementById("date_debut_ex").onchange = function() {
+            var input = document.getElementById("date_fin_ex");
+            input.setAttribute("min", this.value);
+        }
+
+        // $('.date_fin').change(function() {
+        //     // If($('#date_debut').val() > $('.date_fin').val()){
+        //     // ('.date_fin').addClass('is-invalid');
+        //     // }else{}
+        //     // ('.date_fin').removeClass('is-invalid');
+
+
+        //     var $tet = $('.date_debut').val() > $('.date_fin').val();
+        //     if ($tet) {
+        //         // alert("changer la date que vous avez choisie")
+        //         $dateP = $("#date_debut").val();
+        //         ('.date_fin').val($dateP.addDays(1));
+        //     } else {
+        //         $('#date_fin').removeClass('is-invalid');
+
+        //     }
+        // });
     </script>
 @endsection

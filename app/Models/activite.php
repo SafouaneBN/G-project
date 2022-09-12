@@ -39,5 +39,7 @@ class activite extends Model
         return $this->belongsToMany(livrable::class,list_livrable::class,"activites_id","livrables_id");
     }
 
+    
+
 
 }

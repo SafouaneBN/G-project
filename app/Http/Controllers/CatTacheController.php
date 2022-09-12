@@ -4,14 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\cat_tache;
+use App\Models\notification;
+use Illuminate\Support\Facades\Auth;
+
+use App\Models\User;
+
 
 
 class CatTacheController extends Controller
 {
     public function cat_tache(){
         $cat_taches = cat_tache::get();
+        $notifications =notification::where('user_accesses',Auth::user()->id)->get();
 
-        return view('pages.parametre.cat_tache',compact('cat_taches'));
+
+        return view('pages.parametre.cat_tache',compact('cat_taches','notifications'));
     }
 
 

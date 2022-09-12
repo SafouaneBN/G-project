@@ -4,14 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\cat_projet;
+use App\Models\notification;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+
+
 
 
 class cat_projetController extends Controller
 {
     public function index(){
         $cat_projets = cat_projet::get();
+        $notifications =notification::where('user_accesses',Auth::user()->id)->get();
 
-        return view('pages.cat_projets.cat_projet',compact('cat_projets'));
+
+        return view('pages.cat_projets.cat_projet',compact('cat_projets','notifications'));
     }
 
     public function addcat_projet(Request $request){

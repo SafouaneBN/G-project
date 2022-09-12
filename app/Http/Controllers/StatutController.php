@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 use App\Models\statut;
 use App\Models\cat_statut;
+use App\Models\notification;
+use Illuminate\Support\Facades\Auth;
+
+use App\Models\User;
+
 
 
 
@@ -15,10 +20,12 @@ class StatutController extends Controller
 
         $statuts = statut::with('catStatu_statut')->get();
         $cat_statuts = cat_statut::with('statut_catStatu')->get();
+        $notifications =notification::where('user_accesses',Auth::user()->id)->get();
+
 
         // return $statuts;
 
-        return view('pages.parametre.statut',compact('statuts','cat_statuts'));
+        return view('pages.parametre.statut',compact('statuts','cat_statuts','notifications'));
     }
 
     public function addStatut(Request $request){

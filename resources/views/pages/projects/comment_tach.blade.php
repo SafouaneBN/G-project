@@ -113,9 +113,11 @@
 
                                             <div class="col-auto d-flex justify-content-between">
                                                 <h6 class="fw-bold mb-3 text-danger">Livrable</h6>
+                                                @if (Auth::user()->role_id == 2)
                                                 <button class=" btn btn-dark ms-1 edit_role styButton" style="border: none"
                                                     type="button" data-bs-toggle="modal" data-bs-target="#depedit"><i
                                                         class="icofont-plus-circle me-2 fs-6"></i></button>
+                                                        @endif
                                                 {{-- <button type="button" class="btn btn-dark ms-1 " data-bs-toggle="modaladd"data-bs-target="#createproject"><i class="icofont-plus-circle me-2 fs-6"></i></button> --}}
                                             </div>
                                             <div class="flex-grow-1">
@@ -157,10 +159,12 @@
                                                             <input type="hidden" value="{{ $livrable->fichier }}" class="fichier">
 
                                                         @endif
+                                                        @if (Auth::user()->role_id == 3)
                                                         <button type="button" class="btn btn-dark ms-1 cmt"
                                                             value="{{ $livrable->id }}" data-bs-toggle="modal"
                                                             data-bs-target="#createproject"><i
                                                                 class="icofont-plus-circle me-2 fs-6"></i>comment</button>
+                                                                @endif
                                                                 <a type="button"
                                             href=""
                                             style="border: none"
@@ -274,11 +278,11 @@
                                 <label for="deptwo48" class="form-label">Libelle</label>
 
                                 <input type="text" name="libelle" class="form-control" id="libelle_edit"
-                                    value="">
+                                    value="" required>
                             </div>
                             <div class="row g-3">
                                 <label for="deptwo48" class="form-label">Fichier</label>
-                                <input class="form-control" type="file" name="image" id="formFileMultiple">
+                                <input class="form-control" type="file" name="image" id="formFileMultiple" required>
                             </div>
                             <div class="row g-3">
 
@@ -327,7 +331,7 @@
         $(".showFile").click(function()
         {
             var file = $(this).parent().parent().parent().parent().find(".fichier").val();
-            
+
             var url = document.URL;
             var host = $(location).attr('host');
             window.open("http://"+host+"/assets/livrable/"+file);

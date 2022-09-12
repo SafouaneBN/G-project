@@ -15,6 +15,9 @@ use App\Models\commentaire;
 use Illuminate\Support\Facades\DB;
 use App\Models\livrable;
 use App\Traits\imageTrait;
+use App\Models\notification;
+
+
 use Carbon\Carbon;
 use Response;
 
@@ -27,6 +30,7 @@ class TacheController extends Controller
     public function index(){
         $taches = tache::with(['catTach_tach','statut_tach','project'])
         ->get();
+        $notifications =notification::where('user_accesses',Auth::user()->id)->get();
 
         $statuts = statut::where('statut_id', '2')->get();
         $projets = projet::with('tachs')->get();
@@ -36,7 +40,7 @@ class TacheController extends Controller
 
         //return $projets;
 
-        return view('pages.projects.task',compact('taches','projets','cat_taches','statuts'));
+        return view('pages.projects.task',compact('taches','projets','cat_taches','statuts','notifications'));
     }
 
     public function addtache(Request $request){
@@ -52,7 +56,8 @@ class TacheController extends Controller
             "date_fin"=>$request->date_fin,
             "cat_tache_id"=>$request->cat_tache_id,
             "projet_id"=>$request->projet_id,
-            "statut_id"=>$request->statut_id,
+            "statut_id"=> "1",
+
             "estemation"=>$diff_in_days,
 
         ]);
@@ -103,6 +108,7 @@ class TacheController extends Controller
 
     public function commentOftach($id){
         $activites = activite::with(['statut_activites','user_activites','livrable_activites'])->find($id);
+        $notifications =notification::where('user_accesses',Auth::user()->id)->get();
 
         $livrables = livrable::with('livrable_catlivrable','activite_livrable')->get();
         $cat_livrables = cat_livrable::with('livrable_catLivrable')->get();
@@ -119,17 +125,18 @@ class TacheController extends Controller
 
         // return $commentair;
 
-       return view('pages.projects.comment_tach',compact('activites','commentair','cat_livrables','livrables'));
+       return view('pages.projects.comment_tach',compact('activites','commentair','cat_livrables','livrables','notifications'));
     }
 
     public function commenview(){
         $activites = activite::find($id);
 
+        $notifications =notification::where('user_accesses',Auth::user()->id)->get();
 
 
         //return $projets;
 
-        return view('pages.projects.comment_tach',compact('activites'));
+        return view('pages.projects.comment_tach',compact('activites','notifications'));
     }
 
     public function addcomment(Request $request){
@@ -169,10 +176,11 @@ class TacheController extends Controller
             $users = user::where('role_id', '2')->get();
             $taches = tache::with('activite_tach')->get();
 
+            $notifications =notification::where('user_accesses',Auth::user()->id)->get();
 
 
 
-        return view('pages.projects.team_leader',compact('activite','tache','projets','taches','activites','users'));
+        return view('pages.projects.team_leader',compact('activite','tache','projets','taches','activites','users','notifications'));
     }
 
     public function fullcalendar($id)
@@ -193,10 +201,11 @@ class TacheController extends Controller
             $users = user::where('role_id', '2')->get();
             $taches = tache::with('activite_tach')->get();
 
+            $notifications =notification::where('user_accesses',Auth::user()->id)->get();
 
 
 
-        return view('pages.projects.Show_livrable',compact('activite','projets','taches','activites','users','livrable'));
+        return view('pages.projects.Show_livrable',compact('activite','projets','taches','activites','users','livrable','notifications'));
     }
 
 }

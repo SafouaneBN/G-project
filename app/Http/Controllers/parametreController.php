@@ -5,16 +5,22 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\cat_statut;
 use App\Models\role;
+use App\Models\notification;
+use Illuminate\Support\Facades\Auth;
+
+use App\Models\User;
+
 
 class parametreController extends Controller
 {
     public function role(){
         $roles = role::get();
+        $notifications =notification::where('user_accesses',Auth::user()->id)->get();
 
-        return view('pages.parametre.role',compact('roles'));
+        return view('pages.parametre.role',compact('roles','notifications'));
     }
 
-   
+
 
     ///
 

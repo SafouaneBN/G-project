@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{asset('assets/plugin/fullcalendar/main.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/plugin/datatables/responsive.dataTables.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/plugin/datatables/dataTables.bootstrap5.min.css')}}">
-    
+
 </head>
 <body>
 
@@ -35,15 +35,18 @@
             <!-- Menu: main ul -->
 
             <ul class="menu-list flex-grow-1 mt-3">
-                <li class="collapsed">
-                    <a class="m-link @yield('client')"  data-bs-toggle="collapse" data-bs-target="#opp-Components" href="#">
-                        <i class="icofont-user-male"></i> <span>Client</span> <span class="arrow icofont-dotted-down ms-auto text-end fs-5"></span></a>
-                    <!-- Menu: Sub menu ul -->
-                    <ul class="sub-menu collapse " id="opp-Components">
-                        <li><a class="ms-link @yield('client')" href="{{ route('client.index') }}"> <span> client</span></a></li>
-                    </ul>
-                </li>
+                @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 3)
+                    <li class="collapsed">
+                        <a class="m-link @yield('client')"  data-bs-toggle="collapse" data-bs-target="#opp-Components" href="#">
+                            <i class="icofont-user-male"></i> <span>Client</span> <span class="arrow icofont-dotted-down ms-auto text-end fs-5"></span></a>
+                        <!-- Menu: Sub menu ul -->
+                        <ul class="sub-menu collapse " id="opp-Components">
+                            <li><a class="ms-link @yield('client')" href="{{ route('client.index') }}"> <span> client</span></a></li>
+                        </ul>
+                    </li>
+                @endif
 
+                @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 3)
                 <li class="collapsed">
                     <a class="m-link @yield('opportunite')"  data-bs-toggle="collapse" data-bs-target="#dashboard-Components" href="#">
                         <i class="icofont-files-stack"></i> <span>Opportunite</span> <span class="arrow icofont-dotted-down ms-auto text-end fs-5"></span></a>
@@ -52,23 +55,21 @@
                         <li><a class="ms-link @yield('opportunite')" href="{{ route('opportunite.index') }}"> <span> opportunite</span></a></li>
                     </ul>
                 </li>
-
+                @endif
                 <li  class="collapsed">
                     <a class="m-link @yield('projects')"  data-bs-toggle="collapse" data-bs-target="#project-Components" href="#">
                         <i class="icofont-briefcase"></i><span>Projects</span> <span class="arrow icofont-dotted-down ms-auto text-end fs-5"></span></a>
                     <!-- Menu: Sub menu ul -->
                     <ul class="sub-menu collapse" id="project-Components">
                         <li><a class="ms-link @yield('prot')" href="{{ url('project/index') }}"><span>Projects</span></a></li>
+                        @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 3)
                         <li><a class="ms-link @yield('task')" href="{{ route('project.task') }}"><span>Tasks</span></a></li>
-                        <li><a class="ms-link @yield('team_leader')" href="{{ route('project.team_leader') }}"><span>Activite</span></a></li>
+                        {{-- <li><a class="ms-link @yield('team_leader')" href="{{ route('project.team_leader') }}"><span>Activite</span></a></li> --}}
                         <li><a class="ms-link @yield('cat_projet')" href="{{ route('cat_projet.index') }}"><span>Categorie projet</span></a></li>
+                        @endif
                     </ul>
                 </li>
-
-
-
-
-
+                @if (Auth::user()->role_id == 3)
                 <li class="collapsed">
                     <a class="m-link @yield('user')"  data-bs-toggle="collapse" data-bs-target="#emp-Components" href="#"><i
                             class="icofont-users-alt-5"></i> <span>Utilisateur</span> <span class="arrow icofont-dotted-down ms-auto text-end fs-5"></span></a>
@@ -77,11 +78,8 @@
                         <li><a class="ms-link @yield('user')" href="{{ route('user.index') }}"> <span>utilisateur</span></a></li>
                     </ul>
                 </li>
-
-
-
-
-
+                @endif
+                @if (Auth::user()->role_id == 3)
                 <li class="collapsed">
                     <a class="m-link @yield('parametre') @yield('statut')" data-bs-toggle="collapse" data-bs-target="#app-Components" href="#">
                         <i class="icofont-ui-settings"></i> <span>Parametre</span> <span class="arrow icofont-dotted-down ms-auto text-end fs-5"></span></a>
@@ -93,6 +91,7 @@
                         <li><a class="ms-link @yield('cat_livrable')" href="{{ route('parametre.cat_livrable') }}"><span>Categorie livrable</span></a></li>
                     </ul>
                 </li>
+                @endif
 
 
 
@@ -149,8 +148,19 @@
 
                         <div class="dropdown notifications zindex-popover">
                             <a class="nav-link dropdown-toggle pulse" href="#" role="button" data-bs-toggle="dropdown">
-                                <i class="icofont-alarm fs-5"></i>
-                                <span class="pulse-ring"></span>
+                                <span style="display: none">{{   $notifications = App\Models\notification::where('user_accesses',Auth::user()->id)->get();  }}</span>
+
+                                @forelse ($notifications as $notification )
+                                    @if($notification->etat =="not readed")
+                                        <i class="icofont-alarm fs-5" style="color: #F19828"></i>
+                                        <span class="pulse-ring"></span>
+                                    @else
+                                        <i class="icofont-alarm fs-5"></i>
+                                @endif
+                                @empty
+
+                                @endforelse
+
                             </a>
                             <div id="NotificationsDiv" class="dropdown-menu rounded-lg shadow border-0 dropdown-animation dropdown-menu-sm-end p-0 m-0">
                                 <div class="card border-0 w380">
@@ -160,63 +170,40 @@
                                             <span class="badge text-white">11</span>
                                         </h5>
                                     </div>
-                                    <div class="tab-content card-body">
+                                    <div class="tab-content card-body p-0">
+
                                         <div class="tab-pane fade show active">
+                                            <span style="display: none">{{   $notifications = App\Models\notification::where('user_accesses',Auth::user()->id)->get();  }}</span>
                                             <ul class="list-unstyled list mb-0">
-                                                <li class="py-2 mb-1 border-bottom">
-                                                    <a href="javascript:void(0);" class="d-flex">
+                                                @forelse ($notifications as $notification )
+                                                @if($notification->etat =="not readed")
+                                                <li class="py-2 mb-1 border-bottom" style="background-color:#F7F4F9; padding: 1rem 1rem;">
+                                                    <a href="{{ route('readnotify',$notification->id) }}" class="d-flex" >
                                                         <img class="avatar rounded-circle" src="{{ asset('assets/images/xs/avatar1.jpg') }}" alt="">
                                                         <div class="flex-fill ms-2">
-                                                            <p class="d-flex justify-content-between mb-0 "><span class="font-weight-bold">Dylan Hunter</span> <small>2MIN</small></p>
-                                                            <span class="">Added  2021-02-19 my-Task ui/ux Design <span class="badge bg-success">Review</span></span>
+                                                            <p class="d-flex justify-content-between mb-0 "><span class="font-weight-bold">{{ $notification->user_notification->name }}</span> <small>{{ date('M d,Y', strtotime($notification->created_at)) }}</small></p>
+                                                            <span class="">Nouveau activite :{{ $notification->message }}</span>
+
                                                         </div>
                                                     </a>
                                                 </li>
-                                                <li class="py-2 mb-1 border-bottom">
-                                                    <a href="javascript:void(0);" class="d-flex">
-                                                        <div class="avatar rounded-circle no-thumbnail">DF</div>
+                                                @else
+                                                <li class="py-2 mb-1 border-bottom" style="background-color:white; padding: 1rem 1rem;">
+                                                    <span  class="d-flex" >
+                                                        <img class="avatar rounded-circle" src="{{ asset('assets/images/xs/avatar1.jpg') }}" alt="">
                                                         <div class="flex-fill ms-2">
-                                                            <p class="d-flex justify-content-between mb-0 "><span class="font-weight-bold">Diane Fisher</span> <small>13MIN</small></p>
-                                                            <span class="">Task added Get Started with Fast Cad project</span>
+                                                            <p class="d-flex justify-content-between mb-0 "><span class="font-weight-bold">{{ $notification->user_notification->name }}</span> <small>{{ date('M d,Y', strtotime($notification->created_at)) }}</small></p>
+                                                            <span class="">Nouveau activite :{{ $notification->message }}</span>
+
                                                         </div>
-                                                    </a>
+                                                    </span>
                                                 </li>
-                                                <li class="py-2 mb-1 border-bottom">
-                                                    <a href="javascript:void(0);" class="d-flex">
-                                                        <img class="avatar rounded-circle" src="{{ asset('assets/images/xs/avatar3.jpg')}}" alt="">
-                                                        <div class="flex-fill ms-2">
-                                                            <p class="d-flex justify-content-between mb-0 "><span class="font-weight-bold">Andrea Gill</span> <small>1HR</small></p>
-                                                            <span class="">Quality Assurance Task Completed</span>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="py-2 mb-1 border-bottom">
-                                                    <a href="javascript:void(0);" class="d-flex">
-                                                        <img class="avatar rounded-circle" src="{{asset('assets/images/xs/avatar5.jpg')}}" alt="">
-                                                        <div class="flex-fill ms-2">
-                                                            <p class="d-flex justify-content-between mb-0 "><span class="font-weight-bold">Diane Fisher</span> <small>13MIN</small></p>
-                                                            <span class="">Add New Project for App Developemnt</span>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="py-2 mb-1 border-bottom">
-                                                    <a href="javascript:void(0);" class="d-flex">
-                                                        <img class="avatar rounded-circle" src="{{asset('assets/images/xs/avatar6.jpg')}}" alt="">
-                                                        <div class="flex-fill ms-2">
-                                                            <p class="d-flex justify-content-between mb-0 "><span class="font-weight-bold">Andrea Gill</span> <small>1HR</small></p>
-                                                            <span class="">Add Timesheet For Rhinestone project</span>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="py-2">
-                                                    <a href="javascript:void(0);" class="d-flex">
-                                                        <img class="avatar rounded-circle" src="{{asset('assets/images/xs/avatar7.jpg')}}" alt="">
-                                                        <div class="flex-fill ms-2">
-                                                            <p class="d-flex justify-content-between mb-0 "><span class="font-weight-bold">Zoe Wright</span> <small class="">1DAY</small></p>
-                                                            <span class="">Add Calander Event</span>
-                                                        </div>
-                                                    </a>
-                                                </li>
+                                                @endif
+                                                @empty
+
+                                                @endforelse
+
+
                                             </ul>
                                         </div>
                                     </div>

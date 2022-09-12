@@ -4,12 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\client;
+use App\Models\notification;
+use Illuminate\Support\Facades\Auth;
+
+
+use App\Models\User;
 
 
 class ClientController extends Controller
 {
     public function index(){
         $clients = client::get();
+        // $notifications =notification::where('user_accesses',Auth::user()->id)->get();
+
 
         return view('pages.clients.client',compact('clients'));
     }
