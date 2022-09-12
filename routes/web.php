@@ -12,6 +12,7 @@ use App\Http\Controllers\CatTacheController;
 use App\Http\Controllers\TacheController;
 use App\Http\Controllers\ActiviteController;
 use App\Http\Controllers\CatLivrableController;
+use App\Http\Controllers\ChartController;
 
 
 
@@ -30,9 +31,10 @@ use App\Http\Controllers\CatLivrableController;
   //  return view('welcome');
 //});
 
- Route::get('/', function () {
-     return view('pages.Home');
- })->middleware('auth');
+Route::get('/',[ChartController::class, "index"])->name('chart.index')->middleware('auth');
+
+
+Route::get('/evolution1',[ChartController::class, "evolution1"]);
 
 Route::group(['prefix' => 'project', "middleware" => "auth"  ],function () {
     Route::get('/index',[ProjectController::class, "index"])->middleware("roles:bothAE")->name('project.index');

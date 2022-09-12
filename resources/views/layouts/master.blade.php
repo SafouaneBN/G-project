@@ -415,6 +415,7 @@
 
     <!-- Plugin Js-->
     <script src="{{asset('assets/bundles/apexcharts.bundle.js')}}"></script>
+    <script src="{{asset('assets/bundles/charts.js')}}"></script>
 
     <!-- Jquery Page Js -->
     <script src="{{asset('assets/js/template.js')}}"></script>
