@@ -20,16 +20,26 @@ class ChartController extends Controller
         $users = user::where('role_id', '2')->get();
         return view('pages.Home',compact('projets','opportunites','clients','users'));
 
-      }
+    }
 
 
 
-      public function evolution1(){
+    public function evolution1(){
         $data = DB::select("SELECT COUNT(activites.id) as count, DATE_FORMAT(activites.created_at, '%Y-%m-%d') as date
-            FROM activites
+        FROM activites
 
-            GROUP BY date ORDER BY date ASC;");
+        GROUP BY date ORDER BY date ASC;");
 
-            return $data;
-      }
+        return $data;
+    }
+
+    public function countprojectstatu(){
+        $data = DB::select("
+                SELECT COUNT(projets.id) as count, statuts.statut  FROM projets , statuts
+                WHERE projets.statu_id = statuts.id
+                group BY projets.statu_id
+        ");
+
+        return $data;
+    }
 }

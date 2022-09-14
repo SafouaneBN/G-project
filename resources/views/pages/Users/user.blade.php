@@ -31,11 +31,18 @@
                                     <img src="{{ asset('assets/images/lg/avatar4.jpg') }}" alt=""
                                         class="avatar xl rounded-circle img-thumbnail shadow-sm">
                                     <div class="btn-group mt-2" role="group" aria-label="Basic outlined example">
+                                        @if($user->active == "0")
                                         <button type="button" class="btn btn-outline-secondary editbtn"
                                             value="{{ $user->id }}" data-bs-toggle="modal"
                                             data-bs-target="#editproject"><i class="icofont-edit text-success"></i></button>
-                                            <button type="button"  attr_id ="{{ $user->id }}"class ="Bdelete_btn" style="border: none" class="sup_role" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
+                                            <button type="button"  attr_id ="{{ $user->id }}"class ="Bdelete_btn2" style="border: none" class="sup_role" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-block text-danger"></i></button>
 
+                                            @elseif($user->active == "1")
+                                            <button type="button" class="btn btn-outline-secondary editbtn"
+                                            value="{{ $user->id }}" data-bs-toggle="modal"
+                                            data-bs-target="#editproject"><i class="icofont-edit text-success"></i></button>
+                                            <button type="button"  attr_id ="{{ $user->id }}"class ="Bdelete_btn" style="border: none" class="sup_role" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-check text-success"></i></button>
+@endif
                                     </div>
                                 </div>
                                 <div class="teacher-info border-start ps-xl-4 ps-md-3 ps-sm-4 ps-4 w-100">
@@ -215,6 +222,32 @@
                 $.ajax({
                     type: 'post',
                     url: "{{ route('para.deleteUser') }}",
+                    data: {
+                        '_token': "{{ csrf_token() }}",
+                        'id': offer_id,
+                    },
+                    success: function(data) {
+                        if (data.status == true) {
+                            $('#success_msg').fadeIn(1000);
+                            $('#success_msg').fadeOut(6000);
+                        }
+                        $('.Rowdelete' + data.id).remove();
+                    },
+                    error: function(reject) {
+
+                    }
+                });
+            }
+        });
+
+        $(document).on('click', '.Bdelete_btn2', function(e) {
+            e.preventDefault();
+            var offer_id = $(this).attr('attr_id');
+
+            if (confirm("do you want to delete this file?")) {
+                $.ajax({
+                    type: 'post',
+                    url: "{{ route('para.activUser') }}",
                     data: {
                         '_token': "{{ csrf_token() }}",
                         'id': offer_id,

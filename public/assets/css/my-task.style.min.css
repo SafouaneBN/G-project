@@ -19107,3 +19107,55 @@ body.rtl_mode
  .lef {
     margin: 10px;
  }
+
+
+ .mesgs {
+    float: left;
+    padding: 30px 15px 0 25px;
+    width: 60%;
+}
+
+.sent_msg p {
+    background: #fd8201 none repeat scroll 0 0;
+    border-radius: 3px;
+    font-size: 14px;
+    margin: 0; color:#fff;
+    padding: 5px 10px 5px 12px;
+    width:100%;
+}
+.outgoing_msg{ overflow:hidden; margin:26px 0 26px;}
+.sent_msg {
+    float: right;
+    width: 46%;
+}
+.input_msg_write input {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border: 1px solid gray;
+    padding: 10px;
+    color: #4c4c4c;
+    font-size: 15px;
+    min-height: 48px;
+    width: 92%;
+}
+
+.type_msg {
+    position: relative;
+}
+.msg_send_btn {
+    background: #fd8201 none repeat scroll 0 0;
+    border: medium none;
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+    font-size: 17px;
+    height: 33px;
+    position: absolute;
+    right: 0;
+    top: 7px;
+    width: 33px;
+}
+.messaging { padding: 0 0 50px 0;}
+.msg_history {
+    height: 516px;
+    overflow-y: auto;
+}

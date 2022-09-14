@@ -73,4 +73,16 @@ class UserController extends Controller
 
 
     }
+    public function activUser(Request $request)
+    {
+        $User = User::find($request->id);
+        if (!$User){
+            redirect() -> back() -> with(['error' => 'User pas trouve']);
+        }
+        $User->update([
+            "active" => "1",
+        ]);
+
+
+    }
 }

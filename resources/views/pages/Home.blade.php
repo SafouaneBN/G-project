@@ -22,6 +22,17 @@
 
 
                 </div>
+
+                <div class="col">
+                    <div class="card mb-3">
+                        <div class="card-header d-flex justify-content-between align-items-center bg-transparent border-bottom-0">
+                            <h6 class="m-0 fw-bold">Simple Donut</h6>
+                        </div>
+                        <div class="card-body">
+                            <div id="donut-count-project"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-xl-4 col-lg-12 col-md-12">
                 <div class="row g-3 row-deck">
@@ -109,5 +120,6 @@
 @section('scripts')
     <script>
         evolution1();
+        getCountByTypeClient();
     </script>
 @endsection

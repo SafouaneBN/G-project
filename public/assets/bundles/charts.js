@@ -46,3 +46,43 @@ function evolution1(){
 
 	});
 }
+
+
+function getCountByTypeClient(){
+
+	const apexChart = "#donut-count-project";
+
+	$.get("/countprojectstatu", {}, function (data) {
+
+		var libelle_type = [];
+		var count = [];
+		for (var i = 0; i < data.length; i++) {
+            libelle_type.push(data[i].statut);
+			count.push(data[i].count);
+        }
+
+		var options = {
+			series: count,
+			labels:libelle_type,
+			chart: {
+				width: 580,
+				type: 'donut',
+			},
+			responsive: [{
+				breakpoint: 480,
+				options: {
+					chart: {
+						width: 200
+					},
+					legend: {
+						position: 'bottom'
+					}
+				}
+			}],
+		};
+
+		var chart = new ApexCharts(document.querySelector(apexChart), options);
+		chart.render();
+
+	});
+}

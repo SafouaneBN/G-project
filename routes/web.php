@@ -13,6 +13,7 @@ use App\Http\Controllers\TacheController;
 use App\Http\Controllers\ActiviteController;
 use App\Http\Controllers\CatLivrableController;
 use App\Http\Controllers\ChartController;
+use App\Http\Controllers\ChatController;
 
 
 
@@ -31,12 +32,13 @@ use App\Http\Controllers\ChartController;
   //  return view('welcome');
 //});
 
-Route::get('/',[ChartController::class, "index"])->name('chart.index')->middleware('auth');
+Route::get('/',[ChartController::class, "index"])->name('chart.index')->middleware(['auth','blockUser']);
 
 
 Route::get('/evolution1',[ChartController::class, "evolution1"]);
+Route::get('/countprojectstatu',[ChartController::class, "countprojectstatu"]);
 
-Route::group(['prefix' => 'project', "middleware" => "auth"  ],function () {
+Route::group(['prefix' => 'project', "middleware" => ["auth","blockUser"]  ],function () {
     Route::get('/index',[ProjectController::class, "index"])->middleware("roles:bothAE")->name('project.index');
     Route::post('/addprojet',[ProjectController::class, "addprojet"])->middleware("roles:admin")->name('parametre.addprojet');
     Route::get('/projet/{id}/edit', [ProjectController::class,"editprojet"]);
@@ -89,9 +91,18 @@ Route::group(['prefix' => 'project', "middleware" => "auth"  ],function () {
     Route::post('/updatecat_tache/update', [CatTacheController::class,"updatecat_tache"])->middleware("roles:admin")->name('parametre.updatecat_tache');
     Route::post('/deletecat_tache/delete', [CatTacheController::class,"deletecat_tache"])->middleware("roles:admin")->name('parametre.deletecat_tache');
 
+
+
+    Route::get('/chat',[ChatController::class, "index"])->name('Chat.index');
+    Route::get('/conversation/{uuid}',[ChatController::class, "conversation"])->name('Chat.conversation');
+    Route::post('/sendMsg',[ChatController::class, "sendMsg"])->name('Chat.sendMsg');
+    Route::get('/getAllMsg/{uuid}',[ChatController::class, "getAllMsg"])->name('Chat.getAllMsg');
+
+
 });
 
-Route::group(['prefix' => 'client', "middleware" => "auth"  ],function () {
+
+Route::group(['prefix' => 'client', "middleware" => ["auth","blockUser"]  ],function () {
     Route::get('/index',[ClientController::class, "index"])->middleware("roles:bothAC")->name('client.index');
     Route::post('/addClient',[ClientController::class, "addClient"])->middleware("roles:bothAC")->name('parametre.addClient');
     Route::get('/Client/{id}/edit', [ClientController::class,"editClient"])->middleware("roles:bothAC");
@@ -99,16 +110,19 @@ Route::group(['prefix' => 'client', "middleware" => "auth"  ],function () {
     Route::post('/Client/delete', [ClientController::class,"deleteClient"])->middleware("roles:bothAC")->name('parametre.deleteClient');
 
 });
-//////////
+
+
 Route::group(['prefix' => 'user' ],function () {
     Route::get('/index',          [UserController::class, "index"])->middleware("roles:admin")->name('user.index');
     Route::post('/addUser',       [UserController::class, "addUser"])->middleware("roles:admin")->name('para.addUser');
     Route::get('/User/{id}/edit', [UserController::class,"editUser"]);
     Route::post('/User/update',   [UserController::class, "updateUser"])->middleware("roles:admin")->name('para.updateUser');
     Route::post('/User/delete',   [UserController::class,"deleteUser"])->middleware("roles:admin")->name('para.deleteUser');
+    Route::post('/User/activUser',   [UserController::class,"activUser"])->middleware("roles:admin")->name('para.activUser');
 });
-//////////
-Route::group(['prefix' => 'parametre', "middleware" => "auth" ],function () {
+
+
+Route::group(['prefix' => 'parametre', "middleware" => ["auth","blockUser"] ],function () {
     Route::get('/role',   [parametreController::class, "role"])->middleware("roles:admin")->name('parametre.role');
     Route::get('/statut', [StatutController::class, "statut"])->middleware("roles:admin")->name('parametre.statut');
     Route::get('/index',  [CatLivrableController::class, "cat_livrable"])->middleware("roles:admin")->name('parametre.cat_livrable');
@@ -135,6 +149,7 @@ Route::group(['prefix' => 'parametre', "middleware" => "auth" ],function () {
 
 });
 
+
 Route::group(['prefix' => 'opportunite' ],function () {
     Route::get('/index',[OpportuniteController::class, "index"])->middleware("roles:bothAC")->name('opportunite.index');
     Route::post('/addOpportunite',[OpportuniteController::class, "addOpportunite"])->middleware("roles:bothAC")->name('parametre.addOpportunite');
@@ -143,6 +158,7 @@ Route::group(['prefix' => 'opportunite' ],function () {
     Route::post('/Opportunit/delete', [OpportuniteController::class,"deleteOpportunite"])->middleware("roles:bothAC")->name('parametre.deleteOpportunite');
 
 });
+
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

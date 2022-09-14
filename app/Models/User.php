@@ -75,4 +75,9 @@ class User extends Authenticatable
     public function user_notifiable(){
         return $this->Hasmany(notifications::class,"user_accesses","id");
     }
+
+
+    public function conversation_user(){
+        return $this->belongsToMany(conversation::class, UserConversation::class, 'user_id', 'conversations_id');
+    }
 }
