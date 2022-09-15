@@ -111,7 +111,7 @@
                             <div class="mb-3">
 
                                 <div class="col-sm">
-                                    <label for="exampleFormControlInput977" class="form-label">Client</label>
+                                    <label for="exampleFormControlInput977" class="form-label">Client </label>
                                     <select class="form-select" name="client" aria-label="Default select Priority">
                                         @forelse ($clients as $client)
                                             <option value="{{ $client->id }}">{{ $client->full_name }}</option>

@@ -30,8 +30,8 @@ class TacheController extends Controller
     public function index(){
         $taches = tache::with(['catTach_tach','statut_tach','project'])
         ->get();
-        $notifications =notification::where('user_accesses',Auth::user()->id)->get();
-
+        $notifications = notification::where('user_accesses',Auth::user()->id)->get();
+        $statut = statut::get();
         $statuts = statut::where('statut_id', '2')->get();
         $projets = projet::with('tachs')->get();
         $cat_taches = cat_tache::with('tach_catTach')->get();
@@ -40,7 +40,7 @@ class TacheController extends Controller
 
         //return $projets;
 
-        return view('pages.projects.task',compact('taches','projets','cat_taches','statuts','notifications'));
+        return view('pages.projects.task',compact('taches','projets','cat_taches','statuts','notifications','statut'));
     }
 
     public function addtache(Request $request){
@@ -67,6 +67,7 @@ class TacheController extends Controller
     public function updatetache(Request $request)
     {
         $tache = tache::find($request->id);
+        $projet = projet::find($request->projet_id_edit);
 
 
          $tache->update([
@@ -78,6 +79,38 @@ class TacheController extends Controller
             "statut_id"=>$request->statut_id_edit,
 
          ]);
+
+         $tasks = tache::where('projet_id',$request->projet_id_edit)->get();
+
+         $complte = true;
+
+         foreach($tasks as $task)
+         {
+            if($task->statut_id != 2)
+            {
+                $complte = false;
+                break;
+
+            }
+         }
+        //
+         if($complte == true)
+         {
+
+            $projet->update([
+                "statu_id"=>37,
+
+            ]);
+
+         }else
+         {
+            $projet->update([
+                "statu_id"=>19,
+
+            ]);
+
+         }
+
 
 
         return redirect()->back()->with(' Modifier avec succes');
@@ -109,10 +142,11 @@ class TacheController extends Controller
     public function commentOftach($id){
         $activites = activite::with(['statut_activites','user_activites','livrable_activites'])->find($id);
         $notifications =notification::where('user_accesses',Auth::user()->id)->get();
-
+        $statut = statut::where('statut_id', '2')->get();
         $livrables = livrable::with('livrable_catlivrable','activite_livrable')->get();
         $cat_livrables = cat_livrable::with('livrable_catLivrable')->get();
-
+        //
+        $id_tache = $activites->tache_id;
         if(!$activites)
             return redirect()->back();
 
@@ -125,7 +159,7 @@ class TacheController extends Controller
 
         // return $commentair;
 
-       return view('pages.projects.comment_tach',compact('activites','commentair','cat_livrables','livrables','notifications'));
+       return view('pages.projects.comment_tach',compact('activites','commentair','cat_livrables','livrables','notifications','statut','id_tache'));
     }
 
     public function commenview(){
@@ -180,7 +214,7 @@ class TacheController extends Controller
 
 
 
-        return view('pages.projects.team_leader',compact('activite','tache','projets','taches','activites','users','notifications'));
+        return view('pages.projects.team_leader',compact('activite','tache','projets','taches','activites','users','notifications','id'));
     }
 
     public function fullcalendar($id)
@@ -207,6 +241,56 @@ class TacheController extends Controller
 
         return view('pages.projects.Show_livrable',compact('activite','projets','taches','activites','users','livrable','notifications'));
     }
+
+
+    public function updateSatut_Activite(Request $request)
+    {
+        $Activite = activite::find($request->activite_id_edit);
+        $tach = tache::find($request->tache_id_edit);
+
+
+         $Activite->update([
+
+            "statu_id"=>$request->statut_id_edit,
+
+         ]);
+
+         $Activites = activite::where('tache_id',$request->tache_id_edit)->get();
+
+         $complte = true;
+
+         foreach($Activites as $Activite)
+         {
+            if($Activite->statu_id != 36)
+            {
+                $complte = false;
+                break;
+
+            }
+         }
+        //
+         if($complte == true)
+         {
+
+            $tach->update([
+                "statut_id"=>2,
+
+            ]);
+
+         }else
+         {
+            $tach->update([
+                "statut_id"=>10,
+
+            ]);
+
+         }
+
+
+
+        return redirect()->back()->with(' Modifier avec succes');
+    }
+
 
 }
 

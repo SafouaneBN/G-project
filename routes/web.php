@@ -62,6 +62,8 @@ Route::group(['prefix' => 'project', "middleware" => ["auth","blockUser"]  ],fun
     Route::post('/activite',[ActiviteController::class, "addActivite"])->middleware("roles:bothAE")->name('parametre.addActivite');
     Route::get('/activite/{id}/edit', [ActiviteController::class,"editActivite"]);
     Route::post('/activite/update', [ActiviteController::class,"updateActivite"])->middleware("roles:bothAE")->name('parametre.updateActivite');
+    Route::post('/activite/statut', [TacheController::class,"updateSatut_Activite"])->middleware("roles:bothAE")->name('statut.Activite');
+
     Route::post('/activite/delete', [ActiviteController::class,"deleteActivite"])->middleware("roles:bothAE")->name('parametre.deleteActivite');
     Route::get('/notify/{id}', [ActiviteController::class,"readnotify"])->name('readnotify');
 
@@ -97,6 +99,9 @@ Route::group(['prefix' => 'project', "middleware" => ["auth","blockUser"]  ],fun
     Route::get('/conversation/{uuid}',[ChatController::class, "conversation"])->name('Chat.conversation');
     Route::post('/sendMsg',[ChatController::class, "sendMsg"])->name('Chat.sendMsg');
     Route::get('/getAllMsg/{uuid}',[ChatController::class, "getAllMsg"])->name('Chat.getAllMsg');
+    Route::post('/creat_conv',[ChatController::class, "createConversations"])->name('Chat.createConversations');
+    Route::post('/add_user_conv',[ChatController::class, "ajouteruser"])->name('Chat.ajouteruser');
+
 
 
 });

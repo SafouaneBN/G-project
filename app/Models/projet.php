@@ -28,4 +28,11 @@ class projet extends Model
     public function tachs(){
         return $this->hasMany(tache::class,"projet_id","id");
     }
+    public function conv_projrt(){
+        return $this->hasMany(projet::class,"id","id");
+    }
+
+    public function statut_projet(){
+        return $this->belongsTo(statut::class,"statu_id","id");
+    }
 }

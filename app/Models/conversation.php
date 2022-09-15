@@ -20,5 +20,8 @@ class conversation extends Model
         return $this->belongsToMany(User::class, UserConversation::class, 'conversations_id', 'user_id');
     }
 
+    public function projet_conv(){
+        return $this->belongsTo(projet::class,"projet_id","id");
+    }
 
 }

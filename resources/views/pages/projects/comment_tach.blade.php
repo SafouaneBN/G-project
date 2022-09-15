@@ -26,37 +26,39 @@
                                                 @if ($activites->statut_activites->statut == "COMPLETE")
                                         <div class="flex-fill ms-4 text-truncate">
                                             <div class="text-truncate">Staut</div>
-                                            <span class="badge bg-warning">{{ $activites->statut_activites->statut }}</span>
+                                            <a class="" type="button" data-bs-toggle="modal" data-bs-target="#user"><span class="badge bg-success">{{ $activites->statut_activites->statut }}</span></a>
+
+
                                         </div>
                                         @elseif ($activites->statut_activites->statut == "COMPLETE")
                                         <div class="flex-fill ms-4 text-truncate">
                                             <div class="text-truncate">Staut</div>
-                                            <span class="badge bg-success">{{ $activites->statut_activites->statut }}</span>
+                                            <a class="" type="button" data-bs-toggle="modal" data-bs-target="#user"><span class="badge bg-success">{{ $activites->statut_activites->statut }}</span></a>
                                         </div>
                                         @elseif ($activites->statut_activites->statut == "Arrêtée")
                                         <div class="flex-fill ms-4 text-truncate">
                                             <div class="text-truncate">Staut</div>
-                                            <span class="badge bg-danger">{{ $activites->statut_activites->statut }}</span>
+                                            <a class="" type="button" data-bs-toggle="modal" data-bs-target="#user"><span class="badge bg-danger">{{ $activites->statut_activites->statut }}</span></a>
                                         </div>
                                         @elseif ($activites->statut_activites->statut == "En cours")
                                         <div class="flex-fill ms-4 text-truncate">
                                             <div class="text-truncate">Staut</div>
-                                            <span class="badge rounded-pill bg-secondary">{{ $activites->statut_activites->statut }}</span>
+                                            <a class="" type="button" data-bs-toggle="modal" data-bs-target="#user"><span class="badge bg-secondary">{{ $activites->statut_activites->statut }}</span></a>
                                         </div>
                                         @elseif ($activites->statut_activites->statut == "Planifiée")
                                         <div class="flex-fill ms-4 text-truncate">
                                             <div class="text-truncate">Staut</div>
-                                            <span class="badge bg-info">{{ $activites->statut_activites->statut }}</span>
+                                            <a class="" type="button" data-bs-toggle="modal" data-bs-target="#user"><span class="badge bg-info">{{ $activites->statut_activites->statut }}</span></a>
                                         </div>
                                         @elseif ($activites->statut_activites->statut == "Non planifiée")
                                         <div class="flex-fill ms-4 text-truncate">
                                             <div class="text-truncate">Staut</div>
-                                            <span class="badge bg-dark">{{ $activites->statut_activites->statut }}</span>
+                                            <a class="" type="button" data-bs-toggle="modal" data-bs-target="#user"><span class="badge bg-dark">{{ $activites->statut_activites->statut }}</span></a>
                                         </div>
                                         @else
                                         <div class="flex-fill ms-4 text-truncate">
                                             <div class="text-truncate">Staut</div>
-                                            <span class="badge bg-warning">{{ $activites->statut_activites->statut }}</span>
+                                            <a class="" type="button" data-bs-toggle="modal" data-bs-target="#user"><span class="badge bg-warning">{{ $activites->statut_activites->statut }}</span></a>
                                         </div>
                                         @endif
 
@@ -114,9 +116,12 @@
                                             <div class="col-auto d-flex justify-content-between">
                                                 <h6 class="fw-bold mb-3 text-danger">Livrable</h6>
                                                 @if (Auth::user()->role_id == 2)
+                                                @if ($activites->statut_activites->statut == "COMPLETE")
+                                                @else
                                                 <button class=" btn btn-dark ms-1 edit_role styButton" style="border: none"
                                                     type="button" data-bs-toggle="modal" data-bs-target="#depedit"><i
                                                         class="icofont-plus-circle me-2 fs-6"></i></button>
+                                                        @endif
                                                         @endif
                                                 {{-- <button type="button" class="btn btn-dark ms-1 " data-bs-toggle="modaladd"data-bs-target="#createproject"><i class="icofont-plus-circle me-2 fs-6"></i></button> --}}
                                             </div>
@@ -254,6 +259,52 @@
     </div>
 
 
+    <div class="modal fade" id="user" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title  fw-bold" id="depeditLabel"> Statut</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{ route('statut.Activite') }}" class="forms-sample" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+
+                        <div class="mb-3">
+
+
+
+                            <div class="row g-3">
+
+                                <input type="hidden" value= {{ $activites->id }}  name="activite_id_edit" >
+                                <input type="hidden" value={{ $id_tache }} name="tache_id_edit" >
+                                <div class="col-sm">
+                                <label class="form-label">Statut</label>
+                                <select class="form-select" name="statut_id_edit" multiple
+                                    aria-label="Default select Priority">
+                                    @forelse ($statut as $statu)
+                                        <option value="{{ $statu->id }}">{{ $statu->statut }}</option>
+                                    @empty
+                                        <option selected="">ajouter statut</option>
+                                    @endforelse
+                                </select>
+                            </div>
+
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-primary">Modifier</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 
 

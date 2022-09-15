@@ -19142,7 +19142,7 @@ body.rtl_mode
     position: relative;
 }
 .msg_send_btn {
-    background: #fd8201 none repeat scroll 0 0;
+    background: #484c7f;
     border: medium none;
     border-radius: 50%;
     color: #fff;

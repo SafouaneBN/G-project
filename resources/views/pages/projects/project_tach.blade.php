@@ -38,12 +38,11 @@
                                         </a>
 
                                             </div>
-                                            <span style="display: none">{{ $diff_in_days = Illuminate\Support\Carbon::createFromFormat('Y-m-d  H:s:i', $task->date_debut)->diffInDays(Illuminate\Support\Carbon::createFromFormat('Y-m-d  H:s:i', Illuminate\Support\Carbon::now() )); }}</span>
+                                            <span style="display: none">{{ $diff_in_days = Illuminate\Support\Carbon::createFromFormat('Y-m-d  H:s:i', $task->date_fin)->diffInDays(Illuminate\Support\Carbon::createFromFormat('Y-m-d  H:s:i', Illuminate\Support\Carbon::now() )); }}</span>
                                             <div class="progress" style="height: 10px;">
                                                 <div class="progress-bar bg-lightgreen" role="progressbar"
-                                                    style="width: {{ $diff_in_days }}%" aria-valuenow="60" aria-valuemin="0"
-                                                    aria-valuemax="100"></div>
-
+                                                    style="width: {{ (($task->estemation - $diff_in_days) * 100) / $task->estemation}}%" >
+                                                </div>
                                             </div>
                                             <span class="small text-muted">{{ $task->estemation }} Days</span>
                                         </div>

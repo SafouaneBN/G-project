@@ -29,7 +29,7 @@ class UserController extends Controller
         $User = User::create([
             "name" =>$request->name,
             "email" =>$request->email,
-            "password" =>bcrypt($request->password),
+            "password" => bcrypt($request->password),
             "role_id" =>$request->role
         ]);
         return redirect()->back()->with("Ajouter avec succes");
@@ -44,7 +44,7 @@ class UserController extends Controller
 
             "name"=>$request->name_edit,
             "email"=>$request->email_edit,
-            "password"=>$request->password_edit,
+            "password"=>bcrypt($request->password_edit),
             "role_id"=>$request->role_id_edit,
 
 

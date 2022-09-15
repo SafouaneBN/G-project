@@ -17,7 +17,7 @@ class ProjectController extends Controller
 {
 
     public function index(){
-        $projets = projet::with(['opportunite_projet','catProjet_projet','tachs'])
+        $projets = projet::with(['opportunite_projet','catProjet_projet','tachs','statut_projet'])
         ->get();
         $notifications =notification::where('user_accesses',Auth::user()->id)->get();
 
@@ -41,6 +41,7 @@ class ProjectController extends Controller
             "description"=>$request->desc,
             "opportunite_id"=>$request->opportunite,
             "catpro_id"=>$request->categorie,
+            "statu_id"=>19,
             "user_id" => Auth::user()->id,
         ]);
         return redirect()->back()->with("Ajouter avec succes");

@@ -12,10 +12,10 @@
                             <h3 class=" fw-bold flex-fill mb-0">Projet</h3>
                             <div class="col-auto d-flex">
                                 @if (Auth::user()->role_id == 3)
-                                <button type="button" class="btn btn-dark ms-1 " data-bs-toggle="modal"
-                                    data-bs-target="#createproject"><i class="icofont-plus-circle me-2 fs-6"></i>Ajouter
-                                    Projet</button>
-                                    @endif
+                                    <button type="button" class="btn btn-dark ms-1 " data-bs-toggle="modal"
+                                        data-bs-target="#createproject"><i class="icofont-plus-circle me-2 fs-6"></i>Ajouter
+                                        Projet</button>
+                                @endif
 
                             </div>
                         </div>
@@ -31,13 +31,14 @@
                             <th>Date projet</th>
                             <th>Opportunite</th>
                             <th>categorie projet</th>
+                            <th>Statut</th>
                             <th>Action</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         @forelse ($projets as $projet)
-                                <tr role="row  Rowdelete2{{ $projet->id }}" class="odd">
+                            <tr role="row  Rowdelete2{{ $projet->id }}" class="odd">
                                 <td class="">{{ $projet->projet }}</td>
                                 <input type="hidden" class="proj" value="{{ $projet->projet }}">
 
@@ -51,18 +52,45 @@
                                 <input type="hidden" class="catpro" value="{{ $projet->catpro_id }}">
 
                                 <input type="hidden" class="descp" value="{{ $projet->description }}">
-
+                                @if ($projet->statut_projet->statut == 'COMPLETE')
+                                    <td class=""><span
+                                            class="badge bg-success">{{ $projet->statut_projet->statut }}</span></td>
+                                    <input type="hidden" class="statu" value="{{ $projet->statu_id }}">
+                                @elseif ($projet->statut_projet->statut == 'En attente')
+                                    <td class=""><span
+                                            class="badge bg-secondary">{{$projet->statut_projet->statut }}</span></td>
+                                    <input type="hidden" class="statu" value="{{ $projet->statu_id }}">
+                                @elseif ($projet->statut_projet->statut == 'Arrêtée')
+                                    <td class=""><span
+                                            class="badge bg-danger">{{ $projet->statut_projet->statut }}</span></td>
+                                    <input type="hidden" class="statu" value="{{ $projet->statu_id }}">
+                                @elseif ($projet->statut_projet->statut == 'En cours')
+                                    <td class=""><span
+                                            class="badge rounded-pill bg-secondary">{{ $projet->statut_projet->statut }}</span>
+                                    </td>
+                                    <input type="hidden" class="statu" value="{{ $projet->statu_id }}">
+                                @elseif ($projet->statut_projet->statut == 'Planifiée')
+                                    <td class=""><span class="badge bg-info">{{ $projet->statut_projet->statut }}</span>
+                                    </td>
+                                    <input type="hidden" class="statu" value="{{ $projet->statu_id }}">
+                                @elseif ($projet->statut_projet->statut == 'Non planifiée')
+                                    <td class=""><span class="badge bg-dark">{{ $projet->statut_projet->statut }}</span>
+                                    </td>
+                                    <input type="hidden" class="statu" value="{{ $projet->statu_id }}">
+                                @else
+                                    <td class="">{{ $projet->statut_projet->statut }}</td>
+                                    <input type="hidden" class="statu" value="{{ $projet->statu_id }}">
+                                @endif
                                 <td class=" dt-body-right">
                                     @if (Auth::user()->role_id == 3)
                                         <button type="button" class="btn btn-outline-secondary editbtn"
                                             value="{{ $projet->id }}" data-bs-toggle="modal"
                                             data-bs-target="#editproject"><i class="icofont-edit text-success"></i></button>
-                                            @endif
-                                        <a type="button"
-                                            href="{{ route('projet.task',$projet->id) }}"
-                                            style="border: none" class="sup_statut"
-                                            class="btn btn-outline-secondary deleterow"><i class="icofont-eye-alt "></i>
-                                        </a>
+                                    @endif
+                                    <a type="button" href="{{ route('projet.task', $projet->id) }}" style="border: none"
+                                        class="sup_statut" class="btn btn-outline-secondary deleterow"><i
+                                            class="icofont-eye-alt "></i>
+                                    </a>
                                 </td>
                             </tr>
 
@@ -162,7 +190,7 @@
                             <input type="text" id="id_projet" name="id" value="" hidden>
 
                             <label for="exampleFormControlInput77" class="form-label"> Nom Projet </label>
-                            <input type="text" class="form-control"  name="projet_edit" id="projet_edit"
+                            <input type="text" class="form-control" name="projet_edit" id="projet_edit"
                                 placeholder="Explain what the Project Name" required>
                         </div>
 
@@ -183,7 +211,8 @@
 
                             <div class="col-sm">
                                 <label for="formFileMultipleone" class="form-label">Opportunite</label>
-                                <select class="form-select" name="opportunite_edit" id="opportunite_edit" aria-label="Default select Priority">
+                                <select class="form-select" name="opportunite_edit" id="opportunite_edit"
+                                    aria-label="Default select Priority">
                                     @forelse ($opportunites as $opportunite)
                                         <option value="{{ $opportunite->id }}">{{ $opportunite->opportunite }}</option>
                                     @empty
@@ -276,7 +305,5 @@
             $("#desc_edit").val($desc);
 
         })
-
-
     </script>
 @endsection
