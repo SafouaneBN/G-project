@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\client;
+use App\Models\projet;
 use App\Models\notification;
 use Illuminate\Support\Facades\Auth;
 
@@ -71,6 +72,15 @@ class ClientController extends Controller
             'msg' => 'well Done !!',
             'id' => $request -> id,
         ]);
+    }
+
+    public function projetofclient($id){
+
+        $clients = client::where("id",$id)->get();
+        // dd($client);
+          $projets = client::join("opportunites","opportunites.client_id","clients.id","statut.id")->join("projets","projets.opportunite_id","opportunites.id")->join("statuts","statuts.id","projets.statu_id")->where('clients.id',$id)->select('projets.*',"statut","opportunite")->get();
+         return view('pages.clients.clientDetails',compact('projets','clients'));
+
     }
 
 

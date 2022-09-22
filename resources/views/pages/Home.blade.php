@@ -11,7 +11,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header py-3 d-flex justify-content-between bg-transparent border-bottom-0">
-                                <h6 class="mb-0 fw-bold ">Projet Info</h6>
+                                <h6 class="mb-0 fw-bold ">Activites Info</h6>
                             </div>
                             <div class="card-body">
                                 <div class="evolution1" id="evolution1"></div>
@@ -26,7 +26,7 @@
                 <div class="col">
                     <div class="card mb-3">
                         <div class="card-header d-flex justify-content-between align-items-center bg-transparent border-bottom-0">
-                            <h6 class="m-0 fw-bold">Simple Donut</h6>
+                            <h6 class="m-0 fw-bold">Projets</h6>
                         </div>
                         <div class="card-body">
                             <div id="donut-count-project"></div>
@@ -69,7 +69,7 @@
                                     <span class="avatar lg light-success-bg rounded-circle text-center d-flex align-items-center justify-content-center"><i class="icofont-holding-hands fs-5"></i></span>
                                     <div class="d-flex flex-column ps-3 flex-fill">
                                         <h6 class="fw-bold mb-0 fs-4">{{ $opportunites }}</h6>
-                                        <span class="text-muted">Opporunite</span>
+                                        <span class="text-muted">Opporunites</span>
                                     </div>
                                     <i class="icofont-chart-line fs-3 text-muted"></i>
                                 </div>
@@ -79,7 +79,7 @@
                     <div class="col-md-12 col-lg-12 col-xl-12">
                         <div class="card">
                         <div class="card-header py-3 d-flex justify-content-between bg-transparent border-bottom-0">
-                            <h6 class="mb-0 fw-bold ">Upcomming Interviews</h6>
+                            <h6 class="mb-0 fw-bold ">Les employers</h6>
                         </div>
                         <div class="card-body">
                             <div class="flex-grow-1">
@@ -89,7 +89,7 @@
                                     <img class="avatar lg rounded-circle img-thumbnail" src="{{asset('assets/images/lg/avatar7.jpg')}}" alt="profile">
                                     <div class="d-flex flex-column ps-3">
                                         <h6 class="fw-bold mb-0 small-14">{{ $user->name }}</h6>
-                                        <span class="text-muted">Writer</span>
+                                        <span class="text-muted">employer</span>
                                     </div>
                                 </div>
 

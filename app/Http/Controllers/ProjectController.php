@@ -8,6 +8,7 @@ use App\Models\projet;
 use App\Models\activite;
 use App\Models\tache;
 use App\Models\cat_projet;
+use App\Models\cat_tache;
 use App\Models\notification;
 
 use App\Models\User;
@@ -91,6 +92,7 @@ class ProjectController extends Controller
     public function taskOfProjet($id){
         $projet = projet::find($id);
         $notifications =notification::where('user_accesses',Auth::user()->id)->get();
+        $cat_taches = cat_tache::with('tach_catTach')->get();
 
         if(!$projet)
             return redirect()->back();
@@ -104,7 +106,7 @@ class ProjectController extends Controller
             array_push($activitiesList, $activities);
         }
 
-        return view('pages.projects.project_tach',compact('activitiesList','tasks','notifications'));
+        return view('pages.projects.project_tach',compact('activitiesList','tasks','notifications','cat_taches','projet'));
     }
 
 ///////////////////

@@ -113,6 +113,8 @@ Route::group(['prefix' => 'client', "middleware" => ["auth","blockUser"]  ],func
     Route::get('/Client/{id}/edit', [ClientController::class,"editClient"])->middleware("roles:bothAC");
     Route::post('/Client/update', [ClientController::class,"updateClient"])->middleware("roles:bothAC")->name('parametre.updateClient');
     Route::post('/Client/delete', [ClientController::class,"deleteClient"])->middleware("roles:bothAC")->name('parametre.deleteClient');
+    Route::get('/show/{id}',[ClientController::class, "projetofclient"])->middleware("roles:bothAC")->name('projet.client');
+
 
 });
 

@@ -11,19 +11,21 @@
                         <div class="card card-chat border-right border-top-0 border-bottom-0  w380">
                             <div class="px-4 py-3 py-md-4">
 
-
+                                @if (Auth::user()->role_id == 3)
                                 <div class="nav nav-pills justify-content-end text-center" role="tablist">
 
                                     <button class=" btn btn-dark ms-1 edit_role styButton" style="border: none"
                                         type="button" data-bs-toggle="modal" data-bs-target="#depedit"><i
                                             class="icofont-plus-circle me-2 fs-6"></i></button>
                                 </div>
+                                @else
+                                @endif
                             </div>
 
                             <div class="tab-content border-top">
                                 <div class="tab-pane fade show active" id="chat-recent" role="tabpanel">
                                     <ul class="list-unstyled list-group list-group-custom list-group-flush mb-0">
-                                        @forelse ($conversations as $conversation)
+                                        @forelse ($arrayConversation as $conversation)
                                             <li class="list-group-item px-md-4 py-3 py-md-4">
                                                 <a href="{{ route('Chat.conversation',$conversation->uuid) }}" class="d-flex">
                                                     <span
@@ -124,7 +126,7 @@
         <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title  fw-bold" id="depeditLabel">ajouter livrable</h5>
+                    <h5 class="modal-title  fw-bold" id="depeditLabel">Nouvelle conversation</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="{{ route('Chat.createConversations') }}" class="forms-sample" method="post" enctype="multipart/form-data">
@@ -183,7 +185,7 @@
         <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title  fw-bold" id="depeditLabel"> livrable</h5>
+                    <h5 class="modal-title  fw-bold" id="depeditLabel"> Ajouter Utilisateur</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="{{ route('Chat.ajouteruser') }}" class="forms-sample" method="post" enctype="multipart/form-data">
@@ -232,6 +234,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 
+    {{-- var objDiv = document.getElementById("conversationH");
+                objDiv.scrollTop = objDiv.scrollHeight; --}}
     <script>
         var input = document.getElementById("msgBox");
         input.addEventListener("keypress", function(event) {
@@ -278,8 +282,7 @@
 
     <script>
         function getMessage() {
-            var objDiv = document.getElementById("conversationH");
-            objDiv.scrollTop = objDiv.scrollHeight;
+
             var myEmail = $("#myEmail").text();
             var ConUUid = $("#conversationUUid").text();
 

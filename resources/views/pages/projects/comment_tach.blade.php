@@ -168,7 +168,7 @@
                                                         <button type="button" class="btn btn-dark ms-1 cmt"
                                                             value="{{ $livrable->id }}" data-bs-toggle="modal"
                                                             data-bs-target="#createproject"><i
-                                                                class="icofont-plus-circle me-2 fs-6"></i>comment</button>
+                                                                class="icofont-plus-circle me-2 fs-6"></i>commenter</button>
                                                                 @endif
                                                                 <a type="button"
                                             href=""
@@ -193,7 +193,7 @@
                         <div class="card-body card-body-height py-4">
                             <div class="row">
                                 <div class="col-lg-12 col-md-12">
-                                    <h6 class="mb-0 fw-bold mb-3">Ticket Chat</h6>
+                                    <h6 class="mb-0 fw-bold mb-3">Commentaire</h6>
 
                                 </div> <!-- .Card End -->
                                 <ul class="list-unstyled res-set">

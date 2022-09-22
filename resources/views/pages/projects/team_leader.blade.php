@@ -48,26 +48,7 @@
                         </div>
 
                         <div class=" row g-3 mb-3">
-                            {{-- <div class="col">
-                                <label for="datepickerdedone" class="form-label">Projet</label>
-                                <select class="form-select" name="projet" aria-label="Default select Priority">
-                                    @forelse ($projets as $projet)
-                                        <option value="{{ $projet->id }}">{{ $projet->projet }}</option>
-                                    @empty
-                                        <option selected="">ajouter projet</option>
-                                    @endforelse
-                                </select>
-                            </div> --}}
-                            {{-- <div class="col">
-                                <label for="datepickerdedone" class="form-label">Tache</label>
-                                <select class="form-select" name="tache" aria-label="Default select Priority">
-                                    @forelse ($taches as $tache)
-                                        <option value="{{ $tache->id }}">{{ $tache->tache }}</option>
-                                    @empty
-                                        <option selected="">ajouter tache</option>
-                                    @endforelse
-                                </select>
-                            </div> --}}
+                      
                         </div>
 
                         <div class="deadline-form">

@@ -23,7 +23,7 @@
                         <div class="tab-content border-top">
                             <div class="tab-pane fade show active" id="chat-recent" role="tabpanel">
                                 <ul class="list-unstyled list-group list-group-custom list-group-flush mb-0">
-                                    @forelse ($conversations as $conversation)
+                                    @forelse ($arrayConversation as $conversation)
                                         <li class="list-group-item px-md-4 py-3 py-md-4">
                                             <a href="{{ route('Chat.conversation',$conversation->uuid) }}" class="d-flex">
                                                 <span class="avatar d-flex justify-content-center align-items-center rounded-circle light-success-bg">{{substr($conversation->name,0,2)}}</span>

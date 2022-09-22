@@ -41,6 +41,9 @@
 
                 <ul class="menu-list flex-grow-1 mt-3">
                     @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 3)
+                    <li><a class="m-link @yield('client')" href="{{ route('client.index') }}"><i
+                        class="icofont-user-male"></i> <span>Client</span></a></li>
+{{--
                         <li class="collapsed">
                             <a class="m-link @yield('client')" data-bs-toggle="collapse"
                                 data-bs-target="#opp-Components" href="#">
@@ -51,11 +54,14 @@
                                 <li><a class="ms-link @yield('client')" href="{{ route('client.index') }}"> <span>
                                             client</span></a></li>
                             </ul>
-                        </li>
+                        </li> --}}
                     @endif
 
                     @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 3)
-                        <li class="collapsed">
+
+                    <li><a class="m-link @yield('opportunite')" href="{{ route('opportunite.index') }}"><i
+                        class="icofont-files-stack"></i> <span>Opportunite</span></a></li>
+                    {{-- <li class="collapsed">
                             <a class="m-link @yield('opportunite')" data-bs-toggle="collapse"
                                 data-bs-target="#dashboard-Components" href="#">
                                 <i class="icofont-files-stack"></i> <span>Opportunite</span> <span
@@ -65,7 +71,7 @@
                                 <li><a class="ms-link @yield('opportunite')" href="{{ route('opportunite.index') }}"> <span>
                                             opportunite</span></a></li>
                             </ul>
-                        </li>
+                        </li> --}}
                     @endif
                     <li class="collapsed">
                         <a class="m-link @yield('projects')" data-bs-toggle="collapse"
@@ -78,7 +84,7 @@
                                     href="{{ url('project/index') }}"><span>Projects</span></a></li>
                             @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 3)
                                 <li><a class="ms-link @yield('task')"
-                                        href="{{ route('project.task') }}"><span>Tasks</span></a></li>
+                                        href="{{ route('project.task') }}"><span>Taches</span></a></li>
                                 {{-- <li><a class="ms-link @yield('team_leader')" href="{{ route('project.team_leader') }}"><span>Activite</span></a></li> --}}
                                 <li><a class="ms-link @yield('cat_projet')"
                                         href="{{ route('cat_projet.index') }}"><span>Categorie projet</span></a></li>
@@ -86,7 +92,10 @@
                         </ul>
                     </li>
                     @if (Auth::user()->role_id == 3)
-                        <li class="collapsed">
+
+                    <li><a class="m-link @yield('user')" href="{{ route('user.index') }}"><i
+                        class="icofont-users-alt-5"></i> <span>utilisateur</span></a></li>
+                        {{-- <li class="collapsed">
                             <a class="m-link @yield('user')" data-bs-toggle="collapse"
                                 data-bs-target="#emp-Components" href="#"><i class="icofont-users-alt-5"></i>
                                 <span>Utilisateur</span> <span
@@ -96,9 +105,15 @@
                                 <li><a class="ms-link @yield('user')" href="{{ route('user.index') }}">
                                         <span>utilisateur</span></a></li>
                             </ul>
-                        </li>
+                        </li> --}}
                     @endif
-                    @if (Auth::user()->role_id == 3)
+
+
+
+                    <li><a class="m-link @yield('chat')" href="{{ route('Chat.index') }}"><i
+                                class="icofont-wechat"></i> <span>Chat</span></a></li>
+
+                                @if (Auth::user()->role_id == 3)
                         <li class="collapsed">
                             <a class="m-link @yield('parametre') @yield('statut')" data-bs-toggle="collapse"
                                 data-bs-target="#app-Components" href="#">
@@ -118,10 +133,6 @@
                             </ul>
                         </li>
                     @endif
-
-
-                    <li><a class="m-link @yield('chat')" href="{{ route('Chat.index') }}"><i
-                                class="icofont-wechat"></i> <span>Chat</span></a></li>
                 </ul>
 
                 <!-- Theme: Switch Theme -->
@@ -185,13 +196,17 @@
                                         data-bs-toggle="dropdown">
                                         <span
                                             style="display: none">{{ $notifications = App\Models\notification::where('user_accesses', Auth::user()->id)->get() }}</span>
+                                          <span  style="display: none">{{ $index = App\Models\notification::where('user_accesses', Auth::user()->id)->count() }}</span>
 
-                                        @if (Auth::user()->role_id == 2)
-                                            @if ($notifications[0]->etat == 'not readed')
-                                                <i class="icofont-alarm fs-5" style="color: #F19828"></i>
-                                                <span class="pulse-ring"></span>
-                                            @else
-                                                <i class="icofont-alarm fs-5"></i>
+
+                                        @if($notifications != "[]")
+                                            @if (Auth::user()->role_id == 2)
+                                                @if ($notifications[$index-1]->etat == 'not readed')
+                                                    <i class="icofont-alarm fs-5" style="color: #F19828"></i>
+                                                    <span class="pulse-ring"></span>
+                                                @else
+                                                    <i class="icofont-alarm fs-5"></i>
+                                                @endif
                                             @endif
                                         @endif
 

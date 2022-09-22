@@ -75,10 +75,12 @@
                                     <input type="hidden" class="te" value="{{ $client->telephone }}">
                                     <input type="hidden" class="ty" value="{{ $client->type_client }}">
 
+                                    <div class="d-flex flex-wrap align-items-center ct-btn-set">
 
-
-
+                                        <a href="{{ route('projet.client', $client->id) }}" class="btn btn-light btn-sm mt-1"><i class="icofont-invisible me-2 fs-6"></i>Profile</a>
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>

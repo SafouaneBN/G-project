@@ -15,26 +15,47 @@ use Illuminate\Support\Facades\Auth;
 class ChatController extends Controller
 {
     public function index(){
+        // return *
+        $arrayConversation = [];
         $conversations = conversation::with(['messages','user_conversation'])->get();
-        return view('pages.chat.Chat',compact('conversations'));
+
+        foreach($conversations as $conversation){
+            if($conversation["user_conversation"] != "[]"){
+                array_push($arrayConversation,$conversation);
+            }
+        }
+
+        return view('pages.chat.Chat',compact('arrayConversation'));
     }
 
 
     public function conversation($uuid){
         $conv = conversation::where('uuid', $uuid)->first();
+        $arrayConversation = [];
         $users = User::get();
+
+
+
         if(!$conv){
             return redirect()->back();
         }
 
         $messages = message::where('conversations_id', $conv->id)->get();
 
-        $conversations = conversation::with(['messages','user_conversation'])->get();
+
         $projets = projet::with('conv_projrt')->get();
 
+        $conversations = conversation::with(['messages','user_conversation'])->get();
+
+        foreach($conversations as $conversation){
+            if($conversation["user_conversation"] != "[]"){
+                array_push($arrayConversation,$conversation);
+            }
+        }
 
 
-        return view('pages.chat.Conversation',compact('conversations','messages','conv','projets','users'));
+
+        return view('pages.chat.Conversation',compact('arrayConversation','messages','conv','projets','users'));
     }
 
     public function sendMsg(Request $request){
@@ -65,6 +86,12 @@ class ChatController extends Controller
             'uuid' => Str::uuid(),
             'projet_id' => $request->projet,
             'name' => $request->name
+        ]);
+
+
+        UserConversation::create([
+            'user_id' => Auth::user()->id,
+            'conversations_id' => $conversation->id
         ]);
 
         return redirect()->back();

@@ -23,8 +23,10 @@
                     <div class="row g-3 row-deck">
                         <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
                             <div class="card">
-                                <div class="card-header py-3">
-                                    <h6 class="mb-0 fw-bold ">Task Progress</h6>
+                                <div class="card-header col-auto d-flex justify-content-between">
+                                    <h6 class="mb-0 fw-bold ">Taches</h6>
+                                    <a class="nav-link py-2 px-3 text-muted d-none d-lg-block" type="button" data-bs-toggle="modal" data-bs-target="#user"><i class="icofont-plus-circle me-2 fs-6"></i></a>
+
                                 </div>
                                 <div class="card-body mem-list">
                                     @foreach ($tasks as $task)
@@ -55,7 +57,7 @@
                         <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
                             <div class="card">
                                 <div class="card-header py-3">
-                                    <h6 class="mb-0 fw-bold ">Recent Activity</h6>
+                                    <h6 class="mb-0 fw-bold ">Nouvelle Activite</h6>
                                 </div>
                                 <div class="card-body mem-list">
                                     @if ($activitiesList == null)
@@ -92,7 +94,7 @@
                         <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-12">
                             <div class="card">
                                 <div class="card-header py-3">
-                                    <h6 class="mb-0 fw-bold ">Allocated Task Members</h6>
+                                    <h6 class="mb-0 fw-bold ">Employers</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="flex-grow-1 mem-list">
@@ -131,7 +133,68 @@
     </div>
 
 
+    <div class="modal fade" id="user" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title  fw-bold" id="depeditLabel"> livrable</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" action="{{ route('parametre.addtache') }}">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Tache</label>
+                            <input class="form-control" name="tache" type="text" id="formFileMultipleone" required>
+                        </div>
 
+
+                        <div class="deadline-form mb-3">
+                            <div class="row">
+                                <div class="col">
+                                    <label for="datepickerded" class="form-label">categorie tache</label>
+                                    <select class="form-select" name="cat_tache_id" aria-label="Default select Priority">
+                                        @forelse ($cat_taches as $cat_tache)
+                                            <option value="{{ $cat_tache->id }}">{{ $cat_tache->cat_tache }}
+                                            </option>
+                                        @empty
+                                            <option selected="">ajouter categorie tache</option>
+                                        @endforelse
+                                    </select>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="deadline-form mb-3">
+
+                            <div class="row">
+                                <div class="col">
+                                    <label for="datepickerded" class="form-label">Tache Start Date</label>
+                                    <input type="date" name="date_debut" class="form-control" id="date_debut">
+                                </div>
+                                <div class="col">
+                                    <label for="datepickerdedone" class="form-label">Tache End Date</label>
+                                    <input type="date" name="date_fin" class="form-control" id="date_fin">
+                                </div>
+                            </div>
+
+                        </div>
+                        <input type="" value="{{ $projet->id }}" name="projet_id" class="projet_id">
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-dark ms-1 cmt" value="{{ $projet->id }}"><i
+                            class="icofont-plus-circle me-2 fs-6"></i>ajouter</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -160,3 +223,14 @@
 
 
 @endsection
+@section('scripts')
+<script>
+
+
+    document.getElementById("date_debut").onchange = function() {
+        var input = document.getElementById("date_fin");
+        input.setAttribute("min", this.value);
+    }
+</script>
+@endsection
+
